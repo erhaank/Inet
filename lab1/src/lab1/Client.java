@@ -48,7 +48,7 @@ public class Client {
     	String username = scanner.next();
     	out.writeChars(username);
 
-    	ClientReadThread writeThread = new ClientReadThread(in);
+    	ClientWriteThread writeThread = new ClientWriteThread(in);
     	writeThread.run();
 
     	ClientReadThread readThread = new ClientReadThread(out);
