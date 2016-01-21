@@ -1,16 +1,22 @@
 package lab1;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.util.Scanner;
+
 public class Client {
 
-	private Socket socket;
+	private static Socket socket;
 	private Boolean running;
 
-	private ClientReadThread extends Thread {
+	private class ClientReadThread extends Thread {
 
 		private Scanner scanner;
 		private DataOutputStream out;
 
-		public ClientThread(DataOutputStream out) {
+		public ClientReadThread(DataOutputStream out) {
 			this.out = out;
 		}
 		public void run() {
@@ -21,16 +27,16 @@ public class Client {
 			}
 	}
 
-	private ClientWriteThread extends Thread {
+	private class ClientWriteThread extends Thread {
 
-		private DataOutputStream in;
+		private DataInputStream in;
 
-		public ClientThread(DataOutputStream in) {
+		public ClientWriteThread(DataInputStream in) {
 			this.in = in;
 		}
 		public void run() {
 			while(true) {
-				String output = in.readChars();
+				String output = in.readUTF();
 				System.out.println(output);
 			}
 	}

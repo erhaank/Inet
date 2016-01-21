@@ -1,6 +1,7 @@
 package lab1;
 
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Will work as the "static" part of the program, keeping track on which clients are logged on as well as
@@ -8,7 +9,8 @@ import java.util.HashMap;
  */
 // ÄR det här för fult? Vet inte hur jag ska göra annars?
 public class Synchronizer {
-	HashMap<String, Connection> connections;
+	
+	private HashMap<String, Connection> connections;
 	
 	public Synchronizer() {
 		connections = new HashMap<String, Connection>();
@@ -25,8 +27,12 @@ public class Synchronizer {
 	public synchronized void distribute(Message msg) {
 		if (!connections.containsKey(msg.getReceiver()))
 			return;
-		//TODO
-		//Connection receiver = connections.get(msg.getReceiver());
-		//receiver.addToBuffer(msg);
+		Connection receiver = connections.get(msg.getReceiver());
+		receiver.addToBuffer(msg);
+	}
+	
+	public String[] getUsers() {
+		Set<String> users = connections.keySet();
+		return (String[]) users.toArray();
 	}
 }
