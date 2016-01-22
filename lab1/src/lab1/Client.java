@@ -9,7 +9,8 @@ import java.util.Scanner;
 public class Client {
 
 	private static Socket socket;
-	private Boolean running;
+	private DataInputStream in;
+	private DataOutputStream out;
 
 	private class ClientReadThread extends Thread {
 
@@ -41,24 +42,27 @@ public class Client {
 			}
 	}
 
-	public static void main(String[] args) {		
+	public Client(Socket socket) {
+		this.socket = socket;
 		try {
-			socket = new Socket("localhost", 8888);
-    	} catch (IOException e) {
-    		//TODO maybe they should be in 2 try catch instead...
-    	}
-    	DataInputStream in = new DataInputStream(socket.getInputStream());
-		DataOutputStream out = new DataOutputStream(socket.getOutputStream();
+			in = new DataInputStream(socket.getInputStream());
+			out = new DataOutputStream(socket.getOutputStream();
+		} catch (IOException e) {
+			//TODO
+		}
+	}
 
+	public void getUsername() {
 		System.out.println("Username:");
     	String username = scanner.next();
     	out.writeChars(username);
+	}
 
+	public void startChat() {
     	ClientWriteThread writeThread = new ClientWriteThread(in);
     	writeThread.run();
 
     	ClientReadThread readThread = new ClientReadThread(out);
     	readThread.run();
 	}
-
 }
