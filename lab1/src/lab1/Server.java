@@ -24,7 +24,7 @@ public class Server {
             //Get username, client should handle this part
             String user = in.readUTF();
             if (!sync.hasUser(user))
-            	sync.addClient(user, new Connection(client, out, in, sync));
+            	sync.addClient(user, new Connection(user, client, out, in, sync));
             else
             	client.close(); //TODO: Maybe do this in a better way... Although the client could maybe fix this?
 		}

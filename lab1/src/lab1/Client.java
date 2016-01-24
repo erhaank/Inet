@@ -12,12 +12,12 @@ public class Client {
 	private DataInputStream in;
 	private DataOutputStream out;
 
-	private class ClientReadThread extends Thread {
+	private class ClientWriteThread extends Thread {
 
 		private Scanner scanner;
 		private DataOutputStream out;
 
-		public ClientReadThread(DataOutputStream out) {
+		public ClientWriteThread(DataOutputStream out) {
 			this.out = out;
 		}
 		public void run() {
@@ -28,11 +28,11 @@ public class Client {
 			}
 	}
 
-	private class ClientWriteThread extends Thread {
+	private class ClientReadThread extends Thread {
 
 		private DataInputStream in;
 
-		public ClientWriteThread(DataInputStream in) {
+		public ClientReadThread(DataInputStream in) {
 			this.in = in;
 		}
 		public void run() {
@@ -59,10 +59,11 @@ public class Client {
 	}
 
 	public void startChat() {
-    	ClientWriteThread writeThread = new ClientWriteThread(in);
-    	writeThread.run();
 
     	ClientReadThread readThread = new ClientReadThread(out);
     	readThread.run();
+
+    	ClientWriteThread writeThread = new ClientWriteThread(in);
+    	writeThread.run();
 	}
 }
