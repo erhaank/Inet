@@ -1,8 +1,14 @@
 package lab1;
 
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * A connection is connected to a specific Client.
@@ -11,46 +17,171 @@ public class Connection extends Thread {
 
 	private String clientName;
 	private Synchronizer sync;
-	private Socket client;
 	private DataOutputStream out;
 	private DataInputStream in;
 	private Protocol protocol;
 	private LinkedList<Message> messages;
-	private Set<String> usersWithMessages;
+	private List<String> usersWithMessages;
 	private ConnectionWriteThread write;
 	private ConnectionReadThread read;
 	//TODO it is not a buffer anymore, but still it is called addtobuffer...
 
-	private class Protocol {
 	
-		private enum State {
-			OPTIONS, CHATROOM, CHATTING, LOGOUT, EXIT, UNCHANGED
+
+	public Connection(String clientName, Socket client, DataOutputStream out, DataInputStream in, Synchronizer sync) {
+		this.clientName = clientName;
+		this.out = out;
+		this.in = in;
+		this.sync = sync;
+		protocol = new Protocol();
+		messages = new LinkedList<Message>();
+		usersWithMessages = new ArrayList<String>();
+
+	}
+
+	public void run() {
+		try {
+			go();
+		} catch (IOException e) {
+			// TODO
+		}
+	}
+	
+	//TODO: Better name
+	private void go() throws IOException {
+		while(true) {
+			switch(protocol.getState()) {
+			case OPTIONS:
+				viewOptions();
+				break;
+			case CHATROOM:
+				viewChatRoom();
+				break;
+			case CHATTING:
+				//startChat();
+				break;
+			case EXIT:
+				//TODO
+				break;
+			default:
+				//TODO
+			}
+		}
+	}
+
+	public void addToBuffer(Message msg) {
+		messages.push(msg);
+		String sender = msg.getSender();
+		if(!usersWithMessages.contains(sender)) {
+			usersWithMessages.add(sender);
+		}
+	}
+
+	private void viewChatRoom() throws IOException {
+		String[] users = sync.getUsers();
+		StringBuilder sb = new StringBuilder();
+		for(String user : users) {
+			if(usersWithMessages.contains(user)) {
+				sb.append(user + "*");
+			} else {
+				sb.append(user);
+			}
 		}
 
-		private State currentState;
+		out.writeUTF(sb.toString());
+	}
+
+	private void viewOptions() throws IOException {
+		out.writeUTF("Chat room (1)\n");
+		out.writeUTF("Log out (2)\n");
+		out.writeUTF("Exit (3)\n");
+		String s = in.readUTF();
+		switch (s) {
+		case "1":
+			protocol.setState(ConnectionState.CHATROOM);
+			break;
+		case "2":
+			protocol.setState(ConnectionState.LOGOUT);
+			break;
+		case "3":
+			protocol.setState(ConnectionState.EXIT);
+			break;
+		default:
+			out.writeUTF(s + " is not a valid option.");
+			protocol.setState(ConnectionState.UNCHANGED);
+			break;
+		}
+	}
+
+	public void startChat(String user) {
+		read = new ConnectionReadThread(user);
+		read.run();
+		write = new ConnectionWriteThread(user);
+		write.run();
+		protocol.setState(ConnectionState.UNCHANGED);
+	}
+
+	public void writeMessagesFrom(String user) {
+		Iterator<Message> i = messages.descendingIterator();
+		while(i.hasNext()) {
+			Message msg = i.next();
+			if(user == msg.getSender()) {
+				try {
+					out.writeUTF(msg.getMessage());
+				} catch (IOException e) {
+					// TODO
+				}
+			}
+		}
+		if(usersWithMessages.contains(user)) {
+			usersWithMessages.remove(user);
+		}
+	}
+
+	public void endChat() {
+		/*read = interrrupt();
+		write = interrrupt();
+		protocol.setState(OPTIONS);*/
+	}
+	
+	//---------------------------------------------------------------------------
+	//----------------------Private Classes and stuff...-------------------------
+	//---------------------------------------------------------------------------
+	
+	private enum ConnectionState {
+		OPTIONS, CHATROOM, CHATTING, LOGOUT, EXIT, UNCHANGED
+	}
+
+	private class Protocol {
+		private ConnectionState currentState;
 
 		public Protocol() {
-			currentState = OPTIONS;
+			currentState = ConnectionState.OPTIONS;
 		}
 
-		public void setState(State state) {
+		public void setState(ConnectionState state) {
 			currentState = state;
 		}
 
-		public State getState() {
+		public ConnectionState getState() {
 			return currentState;
 		}
 	}
 
 	private class ConnectionWriteThread extends Thread {
-		private User user;
+		private String receiver;
 
-		public ConnectionWriteThread(User receiver) {
-			this.user = user;
+		public ConnectionWriteThread(String receiver) {
+			this.receiver = receiver;
 		}
 		public void run() {
 			while(!this.isInterrupted()) {
-				String s = in.readUTF();
+				String s = null;
+				try {
+					s = in.readUTF();
+				} catch (IOException e) {
+					// TODO
+				}
 				if(s.equals("EXIT")) {
 					endChat();
 				} else {
@@ -63,10 +194,10 @@ public class Connection extends Thread {
 	}
 
 	private class ConnectionReadThread extends Thread {
-		private User user;
+		private String sender;
 
-		public ConnectionReadThread(User sender) {
-			this.user = user;
+		public ConnectionReadThread(String sender) {
+			this.sender = sender;
 		}
 		public void run() {
 			while(!this.isInterrupted()) {
@@ -75,104 +206,5 @@ public class Connection extends Thread {
 				}
 			}
 		}
-	}
-
-	public Connection(String clientName, Socket client, DataOutputStream out, DataInputStream in, Synchronizer sync) {
-		this.clientName = clientName;
-		this.client = client;
-		this.out = out;
-		this.in = in;
-		this.sync = sync;
-		protocol = new Protocol();
-		messages = new LinkedList<String>();
-		usersWithMessages = new Set<String>();
-
-	}
-
-	public void run() {
-		while(true) {
-			switch(protocol.getState()) {
-				case OPTIONS:
-					viewOptions();
-					break;
-				case CHATROOM:
-					viewChatRoom();
-					break;
-				case CHATTING:
-					startChat();
-					break;
-				case EXIT:
-					//TODO
-					break;
-			}
-		}
-	}
-	
-	public void addToBuffer(Message msg) {
-		messages.push(msg);
-		String sender = msg.getSender();
-		if(!usersWithMessages.contains(sender)) {
-			usersWithMessages.put(sender);
-		}
-	}
-
-	public void viewChatRoom() {
-		String[] users = sync.getUsers();
-		for(String user : users) {
-			if(usersWithMessages.contains(user)) {
-				out.writeUTF(user + "*");
-			} else {
-				out.writeUTF(user);
-			}
-		}
-	}
-
-	public void viewOptions() {
-		out.writeUTF("Chat room (1)\n");
-		out.writeUTF("Log out (2)\n");
-		out.writeUTF("Exit (3)\n");
-		String s = in.readUTF();
-		switch (s) {
-			case "1":
-				protocol.setState(CHATROOM);
-				break;
-			case "2":
-				protocol.setState(LOGOUT);
-				break;
-			case "3":
-				protocol.setState(EXIT);
-				break;
-			default:
-				out.writeUTF(s + " is not a valid option.");
-				protocol.setState(UNCHANGED);
-				break;
-		}
-	}
-
-	public void startChat(String user) {
-		read = new ConnectionReadThread(user);
-		read.run();
-		write = new ConnectionWriteThread(user);
-		write.run();
-		protocol.setState(UNCHANGED);
-	}
-
-	public void writeMessagesFrom(User user) {
-		Iterator<Message> i = messages.descendingIterator();
-		while(i.hasNext) {
-			Message msg = i.next();
-			if(user == msg.getSender()) {
-				out.writeUTF(msg.getMessage());
-			}
-		}
-		if(usersWithMessages.contains(user)) {
-			usersWithMessages.remove(user);
-		}
-	}
-
-	public void endChat() {
-		read = interrrupt();
-		write = interrrupt();
-		protocol.setState(OPTIONS);
 	}
 }

@@ -8,13 +8,38 @@ import java.util.Scanner;
 
 public class Client {
 
-	private static Socket socket;
 	private DataInputStream in;
 	private DataOutputStream out;
 
+	public Client(Socket socket) {
+		try {
+			in = new DataInputStream(socket.getInputStream());
+			out = new DataOutputStream(socket.getOutputStream());
+		} catch (IOException e) {
+			//TODO
+		}
+	}
+
+	public void getUsername() {
+		/*System.out.println("Username:");
+    	String username = scanner.next();
+    	out.writeChars(username);*/
+	}
+
+	public void startChat() {
+
+    	ClientReadThread readThread = new ClientReadThread(in);
+    	readThread.run();
+
+    	ClientWriteThread writeThread = new ClientWriteThread(out);
+    	writeThread.run();
+	}
+	//---------------------------------------------------------------------------
+	//----------------------Private Classes and stuff...-------------------------
+	//---------------------------------------------------------------------------
+	
 	private class ClientWriteThread extends Thread {
 
-		private Scanner scanner;
 		private DataOutputStream out;
 
 		public ClientWriteThread(DataOutputStream out) {
@@ -24,8 +49,15 @@ public class Client {
 			Scanner scanner = new Scanner(System.in);
 			while(true) {
 				String input = scanner.next();
-				out.writeChars(input);
+				try {
+					out.writeChars(input);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					scanner.close();
+					e.printStackTrace();
+				}
 			}
+		}
 	}
 
 	private class ClientReadThread extends Thread {
@@ -37,33 +69,15 @@ public class Client {
 		}
 		public void run() {
 			while(true) {
-				String output = in.readUTF();
+				String output = null;
+				try {
+					output = in.readUTF();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				System.out.println(output);
 			}
-	}
-
-	public Client(Socket socket) {
-		this.socket = socket;
-		try {
-			in = new DataInputStream(socket.getInputStream());
-			out = new DataOutputStream(socket.getOutputStream();
-		} catch (IOException e) {
-			//TODO
 		}
-	}
-
-	public void getUsername() {
-		System.out.println("Username:");
-    	String username = scanner.next();
-    	out.writeChars(username);
-	}
-
-	public void startChat() {
-
-    	ClientReadThread readThread = new ClientReadThread(out);
-    	readThread.run();
-
-    	ClientWriteThread writeThread = new ClientWriteThread(in);
-    	writeThread.run();
 	}
 }
