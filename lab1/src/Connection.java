@@ -13,26 +13,6 @@ import java.util.Set;
 /**
  * A connection is connected to a specific Client.
  */
-
-/*
- * Okej så här tänker jag:
- * 
- * Protokollet borde vara mer utökat, låt protokollet göra allt det logiska liksom. Just
- * nu känns den ganska värdelös.
- * 
- * Vi behöver inte 3 st trådar per connection, känns overkill. Egentligen skulle det bara
- * behövas 1 tråd, som tar emot ett input, låter protokollet processa det och generera output
- * och sen skriva ut output till klienten. Eftersom det dock kan bli clash mellan klienttråden
- * som skickar användarinput och klienttråden som skickar förfrågan om update så kan det vara en bra
- * grej att ha en tråd som bara lyssnar på input, och så fort något nytt har kommit så skickar 
- * den det till en synchronized metod i huvudtråden (Connection) och sen fortsätter lyssna.
- * Huvudtråden är den som använder sig av protokollet och skickar tillbaka något output.
- * 
- * Vi behöver alltså ingen specifik tråd för själva chatten, it's all the same. Just nu så uppdateras
- * det ju t.ex inte när man är inne i chatroom
- * 
- * Eller vad tycker du? Det här är bara mina tankar och förslag, jag kan vara ute och cykla såklart
- */
 public class Connection extends Thread {
 
 	private String clientName;
