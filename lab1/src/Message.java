@@ -1,4 +1,4 @@
-package lab1;
+
 
 public class Message {
 	private String sender, receiver, message;

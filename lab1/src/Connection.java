@@ -1,14 +1,14 @@
-package lab1;
+
 
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Set;
 
 /**
  * A connection is connected to a specific Client.
@@ -21,12 +21,10 @@ public class Connection extends Thread {
 	private DataInputStream in;
 	private Protocol protocol;
 	private LinkedList<Message> messages;
-	private List<String> usersWithMessages;
+	private Set<String> usersWithMessages;
 	private ConnectionWriteThread write;
 	private ConnectionReadThread read;
 	//TODO it is not a buffer anymore, but still it is called addtobuffer...
-
-	
 
 	public Connection(String clientName, Socket client, DataOutputStream out, DataInputStream in, Synchronizer sync) {
 		this.clientName = clientName;
@@ -35,8 +33,7 @@ public class Connection extends Thread {
 		this.sync = sync;
 		protocol = new Protocol();
 		messages = new LinkedList<Message>();
-		usersWithMessages = new ArrayList<String>();
-
+		usersWithMessages = new HashSet<String>();
 	}
 
 	public void run() {
@@ -46,7 +43,7 @@ public class Connection extends Thread {
 			// TODO
 		}
 	}
-	
+
 	//TODO: Better name
 	private void go() throws IOException {
 		while(true) {
@@ -72,9 +69,7 @@ public class Connection extends Thread {
 	public void addToBuffer(Message msg) {
 		messages.push(msg);
 		String sender = msg.getSender();
-		if(!usersWithMessages.contains(sender)) {
-			usersWithMessages.add(sender);
-		}
+		usersWithMessages.add(sender);
 	}
 
 	private void viewChatRoom() throws IOException {
@@ -139,15 +134,15 @@ public class Connection extends Thread {
 	}
 
 	public void endChat() {
-		/*read = interrrupt();
-		write = interrrupt();
-		protocol.setState(OPTIONS);*/
+		read.interrupt();
+		write.interrupt();
+		protocol.setState(ConnectionState.OPTIONS);
 	}
-	
+
 	//---------------------------------------------------------------------------
 	//----------------------Private Classes and stuff...-------------------------
 	//---------------------------------------------------------------------------
-	
+
 	private enum ConnectionState {
 		OPTIONS, CHATROOM, CHATTING, LOGOUT, EXIT, UNCHANGED
 	}
@@ -180,7 +175,8 @@ public class Connection extends Thread {
 				try {
 					s = in.readUTF();
 				} catch (IOException e) {
-					// TODO
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				if(s.equals("EXIT")) {
 					endChat();

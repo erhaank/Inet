@@ -1,4 +1,4 @@
-package lab1;
+
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -23,10 +23,17 @@ public class Server {
             DataInputStream in = new DataInputStream(client.getInputStream());
             //Get username, client should handle this part
             String user = in.readUTF();
-            if (!sync.hasUser(user))
+            System.out.println(user + " trying to log in...");
+            if (!sync.hasUser(user)) {
+            	out.writeInt(1);
             	sync.addClient(user, new Connection(user, client, out, in, sync));
-            else
-            	client.close(); //TODO: Maybe do this in a better way... Although the client could maybe fix this?
+            	System.out.println("New user added: "+user);
+            }
+            else {
+            	out.writeInt(0);
+            	client.close();
+            	System.out.println(user + " was rejected.");
+            }
 		}
 	}
 }
