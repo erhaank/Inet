@@ -25,7 +25,9 @@ public class Server {
             String user = in.readUTF();
             if (!sync.hasUser(user)) {
             	out.writeInt(1);
-            	sync.addClient(user, new Connection(user, client, sync));
+            	Connection c = new Connection(user, client, sync);
+            	sync.addClient(user, c);
+            	c.start();
             	System.out.println("New user added: "+user);
             }
             else {
