@@ -94,9 +94,9 @@ public class Client {
 			while(true) {
 				String output = null;
 				try {
-					out.writeUTF("");
+					out.writeUTF(""); 	// Write an 'update' string, asking the server if any changes has been made
 					Thread.sleep(100);
-					output = in.readUTF();
+					output = in.readUTF(); // Should be "0" if no changes has been made
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

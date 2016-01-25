@@ -23,10 +23,9 @@ public class Server {
             DataInputStream in = new DataInputStream(client.getInputStream());
             //Get username, client should handle this part
             String user = in.readUTF();
-            System.out.println(user + " trying to log in...");
             if (!sync.hasUser(user)) {
             	out.writeInt(1);
-            	sync.addClient(user, new Connection(user, client, out, in, sync));
+            	sync.addClient(user, new Connection(user, client, sync));
             	System.out.println("New user added: "+user);
             }
             else {
@@ -34,6 +33,8 @@ public class Server {
             	client.close();
             	System.out.println(user + " was rejected.");
             }
+            in.close();
+            out.close();
 		}
 	}
 }

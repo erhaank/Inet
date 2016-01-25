@@ -13,6 +13,26 @@ import java.util.Set;
 /**
  * A connection is connected to a specific Client.
  */
+
+/*
+ * Okej så här tänker jag:
+ * 
+ * Protokollet borde vara mer utökat, låt protokollet göra allt det logiska liksom. Just
+ * nu känns den ganska värdelös.
+ * 
+ * Vi behöver inte 3 st trådar per connection, känns overkill. Egentligen skulle det bara
+ * behövas 1 tråd, som tar emot ett input, låter protokollet processa det och generera output
+ * och sen skriva ut output till klienten. Eftersom det dock kan bli clash mellan klienttråden
+ * som skickar användarinput och klienttråden som skickar förfrågan om update så kan det vara en bra
+ * grej att ha en tråd som bara lyssnar på input, och så fort något nytt har kommit så skickar 
+ * den det till en synchronized metod i huvudtråden (Connection) och sen fortsätter lyssna.
+ * Huvudtråden är den som använder sig av protokollet och skickar tillbaka något output.
+ * 
+ * Vi behöver alltså ingen specifik tråd för själva chatten, it's all the same. Just nu så uppdateras
+ * det ju t.ex inte när man är inne i chatroom
+ * 
+ * Eller vad tycker du? Det här är bara mina tankar och förslag, jag kan vara ute och cykla såklart
+ */
 public class Connection extends Thread {
 
 	private String clientName;
@@ -22,18 +42,16 @@ public class Connection extends Thread {
 	private Protocol protocol;
 	private LinkedList<Message> messages;
 	private Set<String> usersWithMessages;
-	private ConnectionWriteThread write;
-	private ConnectionReadThread read;
-	//TODO it is not a buffer anymore, but still it is called addtobuffer...
+	private ChatInputReader write;
+	private ChatMessagePrinter read;
 
-	public Connection(String clientName, Socket client, DataOutputStream out, DataInputStream in, Synchronizer sync) {
+	public Connection(String clientName, Socket client, Synchronizer sync) {
 		this.clientName = clientName;
-		this.out = out;
-		this.in = in;
 		this.sync = sync;
 		protocol = new Protocol();
 		messages = new LinkedList<Message>();
 		usersWithMessages = new HashSet<String>();
+		setupStreams(client);
 	}
 
 	public void run() {
@@ -55,7 +73,7 @@ public class Connection extends Thread {
 				viewChatRoom();
 				break;
 			case CHATTING:
-				//startChat();
+				//startChat(); TODO
 				break;
 			case EXIT:
 				//TODO
@@ -87,9 +105,8 @@ public class Connection extends Thread {
 	}
 
 	private void viewOptions() throws IOException {
-		out.writeUTF("Chat room (1)\n");
-		out.writeUTF("Log out (2)\n");
-		out.writeUTF("Exit (3)\n");
+		String write = "Chat room (1)\nLog out (2)\nExit(3)\n";
+		out.writeUTF(write);
 		String s = in.readUTF();
 		switch (s) {
 		case "1":
@@ -108,65 +125,53 @@ public class Connection extends Thread {
 		}
 	}
 
-	public void startChat(String user) {
-		read = new ConnectionReadThread(user);
+	private void startChat(String user) {
+		read = new ChatMessagePrinter(user);
 		read.run();
-		write = new ConnectionWriteThread(user);
+		write = new ChatInputReader(user);
 		write.run();
 		protocol.setState(ConnectionState.UNCHANGED);
 	}
 
-	public void writeMessagesFrom(String user) {
+	private void writeMessagesFrom(String user) {
 		Iterator<Message> i = messages.descendingIterator();
 		while(i.hasNext()) {
 			Message msg = i.next();
 			if(user == msg.getSender()) {
 				try {
-					out.writeUTF(msg.getMessage());
+					out.writeUTF(user+": "+msg.getMessage());
 				} catch (IOException e) {
 					// TODO
 				}
 			}
 		}
-		if(usersWithMessages.contains(user)) {
-			usersWithMessages.remove(user);
-		}
+		usersWithMessages.remove(user);
 	}
 
-	public void endChat() {
+	private void endChat() {
 		read.interrupt();
 		write.interrupt();
 		protocol.setState(ConnectionState.OPTIONS);
+	}
+	
+	private void setupStreams(Socket socket) {
+		try {
+			in = new DataInputStream(socket.getInputStream());
+			out = new DataOutputStream(socket.getOutputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	//---------------------------------------------------------------------------
 	//----------------------Private Classes and stuff...-------------------------
 	//---------------------------------------------------------------------------
 
-	private enum ConnectionState {
-		OPTIONS, CHATROOM, CHATTING, LOGOUT, EXIT, UNCHANGED
-	}
-
-	private class Protocol {
-		private ConnectionState currentState;
-
-		public Protocol() {
-			currentState = ConnectionState.OPTIONS;
-		}
-
-		public void setState(ConnectionState state) {
-			currentState = state;
-		}
-
-		public ConnectionState getState() {
-			return currentState;
-		}
-	}
-
-	private class ConnectionWriteThread extends Thread {
+	private class ChatInputReader extends Thread {
 		private String receiver;
 
-		public ConnectionWriteThread(String receiver) {
+		public ChatInputReader(String receiver) {
 			this.receiver = receiver;
 		}
 		public void run() {
@@ -189,10 +194,10 @@ public class Connection extends Thread {
 		}
 	}
 
-	private class ConnectionReadThread extends Thread {
+	private class ChatMessagePrinter extends Thread {
 		private String sender;
 
-		public ConnectionReadThread(String sender) {
+		public ChatMessagePrinter(String sender) {
 			this.sender = sender;
 		}
 		public void run() {

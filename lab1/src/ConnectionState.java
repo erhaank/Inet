@@ -1,0 +1,4 @@
+
+public enum ConnectionState {
+	OPTIONS, CHATROOM, CHATTING, LOGOUT, EXIT, UNCHANGED
+}

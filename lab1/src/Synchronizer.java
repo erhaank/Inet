@@ -7,7 +7,6 @@ import java.util.Set;
  * Will work as the "static" part of the program, keeping track on which clients are logged on as well as
  * being able to send messages to each client.
  */
-// ÄR det här för fult? Vet inte hur jag ska göra annars?
 public class Synchronizer {
 	
 	private HashMap<String, Connection> connections;
@@ -17,6 +16,7 @@ public class Synchronizer {
 	}
 	
 	public boolean hasUser(String name) {
+		update();
 		return connections.containsKey(name);
 	}
 	
@@ -32,7 +32,16 @@ public class Synchronizer {
 	}
 	
 	public String[] getUsers() {
+		update();
 		Set<String> users = connections.keySet();
 		return (String[]) users.toArray();
+	}
+	
+	private void update() {
+		for (String s : connections.keySet()) {
+			Connection c = connections.get(s);
+			if (!c.isAlive())
+				connections.remove(s);
+		}
 	}
 }
