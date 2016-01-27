@@ -1,4 +1,4 @@
-package lab1;
+//package lab1;
 
 
 
@@ -14,6 +14,7 @@ import java.util.Set;
 
 /**
  * A connection is connected to a specific Client.
+ * 
  */
 public class Connection extends Thread {
 
@@ -36,23 +37,27 @@ public class Connection extends Thread {
 		usersWithMessages = new HashSet<String>();
 		usersLogedIn = new HashSet<String>();
 		setupStreams(client);
-		chatting = true;
+		chatting = false;
+		System.out.println("Connection constructor");
 	}
 
 	public void run() {
 		try {
+			System.out.println("connection run");
 			go();
 		} catch (IOException e) {
-			// TODO
+			e.printStackTrace();
 		}
 	}
 
 	//TODO: Better name
+	//TODO: fix all IOExceptions, where try/catch
 	private void go() throws IOException { 
 		currentState = ConnectionState.OPTIONS;
+		System.out.println(currentState);
 		
 		while(true) {
-			switch(getCurrentState()) {
+			switch(currentState) {
 			case OPTIONS:
 				viewOptions();
 				break;
@@ -66,7 +71,7 @@ public class Connection extends Thread {
 				//TODO
 				break;
 			default:
-				//TODO
+				System.out.println("default");
 			}
 		}
 	}
@@ -78,24 +83,19 @@ public class Connection extends Thread {
 		usersWithMessages.add(sender);
 	}
 	
-	public void setState(ConnectionState state) {
-		currentState = state;
-	}
-
-	public ConnectionState getCurrentState() {
-		return currentState;
-	}
 
 	private void viewChatRoom() throws IOException {
 		String[] users = sync.getUsers();
 		StringBuilder sb = new StringBuilder();
 		for(String user : users) {
+			usersLogedIn.add(user);
 			if(usersWithMessages.contains(user)) {
 				sb.append(user + "*");
 			} else {
 				sb.append(user);
 			}
 		}
+		out.writeUTF("Choose who you want to chat with. Type 0 to go back to Options");
 		out.writeUTF(sb.toString());
 		String s = in.readUTF();
 		chooseChat(s);
@@ -103,7 +103,13 @@ public class Connection extends Thread {
 
 	private void viewOptions() throws IOException {
 		String write = "Chat room (1)\nLog out (2)\nExit(3)\n";
+		System.out.println(write);
+		try {
 		out.writeUTF(write);
+	} catch (Exception e) {
+		e.printStackTrace();
+	} 
+		System.out.println("gjl");
 		String s = in.readUTF();
 		chooseOption(s);
 	}
@@ -111,13 +117,13 @@ public class Connection extends Thread {
 	private void chooseOption(String s) throws IOException {
 		switch (s) {
 		case "1":
-			setState(ConnectionState.CHATROOM);
+			currentState = ConnectionState.CHATROOM;
 			break;
 		case "2":
-			setState(ConnectionState.LOGOUT);
+			currentState = ConnectionState.LOGOUT;
 			break;
 		case "3":
-			setState(ConnectionState.EXIT);
+			currentState = ConnectionState.EXIT;
 			break;
 		default:
 			unvalidOption(s);
@@ -129,17 +135,24 @@ public class Connection extends Thread {
 		if(usersLogedIn.contains(s)) {
 			chattingWith = s;
 			currentState = ConnectionState.CHATTING;
+			//Clear usersLogedIn
+			usersLogedIn = new HashSet<String>(); 
 		} else {
-			unvalidOption(s);
+			if(s.equals("0")) {
+				currentState = ConnectionState.OPTIONS;
+			} else {
+				unvalidOption(s);
+			}
 		}
 	}
 	
 	private void unvalidOption(String s) throws IOException {
 		out.writeUTF(s + " is not a valid option.");
-		setState(ConnectionState.UNCHANGED);
+		currentState = ConnectionState.UNCHANGED;
 	}
 
 	private void startChat(String user) {
+		chatting = true;
 		write = new ChatInputReader(user);
 		write.run();
 		printMessagesFrom(user);
@@ -171,7 +184,7 @@ public class Connection extends Thread {
 	private void endChat() {
 		write.interrupt();
 		chatting = false;
-		setState(ConnectionState.OPTIONS);
+		currentState = ConnectionState.OPTIONS;
 	}
 	
 	private void setupStreams(Socket socket) {

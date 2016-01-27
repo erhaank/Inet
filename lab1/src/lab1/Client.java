@@ -1,4 +1,4 @@
-package lab1;
+//package lab1;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -21,7 +21,7 @@ public class Client {
 		System.out.println("Username:");
 		Scanner scanner = new Scanner(System.in);
 		username = scanner.next();
-		scanner.close();
+		// scanner.close();
 	}
 
 	public void startChat(Socket socket) {
@@ -29,7 +29,9 @@ public class Client {
 		logIn();
 
 		new ClientReadThread().start();
+		System.out.println("Only one started");
 		new ClientWriteThread().start();
+		System.out.println("Both started");
 	}
 
 	private void setupStreams(Socket socket) {
@@ -48,6 +50,7 @@ public class Client {
 		try {
 			out.writeUTF(username);
 			response = in.readInt();
+			System.out.println(response);
 		} catch (IOException e) {
 			//TODO
 		}
@@ -73,17 +76,18 @@ public class Client {
 
 		public void run() {
 			Scanner scanner = new Scanner(System.in);
+			System.out.println("it is running at least");
 			while(true) {
-				if (scanner.hasNext()) {
-					String input = scanner.nextLine();
+					String input = scanner.next();
 					try {
+						System.out.println("Before write");
 						out.writeUTF(input);
+						System.out.println("After write");
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						scanner.close();
 						e.printStackTrace();
 					}
-				}
 			}
 		}
 	}
@@ -94,16 +98,16 @@ public class Client {
 			while(true) {
 				String output = null;
 				try {
-					out.writeUTF(""); 	// Write an 'update' string, asking the server if any changes has been made
+					// out.writeUTF(""); 	// Write an 'update' string, asking the server if any changes has been made
 					Thread.sleep(100);
 					output = in.readUTF(); // Should be "0" if no changes has been made
-				} catch (IOException e) {
+				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (InterruptedException e) {
+				} catch (IOException e) {
 					//TODO
 				}
-				if (!output.equals("0"))
+				if (output != null && !output.equals("0"))
 					System.out.println(output);
 			}
 		}
