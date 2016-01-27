@@ -1,4 +1,4 @@
-
+// package lab1;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -27,21 +27,33 @@ public class Synchronizer {
 	public synchronized void distribute(Message msg) {
 		if (!connections.containsKey(msg.getReceiver()))
 			return;
+		System.out.println("Distributing msg from "+msg.getSender() + " to " + msg.getReceiver());
+		// System.out.println("In distribute");
 		Connection receiver = connections.get(msg.getReceiver());
+		// System.out.println(msg.getReceiver());
 		receiver.addToBuffer(msg);
+		// System.out.println("have done addToBuffer");
 	}
 	
 	public String[] getUsers() {
 		update();
 		Set<String> users = connections.keySet();
-		return (String[]) users.toArray();
+		String[] ret;
+		if (users.size() > 0)
+			ret = (String[]) users.toArray(new String[users.size()]);
+		else {
+			ret = new String[]{};
+		}
+		return ret;
 	}
 	
 	private void update() {
 		for (String s : connections.keySet()) {
 			Connection c = connections.get(s);
-			if (!c.isAlive())
+			if (!c.isAlive()) {
+				System.out.println(s+ " has logged out");
 				connections.remove(s);
+			}
 		}
 	}
 }
