@@ -19,7 +19,7 @@ public class Server {
 		ServerSocket socket = new ServerSocket(8888);
 		System.out.println("Server running and listening");
 		while (true) {
-                  System.out.println("yo");
+                  // System.out.println("yo");
 			Socket client = socket.accept();
 			System.out.println("Client accepted!");
 			DataOutputStream out = new DataOutputStream(client.getOutputStream());
@@ -28,11 +28,11 @@ public class Server {
             String user = in.readUTF();
             System.out.println(user);
             if (!sync.hasUser(user)) {
-                  System.out.println("heluu");
+                  // System.out.println("heluu");
             	out.writeInt(1);
             	Connection c = new Connection(user, client, sync);
             	sync.addClient(user, c);
-                  System.out.println("heluu2");
+                  // System.out.println("heluu2");
             	c.start();
             	System.out.println("New user added: "+user);
             }

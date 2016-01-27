@@ -78,11 +78,11 @@ public class Client {
 			Scanner scanner = new Scanner(System.in);
 			System.out.println("it is running at least");
 			while(true) {
-					String input = scanner.next();
+					String input = scanner.nextLine();
 					try {
-						System.out.println("Before write");
+						// System.out.println("Before write");
 						out.writeUTF(input);
-						System.out.println("After write");
+						// System.out.println("After write");
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						scanner.close();

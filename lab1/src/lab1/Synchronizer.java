@@ -27,14 +27,17 @@ public class Synchronizer {
 	public synchronized void distribute(Message msg) {
 		if (!connections.containsKey(msg.getReceiver()))
 			return;
+		System.out.println("In distribute");
 		Connection receiver = connections.get(msg.getReceiver());
+		System.out.println(msg.getReceiver());
 		receiver.addToBuffer(msg);
+		System.out.println("have done addToBuffer");
 	}
 	
 	public String[] getUsers() {
 		update();
 		Set<String> users = connections.keySet();
-		return (String[]) users.toArray();
+		return (String[]) users.toArray(new String[users.size()]);
 	}
 	
 	private void update() {
