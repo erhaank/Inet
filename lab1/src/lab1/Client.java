@@ -29,9 +29,9 @@ public class Client {
 		logIn();
 
 		new ClientReadThread().start();
-		System.out.println("Only one started");
+		// System.out.println("Only one started");
 		new ClientWriteThread().start();
-		System.out.println("Both started");
+		// System.out.println("Both started");
 	}
 
 	private void setupStreams(Socket socket) {
@@ -50,7 +50,7 @@ public class Client {
 		try {
 			out.writeUTF(username);
 			response = in.readInt();
-			System.out.println(response);
+			// System.out.println(response);
 		} catch (IOException e) {
 			//TODO
 		}
@@ -76,7 +76,7 @@ public class Client {
 
 		public void run() {
 			Scanner scanner = new Scanner(System.in);
-			System.out.println("it is running at least");
+			// System.out.println("it is running at least");
 			while(true) {
 					String input = scanner.nextLine();
 					try {

@@ -81,7 +81,7 @@ public class Connection extends Thread {
 		messages.push(msg);
 		String sender = msg.getSender();
 		usersWithMessages.add(sender);
-		System.out.println(usersWithMessages.contains(sender) + "sender " + sender);
+		// System.out.println(usersWithMessages.contains(sender) + "sender " + sender);
 	}
 	
 
@@ -102,7 +102,7 @@ public class Connection extends Thread {
 		out.writeUTF("Choose who you want to chat with. Type 0 to go back to Options");
 		out.writeUTF(sb.toString());
 		String s = in.readUTF();
-		System.out.println("read user:" + s);
+		// System.out.println("read user:" + s);
 		chooseChat(s);
 	}
 
@@ -138,10 +138,10 @@ public class Connection extends Thread {
 	
 	private void chooseChat(String s) throws IOException {
 		if(usersLogedIn.contains(s)) {
-			System.out.println(s + "is in usersLogedIn");
+			// System.out.println(s + "is in usersLogedIn");
 			chattingWith = s;
 			currentState = ConnectionState.CHATTING;
-			System.out.println("State is Chatting");
+			// System.out.println("State is Chatting");
 		} else {
 			if(s.equals("0")) {
 				currentState = ConnectionState.OPTIONS;
@@ -157,7 +157,7 @@ public class Connection extends Thread {
 	}
 
 	private void startChat(String user) {
-		System.out.println("In startchat");
+		// System.out.println("In startchat");
 		chatting = true;
 		write = new ChatInputReader(user);
 		write.start();
@@ -165,11 +165,11 @@ public class Connection extends Thread {
 	}
 	
 	private void printMessagesFrom(String sender) {
-		System.out.println("In printMessagesFrom with sender " + sender);
-		System.out.println("what is chatting " + chatting);
+		// System.out.println("In printMessagesFrom with sender " + sender);
+		// System.out.println("what is chatting " + chatting);
 		while(chatting) {
 			if(usersWithMessages.contains(sender)) {
-				System.out.println("Go to writeMessagesFrom");
+				// System.out.println("Go to writeMessagesFrom");
 				writeMessagesFrom(sender);
 			}
 		}
@@ -218,7 +218,7 @@ public class Connection extends Thread {
 		}
 		public void run() {
 			while(!this.isInterrupted()) {
-				System.out.println("Is in run");
+				// System.out.println("Is in run");
 				String s = null;
 				try {
 					s = in.readUTF();
@@ -231,7 +231,7 @@ public class Connection extends Thread {
 				} else {
 					Message msg = new Message(clientName, receiver);
 					msg.setMessage(s);
-					System.out.println("Ready to distribute");
+					// System.out.println("Ready to distribute");
 					sync.distribute(msg);
 				}
 			}
