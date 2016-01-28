@@ -3,7 +3,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
 
@@ -12,7 +11,7 @@ import java.util.Set;
  * 
  */
 public class Connection extends Thread {
-	private final String CLEAR_CLIENT = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+	private static final String CLEAR_CLIENT = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 
 	private volatile boolean running;
 	private String clientName;
@@ -36,26 +35,12 @@ public class Connection extends Thread {
 		setupStreams(client);
 		chatting = false;
 		running = true;
-		// System.out.println("Connection constructor");
 	}
 
 	public void run() {
-		try {
-			// System.out.println("connection run");
-			go();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	//TODO: Better name
-	//TODO: fix all IOExceptions, where try/catch
-	private void go() throws IOException { 
 		currentState = ConnectionState.OPTIONS;
-		// System.out.println(currentState);
 
 		while(running) {
-			System.out.println(clientName+ ": "+currentState);
 			switch(currentState) {
 			case OPTIONS:
 				viewOptions();
@@ -67,83 +52,33 @@ public class Connection extends Thread {
 				startChat(chattingWith);
 				break;
 			case EXIT:
-				logout();
+				terminateSession(ConnectionState.EXIT);
 				break;
 			case LOGOUT:
-				logout();
+				terminateSession(ConnectionState.LOGOUT);
 				break;
 			default:
 				System.out.println("default");
 			}
 		}
 	}
-
-	//Should not be called buffer maybe?
-	public void addToBuffer(Message msg) {
-		System.out.println(clientName+": Adding msg from "+msg.getSender()+" to buffer.");
-		messages.push(msg);
-		String sender = msg.getSender();
-		usersWithMessages.add(sender);
-		// System.out.println(usersWithMessages.contains(sender) + "sender " + sender);
-	}
-
-
-	private void viewChatRoom() throws IOException {
-		String online = getOnlineUsers();
-		out.writeUTF("Choose who you want to chat with. Type 0 to go back to Options");
-		out.writeUTF(online);
-		out.flush();
-		while (in.available() == 0) {
-			try {
-				Thread.sleep(200);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			String on2 = getOnlineUsers();
-			if (!online.equals(on2)) {
-				out.writeUTF("Updates has been made..."); // Hur  får man det här att funka på ett schysst sätt?
-				online = on2;
-			}
-		}
-
-		String s = in.readUTF();
-		// System.out.println("read user:" + s);
-		chooseChat(s);
-	}
-
-	private String getOnlineUsers() {
-		String[] users = sync.getUsers();
-		StringBuilder sb = new StringBuilder();
-		usersLogedIn = new HashSet<String>(); 
-		for(String user : users) {
-			if(user != this.clientName) {
-				usersLogedIn.add(user);
-				if(usersWithMessages.contains(user)) {
-					sb.append(user + "*" + "\n");
-				} else {
-					sb.append(user + "\n");
-				}
-			}
-		}
-		return sb.toString();
-	}
-
-	private void viewOptions() throws IOException {
+	//------------------------------------------------------------------
+	//------------------------- Options --------------------------------
+	//------------------------------------------------------------------
+	private void viewOptions() {
 		String write = "Chat room (1)\nLog out (2)\nExit(3)\n";
-		// System.out.println(write);
 		try {
-			out.writeUTF(write);
+			writeToClient(CLEAR_CLIENT);
+			writeToClient(write);
 			out.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-		// System.out.println("gjl");
-		String s = in.readUTF();
+		String s = readFromClient();
 		chooseOption(s);
 	}
 
-	private void chooseOption(String s) throws IOException {
+	private void chooseOption(String s) {
 		switch (s) {
 		case "1":
 			currentState = ConnectionState.CHATROOM;
@@ -160,29 +95,88 @@ public class Connection extends Thread {
 		}
 	}
 
-	private void chooseChat(String s) throws IOException {
-		if(usersLogedIn.contains(s)) {
-			// System.out.println(s + "is in usersLogedIn");
-			chattingWith = s;
-			currentState = ConnectionState.CHATTING;
-			// System.out.println("State is Chatting");
-		} else {
-			if(s.equals("0")) {
-				currentState = ConnectionState.OPTIONS;
-			} else {
-				unvalidOption(s);
+	//------------------------------------------------------------------
+	//------------------------- Chatroom --------------------------------
+	//------------------------------------------------------------------
+	private void viewChatRoom()  {
+		StringBuilder sb = new StringBuilder();
+		String online = getOnlineUsers();
+		String chatRoomMenu = "Choose who you want to chat with. Type 0 to go back to Options\n";
+		sb.append(CLEAR_CLIENT);
+		sb.append(chatRoomMenu);
+		sb.append(online);
+		writeToClient(sb.toString());
+		sb.setLength(sb.length()-online.length());
+		try {
+			while (in.available() == 0) {
+				Thread.sleep(200);
+				String on2 = getOnlineUsers();
+				if (!online.equals(on2)) {
+					online = on2;
+					//writeToClient("** Updates has been made **"); // Detta?
+					sb.append(online);
+					writeToClient(sb.toString());
+					sb.setLength(sb.length()-online.length()); // eller detta?
+				}
+			}
+		} catch (IOException e) {
+			System.out.println("Couldn't check if there was available input");
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			System.out.println("Thread couldn't sleep");
+			e.printStackTrace();
+		}
+
+		String s = readFromClient();
+		chooseChat(s);
+	}
+
+	/**
+	 * Returns a string of all of the online users
+	 */
+	private String getOnlineUsers() {
+		String[] users = sync.getUsers();
+		StringBuilder sb = new StringBuilder();
+		usersLogedIn = new HashSet<String>(); 
+		for(String user : users) {
+			if(user != this.clientName) {
+				usersLogedIn.add(user);
+				String username = getUsername(user);
+				if(usersWithMessages.contains(user)) {
+					sb.append(username + "*" + "\n");
+				} else {
+					sb.append(username + "\n");
+				}
 			}
 		}
+		return sb.toString();
 	}
 
-	private void unvalidOption(String s) throws IOException {
-		out.writeUTF(s + " is not a valid option.");
-		out.flush();
-		//currentState = ConnectionState.UNCHANGED;
-	}
 
+
+	private void chooseChat(String s) {
+		if (s.equals("0")) {
+			currentState = ConnectionState.OPTIONS;
+			return;
+		}
+		String username = null;
+		for (String user : usersLogedIn) {
+			if (user.contains(s)) {
+				username = user;
+				if (user.equals(s))
+					break;
+			}
+		}
+		if (username != null) {
+			chattingWith = username;
+			currentState = ConnectionState.CHATTING;
+		} else unvalidOption(s);
+	}
+	
+	//------------------------------------------------------------------
+	//------------------------- Chatting -------------------------------
+	//------------------------------------------------------------------
 	private void startChat(String user) {
-		// System.out.println("In startchat");
 		chatting = true;
 		write = new ChatInputReader(user);
 		write.start();
@@ -190,21 +184,11 @@ public class Connection extends Thread {
 	}
 
 	private void printMessagesFrom(String sender) {
-		// System.out.println("In printMessagesFrom with sender " + sender);
-		// System.out.println("what is chatting " + chatting);
-		try {
-			out.writeUTF("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
-					"Chatting with "+sender+". Write EXIT to exit the chat.\n");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		while(chatting) {
-			if(usersWithMessages.contains(sender)) {
-				// System.out.println("Go to writeMessagesFrom");
+		writeToClient(CLEAR_CLIENT); 
+		writeToClient("Chatting with "+getUsername(sender)+". Write EXIT to exit the chat.\n");
+		while(chatting)
+			if(usersWithMessages.contains(sender))
 				writeMessagesFrom(sender);
-			}
-		}
 	}
 
 	private void writeMessagesFrom(String user) {
@@ -213,12 +197,12 @@ public class Connection extends Thread {
 			Message msg = messages.get(i);
 			if(user.equals(msg.getSender())) {
 				try {
-					out.writeUTF(user+": "+msg.getMessage());
+					writeToClient(getUsername(user)+": "+msg.getMessage());
 					out.flush();
 					messages.remove(i);
 					i--;
 				} catch (IOException e) {
-					// TODO
+					System.out.println("FAULT TODO osv");
 				}
 			}
 		}
@@ -226,9 +210,38 @@ public class Connection extends Thread {
 	}
 
 	private void endChat() {
-		//write.interrupt();
 		chatting = false;
 		currentState = ConnectionState.CHATROOM;
+	}
+
+	private void terminateSession(ConnectionState state) {
+		if (state == ConnectionState.LOGOUT)
+			writeToClient("//LOGOUT");
+		else writeToClient("//EXIT");
+		try {
+			out.close();
+			in.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		running = false;
+	}
+
+
+	//------------------------------------------------------------------
+	//------------------------- Other --------------------------------
+	//------------------------------------------------------------------
+
+	public void addToBuffer(Message msg) {
+		messages.add(msg);
+		String sender = msg.getSender();
+		usersWithMessages.add(sender);
+	}
+
+	private void unvalidOption(String s) {
+		writeToClient(s + " is not a valid option.");
 	}
 
 	private void setupStreams(Socket socket) {
@@ -241,17 +254,30 @@ public class Connection extends Thread {
 		}
 	}
 
-	private void logout() {
+	private void writeToClient(String s) {
 		try {
-			out.writeUTF("//LOGOUT");
-			out.close();
-			in.close();
+			out.writeUTF(s);
+			out.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Couldn't write to client!");
 			e.printStackTrace();
 		}
+	}
 
-		running = false;
+	private String readFromClient() {
+		String s = "";
+		try {
+			s = in.readUTF();
+		} catch (IOException e) {
+			System.out.println("Couldn't read from client!");
+			e.printStackTrace();
+			running = false;
+		}
+		return s;
+	}
+
+	private String getUsername(String user) {
+		return user.substring(user.indexOf(":")+1);
 	}
 
 	//---------------------------------------------------------------------------
@@ -266,23 +292,15 @@ public class Connection extends Thread {
 		}
 		public void run() {
 			while(chatting) {
-				//System.out.println("Is in run");
-				String s = null;
-				try {
-					s = in.readUTF();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				String s = readFromClient();
 				if(s.equals("EXIT")) {
-					System.out.println("Trying to exit chat...");
 					chatting = false;
 					endChat();
 				} else {
 					Message msg = new Message(clientName, receiver);
 					msg.setMessage(s);
-					// System.out.println("Ready to distribute");
-					sync.distribute(msg);
+					if (!sync.distribute(msg))
+						writeToClient("***"+receiver+ " has logged out***");
 				}
 			}
 		}

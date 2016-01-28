@@ -1,6 +1,7 @@
 // package lab1;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -24,15 +25,12 @@ public class Synchronizer {
 		connections.put(name, con);
 	}
 	
-	public synchronized void distribute(Message msg) {
+	public synchronized boolean distribute(Message msg) {
 		if (!connections.containsKey(msg.getReceiver()))
-			return;
-		System.out.println("Distributing msg from "+msg.getSender() + " to " + msg.getReceiver());
-		// System.out.println("In distribute");
+			return false;
 		Connection receiver = connections.get(msg.getReceiver());
-		// System.out.println(msg.getReceiver());
 		receiver.addToBuffer(msg);
-		// System.out.println("have done addToBuffer");
+		return true;
 	}
 	
 	public String[] getUsers() {
@@ -48,12 +46,21 @@ public class Synchronizer {
 	}
 	
 	private void update() {
-		for (String s : connections.keySet()) {
-			Connection c = connections.get(s);
+		Iterator<String> it = connections.keySet().iterator();
+		while (it.hasNext()) {
+			Connection c = connections.get(it.next());
 			if (!c.isAlive()) {
-				System.out.println(s+ " has logged out");
-				connections.remove(s);
+				it.remove();
 			}
+		}
+	}
+	
+	public void shutdown() {
+		Iterator<Connection> it = connections.values().iterator();
+		while (it.hasNext()) {
+			Connection c = it.next();
+			c.interrupt();
+			it.remove();
 		}
 	}
 }

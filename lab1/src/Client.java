@@ -23,17 +23,23 @@ public class Client {
 		Scanner scanner = new Scanner(System.in);
 		username = scanner.next();
 		running = true;
-		// scanner.close();
 	}
 
 	public void startChat(Socket socket) {
 		setupStreams(socket);
 		logIn();
 
-		new ClientReadThread().start();
-		// System.out.println("Only one started");
-		new ClientWriteThread().start();
-		// System.out.println("Both started");
+		ClientReadThread read = new ClientReadThread();
+		read.start();
+		ClientWriteThread write = new ClientWriteThread();
+		write.start();
+		try {
+			read.join();
+			write.interrupt();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -53,13 +59,12 @@ public class Client {
 		try {
 			out.writeUTF(username);
 			response = in.readInt();
-			// System.out.println(response);
 		} catch (IOException e) {
 			//TODO
 		}
 		// Username taken. This can be done a lot cleaner, but whatever
 		if (response == 0) {
-			terminate("Username already taken, try another. Exiting chat");
+			terminate("Username already taken, or contains ':'. Exiting chat");
 		}
 	}
 
@@ -79,13 +84,10 @@ public class Client {
 
 		public void run() {
 			Scanner scanner = new Scanner(System.in);
-			// System.out.println("it is running at least");
 			while(running) {
 					String input = scanner.nextLine();
 					try {
-						// System.out.println("Before write");
 						out.writeUTF(input);
-						// System.out.println("After write");
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						scanner.close();
@@ -99,22 +101,25 @@ public class Client {
 
 		public void run() {
 			while(running) {
+				
 				String output = null;
 				try {
-					// out.writeUTF(""); 	// Write an 'update' string, asking the server if any changes has been made
 					Thread.sleep(100);
 					output = in.readUTF();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					System.out.println("Thread couldn't sleep");
 					e.printStackTrace();
 				} catch (IOException e) {
-					//TODO
+					System.out.println("Couln't read input from server");
+					e.printStackTrace();
 				}
-				if (output.equals("//LOGOUT")) {
+				
+				if (output.equals("//EXIT")) {
 					running = false;
 					terminate("Logging out! See you later ;)");
-				}
-				else if (output != null && !output.equals("0"))
+				} else if (output.equals("//LOGOUT"))
+					running = false;
+				else if (output != null)
 					System.out.println(output);
 			}
 		}

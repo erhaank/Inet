@@ -9,9 +9,11 @@ import java.net.Socket;
 public class Server {
 	
 	private Synchronizer sync;
+	private int ID;
 
 	public Server(Synchronizer sync) {
 		this.sync = sync;
+		ID = 0;
 	}
 	
 	public void listenToConnections() throws IOException {
@@ -19,20 +21,18 @@ public class Server {
 		ServerSocket socket = new ServerSocket(8888);
 		System.out.println("Server running and listening");
 		while (true) {
-                  // System.out.println("yo");
+			ID++;
 			Socket client = socket.accept();
-			// System.out.println("Client accepted!");
 			DataOutputStream out = new DataOutputStream(client.getOutputStream());
             DataInputStream in = new DataInputStream(client.getInputStream());
             //Get username, client should handle this part
             String user = in.readUTF();
-            // System.out.println(user);
-            if (!sync.hasUser(user)) {
-                  // System.out.println("heluu");
+            boolean valid = validUsername(user);
+            if (valid) {
             	out.writeInt(1);
+            	user = ID+":"+user;
             	Connection c = new Connection(user, client, sync);
             	sync.addClient(user, c);
-                  // System.out.println("heluu2");
             	c.start();
             	System.out.println("New user added: "+user);
             }
@@ -41,8 +41,17 @@ public class Server {
             	client.close();
             	System.out.println(user + " was rejected.");
             }
-            // in.close();
-            // out.close();
 		}
+	}
+	
+	private boolean validUsername(String username) {
+		if (username.contains(":"))
+			return false;
+		for (String user: sync.getUsers()) {
+			user = user.substring(user.indexOf(":")+1);
+			if (username.equals(user))
+				return false;
+		}
+		return true;
 	}
 }
