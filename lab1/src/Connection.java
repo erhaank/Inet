@@ -8,7 +8,6 @@ import java.util.Set;
 
 /**
  * A connection is connected to a specific Client.
- * 
  */
 public class Connection extends Thread {
 	private static final String CLEAR_CLIENT = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
@@ -58,7 +57,7 @@ public class Connection extends Thread {
 				terminateSession(ConnectionState.LOGOUT);
 				break;
 			default:
-				System.out.println("default");
+				//TODO
 			}
 		}
 	}
@@ -66,7 +65,7 @@ public class Connection extends Thread {
 	//------------------------- Options --------------------------------
 	//------------------------------------------------------------------
 	private void viewOptions() {
-		String write = "Chat room (1)\nLog out (2)\nExit(3)\n";
+		String write = "Chat room (CHATROOM)\nLog out (LOGOUT)\nExit(EXIT)\n";
 		try {
 			writeToClient(CLEAR_CLIENT);
 			writeToClient(write);
@@ -80,13 +79,13 @@ public class Connection extends Thread {
 
 	private void chooseOption(String s) {
 		switch (s) {
-		case "1":
+		case "CHATROOM":
 			currentState = ConnectionState.CHATROOM;
 			break;
-		case "2":
+		case "LOGOUT":
 			currentState = ConnectionState.LOGOUT;
 			break;
-		case "3":
+		case "EXIT":
 			currentState = ConnectionState.EXIT;
 			break;
 		default:
@@ -101,14 +100,14 @@ public class Connection extends Thread {
 	private void viewChatRoom()  {
 		StringBuilder sb = new StringBuilder();
 		String online = getOnlineUsers();
-		String chatRoomMenu = "Choose who you want to chat with. Type 0 to go back to Options\n";
+		String chatRoomMenu = "Choose who you want to chat with. Type BACK to go back to Options\n";
 		sb.append(CLEAR_CLIENT);
 		sb.append(chatRoomMenu);
 		sb.append(online);
 		writeToClient(sb.toString());
 		sb.setLength(sb.length()-online.length());
 		try {
-			while (in.available() == 0) {
+			while (in.available() == 0) { //?
 				Thread.sleep(200);
 				String on2 = getOnlineUsers();
 				if (!online.equals(on2)) {
@@ -155,7 +154,7 @@ public class Connection extends Thread {
 
 
 	private void chooseChat(String s) {
-		if (s.equals("0")) {
+		if (s.equals("BACK")) {
 			currentState = ConnectionState.OPTIONS;
 			return;
 		}
@@ -185,7 +184,7 @@ public class Connection extends Thread {
 
 	private void printMessagesFrom(String sender) {
 		writeToClient(CLEAR_CLIENT); 
-		writeToClient("Chatting with "+getUsername(sender)+". Write EXIT to exit the chat.\n");
+		writeToClient("Chatting with "+getUsername(sender)+". Write BACK to go back to the chatroom.\n");
 		while(chatting)
 			if(usersWithMessages.contains(sender))
 				writeMessagesFrom(sender);
@@ -293,7 +292,7 @@ public class Connection extends Thread {
 		public void run() {
 			while(chatting) {
 				String s = readFromClient();
-				if(s.equals("EXIT")) {
+				if(s.equals("BACK")) {
 					chatting = false;
 					endChat();
 				} else {

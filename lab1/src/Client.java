@@ -37,7 +37,7 @@ public class Client {
 			read.join();
 			write.interrupt();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Read won't work");
 			e.printStackTrace();
 		}
 		
@@ -86,6 +86,9 @@ public class Client {
 			Scanner scanner = new Scanner(System.in);
 			while(running) {
 					String input = scanner.nextLine();
+					if(input.equals("LOGOUT")) {
+						running = false;
+					}
 					try {
 						out.writeUTF(input);
 					} catch (IOException e) {
@@ -104,7 +107,7 @@ public class Client {
 				
 				String output = null;
 				try {
-					Thread.sleep(100);
+					Thread.sleep(100); //?
 					output = in.readUTF();
 				} catch (InterruptedException e) {
 					System.out.println("Thread couldn't sleep");
@@ -117,7 +120,7 @@ public class Client {
 				if (output.equals("//EXIT")) {
 					running = false;
 					terminate("Logging out! See you later ;)");
-				} else if (output.equals("//LOGOUT"))
+				} else if (output.equals("//LOGOUT")) //So this is not needed anymore
 					running = false;
 				else if (output != null)
 					System.out.println(output);

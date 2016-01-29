@@ -16,7 +16,7 @@ public class Synchronizer {
 		connections = new HashMap<String, Connection>();
 	}
 	
-	public boolean hasUser(String name) {
+	public boolean hasUser(String name) { //Method is not used!
 		update();
 		return connections.containsKey(name);
 	}
@@ -50,6 +50,7 @@ public class Synchronizer {
 		while (it.hasNext()) {
 			Connection c = connections.get(it.next());
 			if (!c.isAlive()) {
+				//User has logged out
 				it.remove();
 			}
 		}

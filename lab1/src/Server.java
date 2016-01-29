@@ -13,7 +13,7 @@ public class Server {
 
 	public Server(Synchronizer sync) {
 		this.sync = sync;
-		ID = 0;
+		ID = 0; //What is the purpose of ID?
 	}
 	
 	public void listenToConnections() throws IOException {
@@ -21,7 +21,7 @@ public class Server {
 		ServerSocket socket = new ServerSocket(8888);
 		System.out.println("Server running and listening");
 		while (true) {
-			ID++;
+			ID++; 
 			Socket client = socket.accept();
 			DataOutputStream out = new DataOutputStream(client.getOutputStream());
             DataInputStream in = new DataInputStream(client.getInputStream());
