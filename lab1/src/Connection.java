@@ -195,8 +195,11 @@ public class Connection extends Thread {
 		for (int i = 0; i < messages.size(); i++) {
 			Message msg = messages.get(i);
 			if(user.equals(msg.getSender())) {
+				String from = user;
 				try {
-					writeToClient(getUsername(user)+": "+msg.getMessage());
+					if (msg.fromBroadcast())
+						from += "(broadcasted)";
+					writeToClient(getUsername(from)+": "+msg.getMessage());
 					out.flush();
 					messages.remove(i);
 					i--;

@@ -9,30 +9,43 @@ import java.util.Set;
  * being able to send messages to each client.
  */
 public class Synchronizer {
-	
+
+	private final static String BROADCAST = "broadcast";
+
 	private HashMap<String, Connection> connections;
-	
+
 	public Synchronizer() {
 		connections = new HashMap<String, Connection>();
+		connections.put(BROADCAST, null);
 	}
-	
+
 	public boolean hasUser(String name) { //Method is not used!
 		update();
 		return connections.containsKey(name);
 	}
-	
+
 	public void addClient(String name, Connection con) {
 		connections.put(name, con);
 	}
-	
+
 	public synchronized boolean distribute(Message msg) {
 		if (!connections.containsKey(msg.getReceiver()))
 			return false;
-		Connection receiver = connections.get(msg.getReceiver());
-		receiver.addToBuffer(msg);
+		if (msg.getReceiver().equals(BROADCAST)) {
+			msg.setBroadcast();
+			Iterator<String> it = connections.keySet().iterator();
+			while (it.hasNext()) {
+				Connection c = connections.get(it.next());
+				if (c != null)
+					c.addToBuffer(msg);
+			}
+		} else {
+			Connection receiver = connections.get(msg.getReceiver());
+			receiver.addToBuffer(msg);
+		}
 		return true;
 	}
-	
+
 	public String[] getUsers() {
 		update();
 		Set<String> users = connections.keySet();
@@ -44,18 +57,21 @@ public class Synchronizer {
 		}
 		return ret;
 	}
-	
+
 	private void update() {
 		Iterator<String> it = connections.keySet().iterator();
 		while (it.hasNext()) {
-			Connection c = connections.get(it.next());
-			if (!c.isAlive()) {
-				//User has logged out
-				it.remove();
+			String key = it.next();
+			if (!key.equals(BROADCAST)) {
+				Connection c = connections.get(key);
+				if (!c.isAlive()) {
+					//User has logged out
+					it.remove();
+				}
 			}
 		}
 	}
-	
+
 	public void shutdown() {
 		Iterator<Connection> it = connections.values().iterator();
 		while (it.hasNext()) {
