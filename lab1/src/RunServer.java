@@ -9,7 +9,7 @@ public class RunServer {
 		try {
 			server.listenToConnections();
 		} catch (IOException e) {
-			// Server cannot listen to new connections, TODO
+			e.printStackTrace();
 		}
 	}
 }

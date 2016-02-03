@@ -49,7 +49,7 @@ public class Client {
 			in = new DataInputStream(socket.getInputStream());
 			out = new DataOutputStream(socket.getOutputStream());
 		} catch (IOException e) {
-			//TODO
+			e.printStackTrace();
 		}
 	}
 
@@ -60,7 +60,7 @@ public class Client {
 			out.writeUTF(username);
 			response = in.readInt();
 		} catch (IOException e) {
-			//TODO
+			e.printStackTrace();
 		}
 		// Username taken. This can be done a lot cleaner, but whatever
 		if (response == 0) {
@@ -92,7 +92,6 @@ public class Client {
 					try {
 						out.writeUTF(input);
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						scanner.close();
 						e.printStackTrace();
 					}
@@ -116,14 +115,14 @@ public class Client {
 					System.out.println("Couln't read input from server");
 					e.printStackTrace();
 				}
-				
 				if (output.equals("//EXIT")) {
 					running = false;
 					terminate("Logging out! See you later ;)");
-				} else if (output.equals("//LOGOUT")) //So this is not needed anymore
-					running = false;
-				else if (output != null)
-					System.out.println(output);
+				}
+				if(output.equals("//LOGOUT"))
+					output = "Logging out!" + "\n";
+				if (output != null)
+						System.out.println(output);
 			}
 		}
 	}

@@ -13,7 +13,7 @@ public class Server {
 
 	public Server(Synchronizer sync) {
 		this.sync = sync;
-		ID = 0; //What is the purpose of ID?
+		ID = 0; 
 	}
 	
 	public void listenToConnections() throws IOException {

@@ -19,11 +19,6 @@ public class Synchronizer {
 		connections.put(BROADCAST, null);
 	}
 
-	public boolean hasUser(String name) { //Method is not used!
-		update();
-		return connections.containsKey(name);
-	}
-
 	public void addClient(String name, Connection con) {
 		connections.put(name, con);
 	}

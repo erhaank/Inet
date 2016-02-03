@@ -57,7 +57,7 @@ public class Connection extends Thread {
 				terminateSession(ConnectionState.LOGOUT);
 				break;
 			default:
-				//TODO
+				
 			}
 		}
 	}
@@ -107,15 +107,14 @@ public class Connection extends Thread {
 		writeToClient(sb.toString());
 		sb.setLength(sb.length()-online.length());
 		try {
-			while (in.available() == 0) { //?
+			while (in.available() == 0) { 
 				Thread.sleep(200);
 				String on2 = getOnlineUsers();
 				if (!online.equals(on2)) {
 					online = on2;
-					//writeToClient("** Updates has been made **"); // Detta?
 					sb.append(online);
 					writeToClient(sb.toString());
-					sb.setLength(sb.length()-online.length()); // eller detta?
+					sb.setLength(sb.length()-online.length());
 				}
 			}
 		} catch (IOException e) {
@@ -204,7 +203,7 @@ public class Connection extends Thread {
 					messages.remove(i);
 					i--;
 				} catch (IOException e) {
-					System.out.println("FAULT TODO osv");
+					e.printStackTrace();
 				}
 			}
 		}
@@ -217,14 +216,14 @@ public class Connection extends Thread {
 	}
 
 	private void terminateSession(ConnectionState state) {
-		if (state == ConnectionState.LOGOUT)
+		if (state == ConnectionState.EXIT)
+			writeToClient("//EXIT");
+		else 
 			writeToClient("//LOGOUT");
-		else writeToClient("//EXIT");
 		try {
 			out.close();
 			in.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -251,7 +250,6 @@ public class Connection extends Thread {
 			in = new DataInputStream(socket.getInputStream());
 			out = new DataOutputStream(socket.getOutputStream());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

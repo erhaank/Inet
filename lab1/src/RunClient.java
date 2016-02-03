@@ -13,7 +13,7 @@ public class RunClient {
 				socket = new Socket("localhost", 8888);
 				// socket = new Socket("130.237.223.175", 8888);
 			} catch (IOException e) {
-				//TODO maybe they should be in 2 try catch instead...
+				e.printStackTrace();
 			}
 			client.startChat(socket);
 		}
