@@ -23,24 +23,27 @@ public class HttpServer{
 			}
 			s.shutdownInput();
 
-
 			PrintStream response =
 					new PrintStream(s.getOutputStream());
 			response.println("HTTP/1.0 200 OK");
 			response.println("Server : Slask 0.1 Beta");
-			if(requestedDocument.indexOf(".html") != -1)
-				response.println("Content-Type: text/html");
-			if(requestedDocument.indexOf(".gif") != -1)
-				response.println("Content-Type: image/gif");
+			String contentType = null;
+			if(requestedDocument.indexOf(".html") != -1) // Varför inte reqDoc.endsWith(".html") ?
+				contentType = "Content-Type: text/html";
+			else if(requestedDocument.indexOf(".gif") != -1) // Samma här
+				contentType = "Content-Type: image/gif";
+			
+			if (contentType != null) {
+				response.println(contentType);
+				response.println("Set-Cookie: clientId=1; expires=Wednesday,31-Dec-2017 21:00:00 GMT");
 
-			response.println("Set-Cookie: clientId=1; expires=Wednesday,31-Dec-2017 21:00:00 GMT");
-
-			response.println();
-			File f = new File("."+requestedDocument);
-			FileInputStream infil = new FileInputStream(f);
-			byte[] b = new byte[1024];
-			while( infil.available() > 0){
-				response.write(b,0,infil.read(b));
+				response.println();
+				File f = new File("."+requestedDocument);
+				FileInputStream infil = new FileInputStream(f);
+				byte[] b = new byte[1024];
+				while( infil.available() > 0){
+					response.write(b,0,infil.read(b));
+				}
 			}
 			s.shutdownOutput();
 			s.close();
