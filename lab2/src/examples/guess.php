@@ -88,6 +88,7 @@ if(!isset($_SESSION['guessObject'])){
 <form name="guessform">
 <input type=text name=guess>
 <input type=submit  value="Guess">
+
 </form>
 
 </body></html>

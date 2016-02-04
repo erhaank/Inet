@@ -5,7 +5,7 @@ import java.util.Random;
  */
 public class Guess {
 
-	private int secretNumber,numberOfGuesses, guess, guessLow, guessHigh;
+	private int secretNumber, numberOfGuesses, guess, guessLow, guessHigh;
 	
 	public Guess() {
 		guessLow = -1;
