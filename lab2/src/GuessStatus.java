@@ -10,6 +10,7 @@ public class GuessStatus {
 	public GuessStatus() {
 		guessLow = -1;
 		guessHigh = 101;
+		guess = -1;
 	}
 
 	public void reset() {
@@ -33,7 +34,9 @@ public class GuessStatus {
 
 	public String success() {
 		String ret = "";
-		if (secretNumber == guess)
+		if (guess == -1)
+			ret = "INVALID";
+		else if (secretNumber == guess)
 			ret = "You made it!!!";
 		else if (guessLow != -1 && guessHigh != 101)
 			ret = "Nope, guess a number between "+guessLow+" and "+guessHigh;
@@ -43,5 +46,8 @@ public class GuessStatus {
 			ret = "Nope, guess higher";
 		return ret;
 	}
-
+	
+	public int getNumberOfGuesses() {
+		return numberOfGuesses;
+	}
 }

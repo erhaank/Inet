@@ -11,12 +11,16 @@ public class HttpServer {
 
 	private ServerSocket ss;
 	private Socket s;
-	private BufferedReader request;
+	private BufferedReader reader;
+	private int ID;
+	private OutputGenerator generator;
 
 	/**
 	 * Sets up a ServerSocket
 	 */
 	public HttpServer() {
+		ID = 0;
+		generator = new OutputGenerator();
 		try {
 			ss = new ServerSocket(4711);
 		} catch (IOException e) {
@@ -31,8 +35,8 @@ public class HttpServer {
 	public void run() {
 		while (true) {
 			setupSocket();
-			String requestedDoc = handleRequest();
-			respond(requestedDoc);
+			HttpRequest request = handleRequest();
+			respond(request);
 			tearDownSocket();
 		}
 	}
@@ -43,7 +47,7 @@ public class HttpServer {
 	private void setupSocket() {
 		try {
 			s = ss.accept();
-			request = new BufferedReader(new InputStreamReader(s.getInputStream()));
+			reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("ERROR* Fault in setupSocket");
@@ -62,61 +66,89 @@ public class HttpServer {
 			System.out.println("*ERROR* Fault in setupSocket");
 		}
 		s = null;
-		request = null;
+		reader = null;
 	}
 
 	/**
 	 * Handles the incoming request by printing the http header and gets the 
 	 * parameter of the request and returns it.
 	 */
-	private String handleRequest() {
-		String requestedDocument = "";
+	private HttpRequest handleRequest() {
+		HttpRequest request = new HttpRequest();
 		try {
-			String str = request.readLine();
+			String str = reader.readLine();
+			System.out.println("* New *");
 			System.out.println(str);
+			request.guess = getGuess(str);
 			StringTokenizer tokens =
 					new StringTokenizer(str," ?");
-			tokens.nextToken();
-			requestedDocument = tokens.nextToken();
-			while( (str = request.readLine()) != null && str.length() > 0){
+			System.out.println(tokens.nextToken());
+			request.document = tokens.nextToken();
+			while( (str = reader.readLine()) != null && str.length() > 0){
 				System.out.println(str);
+				if (str.startsWith("Cookie:"))
+					request.cookie = str.substring(7);
 			}
 			s.shutdownInput();
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("*ERROR* Fault in handleRequest");
 		}
-		return requestedDocument;
+		System.out.println("\n\n\n\n\n");
+		return request;
+	}
+
+	/**
+	 * Gets the integer from a guess. 
+	 * If there has been a guess, request will be something like "GET /test.html?guess=25 HTTP/1.1"
+	 * In this case we want to get the "25" part of it and return it as an integer.
+	 * If the guess isn't a number, or if it simply isn't a guess request, we return -1
+	 */
+	private int getGuess(String request) {
+		int ret = -1;
+		String[] s = request.split("?");
+		if (s.length == 2 && s[1].startsWith("guess=")) {
+			String guess = s[1].substring(6); // remove the 'guess=' part
+			guess = guess.split(" ")[0]; // remove the ' HTTP/1.1' part
+			try {
+				ret = Integer.parseInt(guess);
+			} catch (NumberFormatException e) {
+				//Do nothing, ret is already -1
+			}
+		}
+		return ret;
 	}
 
 	/**
 	 * Takes the request parameter and uses the OutputGenerator to generate a response to 
 	 * the client, which it then sends.
 	 */
-	private void respond(String requestedDoc) {
+	private void respond(HttpRequest request) {
 		try {
 			PrintStream response =
 					new PrintStream(s.getOutputStream());
 			response.println("HTTP/1.0 200 OK");
 			response.println("Server : Slask 0.1 Beta");
 			String contentType = null;
-			if(requestedDoc.indexOf(".html") != -1) // Varför inte reqDoc.endsWith(".html") ?
+			if(request.document.indexOf(".html") != -1)
 				contentType = "Content-Type: text/html";
-			else if(requestedDoc.indexOf(".gif") != -1) // Samma här
+			else if(request.document.indexOf(".ico") != -1)
 				contentType = "Content-Type: image/gif";
 
 			if (contentType != null) {
 				response.println(contentType);
-				response.println("Set-Cookie: clientId=1; expires=Wednesday,31-Dec-2017 21:00:00 GMT");
+				if (request.cookie == null) {
+					String cookie = "clientId="+ID;
+					ID++;
+					response.println("Set-Cookie: "+cookie+"; expires=Wednesday,31-Dec-2017 21:00:00 GMT");
+					generator.addClient(cookie);
+				}
 
 				response.println();
-				File f = new File("."+requestedDoc);
-				FileInputStream infil = new FileInputStream(f);
-				byte[] b = new byte[1024];
-				while( infil.available() > 0){
-					response.write(b,0,infil.read(b));
-				}
-				infil.close();
+
+				String html = generator.generateHTML(request.cookie, request.guess);
+				byte[] b = html.getBytes();
+				response.write(b);
 			}
 			s.shutdownOutput();
 		} catch (IOException e) {
