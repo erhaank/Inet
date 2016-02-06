@@ -3,11 +3,11 @@ import java.util.Random;
 /*
  * Basically a copy of guess.php, but in Java
  */
-public class Guess {
+public class GuessStatus {
 
 	private int secretNumber, numberOfGuesses, guess, guessLow, guessHigh;
 	
-	public Guess() {
+	public GuessStatus() {
 		guessLow = -1;
 		guessHigh = 101;
 	}
