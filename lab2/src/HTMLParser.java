@@ -12,7 +12,7 @@ public class HTMLParser {
 		String fileName = "test.html";
         Path path = Paths.get(fileName);
         try {
-        	Scanner scanner = new Scanner(path);
+        	scanner = new Scanner(path);
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
@@ -21,10 +21,11 @@ public class HTMLParser {
 	public String generateHTML(String ret) {
 		scanner.useDelimiter("\\Z"); //Makes the whole file a token
         String html = scanner.next();
-        if(ret != "INVALID") {
-        	html.replaceAll("<p>(.*?)</p>", ret);
-		}
+        if(ret == "You made it!!!")
+        	html = html.replaceAll("<form.*\\n*.*\\n*.*\\n*.*</form>", ""); //Remove the form
+        	//Might be done with a nicer regex...
+		if(ret != "INVALID")
+        	html = html.replaceAll("(?<=<p>)(.+)(?=</p>)", ret); //Replace the content of <p></p> with ret
         return html;
 	}
-	
 }
