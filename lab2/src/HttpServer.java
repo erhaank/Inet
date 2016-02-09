@@ -106,7 +106,7 @@ public class HttpServer {
 	 */
 	private int getGuess(String request) {
 		int ret = -1;
-		String[] s = request.split("?");
+		String[] s = request.split("\\?");
 		if (s.length == 2 && s[1].startsWith("guess=")) {
 			String guess = s[1].substring(6); // remove the 'guess=' part
 			guess = guess.split(" ")[0]; // remove the ' HTTP/1.1' part
