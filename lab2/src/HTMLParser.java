@@ -8,17 +8,14 @@ public class HTMLParser {
 
 	private Scanner scanner;
 
-	public HTMLParser() {
+	public String generateHTML(String ret) {
 		String fileName = "test.html";
-        Path path = Paths.get(fileName);
-        try {
+		Path path = Paths.get(fileName);
+		try {
         	scanner = new Scanner(path);
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-	}
-
-	public String generateHTML(String ret) {
 		scanner.useDelimiter("\\Z"); //Makes the whole file a token
         String html = scanner.next();
         if(ret == "You made it!!!")
