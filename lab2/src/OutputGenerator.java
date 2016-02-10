@@ -16,6 +16,7 @@ public class OutputGenerator {
 		if (!users.containsKey(cookie))
 			addClient(cookie);
 		GuessStatus status = users.get(cookie);
+		status.setGuess(guess);
 		String html = parser.generateHTML(status);
 		return html;
 	}
