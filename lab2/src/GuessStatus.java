@@ -25,10 +25,14 @@ public class GuessStatus {
 		if (newGuess < guessHigh && newGuess > guessLow) {
 			guess = newGuess;
 			numberOfGuesses++;
-			if (guess > secretNumber)
+			if (guess > secretNumber) {
 				guessHigh = guess;
-			else if (guess < secretNumber)
+				numberOfGuesses++;
+			}
+			else if (guess < secretNumber) {
 				guessLow = guess;
+				numberOfGuesses++;
+			}
 		}
 	}
 
