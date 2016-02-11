@@ -27,11 +27,9 @@ public class GuessStatus {
 			numberOfGuesses++;
 			if (guess > secretNumber) {
 				guessHigh = guess;
-				numberOfGuesses++;
 			}
 			else if (guess < secretNumber) {
 				guessLow = guess;
-				numberOfGuesses++;
 			}
 		}
 	}
