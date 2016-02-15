@@ -9,31 +9,32 @@
 h1 
 {
 	color: orange;
+	text-align: center;
 }
 
 #board
 {
 	margin-left: auto;
 	margin-right: auto;
-	width: 40%;
+	text-align: center;
+	width: 100%;
 }
 
 #player1, #player2
 {
-	width: 20%;
+	width: auto;
 	height: auto;
 	float: left;
-	margin-bottom: 10px;
 	border: 1px solid #888;
+
+	margin-bottom: 10px;
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-top: 10px;
 }
 
 #player1
 {
 	clear: left;
-	margin-right: 10px;
-}
-
-.clear
-{
-	clear: both;
+	margin-left: 35%;
 }
