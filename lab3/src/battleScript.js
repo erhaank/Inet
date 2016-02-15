@@ -9,8 +9,8 @@ var HIT = 3;
 var INTACT = 4;
 var DESTROYED = 5;
 
-var SIZE = 3; // TODO change to 9
-var AMOUNT_OF_SHIPS = 2;
+var SIZE = 9; // TODO change to 9
+var AMOUNT_OF_SHIPS = 5;
 
 
 var player1, player2;
@@ -70,20 +70,34 @@ function newMatrix() {
 }
 
 function setupShips(player) {
+	var s1,s2,s3,s4,s5;
 	// Manual ship setup
 	if (player.id === 1) {
 		var s1 = new ship(2);
 		s1.positions = [{x:0,y:0}, {x:0,y:1}];
 		var s2 = new ship(3);
 		s2.positions = [{x:2, y:0}, {x:2, y:1}, {x:2, y:2}];
+		var s3 = new ship(3);
+		s3.positions = [{x:6, y:6}, {x:6, y:7}, {x:6, y:8}];
+		var s4 = new ship(4);
+		s4.positions = [{x:3, y:4}, {x:4, y:4}, {x:5, y:4}, {x:6, y:4}];
+		var s5 = new ship(5);
+		s5.positions = [{x:7, y:0}, {x:7, y:1}, {x:7, y:2}, {x:7, y:3}, {x:7, y:4}];
 	}
 	if (player.id === 2) {
 		var s1 = new ship(2);
-		s1.positions = [{x:0,y:0}, {x:0,y:1}];
+		s1.positions = [{x:5,y:5}, {x:6,y:5}];
 		var s2 = new ship(3);
-		s2.positions = [{x:2, y:0}, {x:2, y:1}, {x:2, y:2}];
+		s2.positions = [{x:1, y:8}, {x:2, y:8}, {x:3, y:8}];
+		var s3 = new ship(3);
+		s3.positions = [{x:8, y:4}, {x:8, y:5}, {x:8, y:6}];
+		var s4 = new ship(4);
+		s4.positions = [{x:1, y:1}, {x:1, y:2}, {x:1, y:3}, {x:1, y:4}];
+		var s5 = new ship(5);
+		s5.positions = [{x:3, y:3}, {x:3, y:4}, {x:3, y:5}, {x:3, y:6}, {x:3, y:7}];
 	}
-	addShipToPlayer(player, [s1,s2]);
+
+	player.ships = [s1,s2,s3,s4,s5];
 }
 
 
@@ -105,11 +119,6 @@ function shoot(player, position) {
 		}
 	}
 	return MISS;
-}
-
-function addShipToPlayer(player, ships) {
-	//TODO: Check if the ships collide
-	player.ships = ships;
 }
 
 // --------- Objects -----------
