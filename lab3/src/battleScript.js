@@ -23,6 +23,9 @@ var createBox = function(src, player, position) {
 	img.click(function() {
 		if (img.attr("src") === "ocean.png" && player.finished === 0) {
 			player.shots++;
+			if(player.shots === 1) {
+				setResetButton(player);
+			}
 			player.scoreboard.shots.text("Total shots: "+player.shots);
 			if (shoot(player, position) === MISS) {
 				img.attr("src", "miss.png");
@@ -119,6 +122,24 @@ function shoot(player, position) {
 		}
 	}
 	return MISS;
+}
+
+function setResetButton(player) {
+	var button = $("<button/>");
+	button.text("Reset");
+	button.click(function() {
+		resetPlayer(player);
+	});
+	player.div.append(button);
+}
+
+function resetPlayer (player) {
+	player.div.empty();
+	player.scoreboard = new scoreboard();
+	player.div.append(player.scoreboard.div);
+	player.shots = 0;
+	player.finished = 0;
+	setupPlayer(player);
 }
 
 // --------- Objects -----------
