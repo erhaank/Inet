@@ -23,9 +23,6 @@ var createBox = function(src, player, position) {
 	img.click(function() {
 		if (img.attr("src") === "ocean.png" && player.finished === 0) {
 			player.shots++;
-			if(player.shots === 1) {
-				setResetButton(player);
-			}
 			player.scoreboard.shots.text("Total shots: "+player.shots);
 			if (shoot(player, position) === MISS) {
 				img.attr("src", "miss.png");
@@ -47,6 +44,7 @@ function startup() {
 
 	setupPlayer(player1);
 	setupPlayer(player2);
+	setResetButton();
 }
 
 function setupPlayer(player) {
@@ -125,12 +123,11 @@ function shoot(player, position) {
 }
 
 function setResetButton(player) {
-	var button = $("<button/>");
-	button.text("Reset");
+	var button = $("#resetButton");
 	button.click(function() {
-		resetPlayer(player);
+		resetPlayer(player1);
+		resetPlayer(player2);
 	});
-	player.div.append(button);
 }
 
 function resetPlayer (player) {
