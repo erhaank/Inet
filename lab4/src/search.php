@@ -1,0 +1,45 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="bostad.css">
+</head>
+
+<body>
+<?php 
+$user="engeli_admin";
+$password="197n99Kk";
+$db = new PDO('mysql:host=mysql-vt2016.csc.kth.se;dbname=engeli;charset=utf8', $user, $password);
+
+// set the PDO error mode to exception
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+echo "<select name='lan' form='myForm'>";
+$stmt = $db->query("SELECT DISTINCT lan FROM bostader");
+while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo "<option value='".$row['lan']."'>".$row['lan']."</option>";
+}
+echo "</select>";
+ ?>
+<form id="myForm" action="result.php" accept-charset="utf-8" method="post">
+
+<!--Län: <input type="text" name="lan"><br>-->
+Objekttyp: 
+<div id="objekttyp">
+	<input type="checkbox" name="villa" value="Villa">Villa<br>
+	<input type="checkbox" name="bostadsratt" value="Bostadsrätt">Bostadsrätt<br> 
+</div>
+Adress: <input type="text" name="adress"><br>
+Min area: <input type="number" name="min_area"><br>
+Max area: <input type="number" name="max_area"><br>
+Min rum: <input type="number" name="min_rum"><br>
+Max rum: <input type="number" name="max_rum"><br>
+Min pris: <input type="number" name="min_pris"><br>
+Max pris: <input type="number" name="max_pris"><br>
+Min avgift: <input type="number" name="min_avgift"><br>
+Max avgift: <input type="number" name="max_avgift"><br>
+
+<input type="submit" value="Search">
+
+</form>
+
+</body>
+</html>
