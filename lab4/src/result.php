@@ -1,43 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="bostad.css">
-<script src="jquery-1.12.0.min.js"></script>
-<script>
-function sort(order_by) {
-	var adress = $("#adress").val();
-	var lan  = $("#lan").val();
-	var min_pris = $("#min_pris").val();
-	var max_pris = $("#max_pris").val();
-	var min_avgift = $("#min_avgift").val();
-	var max_avgift = $("#max_avgift").val();
-	var min_area = $("#min_area").val();
-	var max_area = $("#max_area").val();
-	var min_rum = $("#min_rum").val();
-	var max_rum = $("#max_rum").val();
-	var typ1 = $("#typ1").val();
-	var typ2 = $("#typ2").val();
-        
-	$("#results").load('result.php', 
-		{"typ1":typ1});
-	/*	"lan":lan,
-		"min_pris":min_pris,
-		"max_pris":max_pris,
-		"min_avgift":min_avgift,
-		"max_avgift":max_avgift,
-		"min_area":min_area,
-		"max_area":max_area,
-		"min_rum":min_rum,
-		"max_rum":max_rum,
-		"typ1":typ1,
-		"typ2":typ2,
-		"order_variable":order_by} );	
-*/}
-</script>
-</head>
-<body>
-
-<div id = "results">
 <?php 
 $user="engeli_admin";
 $password="197n99Kk";
@@ -120,25 +80,4 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 	echo "</tr>";
 }
 echo "</table>";
-
-echo "<p id='adress' class='hidden' style=\"font-size:0%;\">".$adress."</p>";
-echo "<p id='min_pris' class='hidden' style=\"font-size:0%;\">".$min_pris."</p>";
-echo "<p id='max_pris' class='hidden' style=\"font-size:0%;\">".$max_pris."</p>";
-echo "<p id='lan' class='hidden' style=\"font-size:0%;\">".$lan."</p>";
-echo "<p id='min_avgift' class='hidden' style=\"font-size:0%;\">".$min_avgift."</p>";
-echo "<p id='max_avgift' class='hidden' style=\"font-size:0%;\">".$max_avgift."</p>";
-echo "<p id='min_rum' class='hidden' style=\"font-size:0%;\">".$min_rum."</p>";
-echo "<p id='max_rum' class='hidden' style=\"font-size:0%;\">".$max_rum."</p>";
-echo "<p id='typ1' class='hidden' style=\"font-size:0%;\">".$typ1."</p>";
-echo "<p id='typ2' class='hidden' style=\"font-size:0%;\">".$typ2."</p>";
-echo "<p id='min_area' class='hidden' style=\"font-size:0%;\">".$min_area."</p>";
-echo "<p id='max_area' class='hidden' style=\"font-size:0%;\">".$max_area."</p>";
-//TODO!!
-function run($sortVal = 'pris') {
-	
-}
  ?>
-</div>
-</body>
-</html>
-

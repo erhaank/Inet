@@ -1,10 +1,12 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="bostad.css">
+<script src="jquery-1.12.0.min.js"></script>
+<script src="bostad.js"></script>
 </head>
 
 <body>
-<?php 
+<?php
 $user="engeli_admin";
 $password="197n99Kk";
 $db = new PDO('mysql:host=mysql-vt2016.csc.kth.se;dbname=engeli;charset=utf8', $user, $password);
@@ -19,7 +21,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 }
 echo "</select>";
  ?>
-<form id="myForm" action="result.php" accept-charset="utf-8" method="post">
+<form id="myForm" accept-charset="utf-8">
 
 <!--Län: <input type="text" name="lan"><br>-->
 Objekttyp: 
@@ -41,5 +43,6 @@ Max avgift: <input type="number" name="max_avgift"><br>
 
 </form>
 
+<div id='result'></div>
 </body>
 </html>
