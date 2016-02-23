@@ -6,6 +6,23 @@ $db = new PDO('mysql:host=mysql-vt2016.csc.kth.se;dbname=engeli;charset=utf8', $
 // set the PDO error mode to exception
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+$adress = $_POST["adress"];
+$lan = $_POST["lan"];
+$typ1 = $_POST["villa"];
+$typ2 = $_POST["bostadsratt"];
+$min_area = $_POST["min_area"];
+$max_area = $_POST["max_area"];
+$min_rum = $_POST["min_rum"];
+$max_rum = $_POST["max_rum"];
+$min_pris = $_POST["min_pris"];
+$max_pris = $_POST["max_pris"];
+$min_avgift = $_POST["min_avgift"];
+$max_avgift = $_POST["max_avgift"];
+$orders = "pris";
+$tmp = $_POST["order_variable"];
+if ($tmp != null)
+	$orders = $tmp;	
+
 $query = "SELECT * FROM bostader WHERE
 	(adress LIKE CONCAT('%',:adr,'%') OR :adr = '') AND
 	lan = :lan AND
@@ -15,7 +32,7 @@ $query = "SELECT * FROM bostader WHERE
 	pris >= :min_pris AND (pris <= :max_pris OR :max_pris = 0) AND
 	avgift >= :min_avgift AND (avgift <= :max_avgift OR :max_avgift = 0)
 
-	ORDER BY :order_variable";
+	ORDER BY " . $orders;
 
 $stmt = $db->prepare($query);
 
@@ -31,37 +48,20 @@ $stmt->bindParam(':min_pris', $min_pris);
 $stmt->bindParam(':max_pris', $max_pris);
 $stmt->bindParam(':min_avgift', $min_avgift);
 $stmt->bindParam(':max_avgift', $max_avgift);
-$stmt->bindParam(':order_variable', $order_variable);
+$stmt->bindParam(':orders', $orders);
 
-$adress = $_POST["adress"];
-$lan = $_POST["lan"];
-$typ1 = $_POST["villa"];
-$typ2 = $_POST["bostadsratt"];
-$min_area = $_POST["min_area"];
-$max_area = $_POST["max_area"];
-$min_rum = $_POST["min_rum"];
-$max_rum = $_POST["max_rum"];
-$min_pris = $_POST["min_pris"];
-$max_pris = $_POST["max_pris"];
-$min_avgift = $_POST["min_avgift"];
-$max_avgift = $_POST["max_avgift"];
-$order_variable = "pris";
-$tmp = $_POST["order_variable"];
-if ($tmp != null)
-	$order_variable = $tmp;	
-
-
+// echo $orders;
 $stmt->execute(); 
 
 echo "<table id='bostader'>";
 echo "<tr>
-	<th onclick='sort(\"lan\")'>Län</th>
-	<th onclick='sort(\"objekttyp\")'>Typ</th>
-	<th onclick='sort(\"adress\")'>Adress</th>
-	<th onclick='sort(\"area\")'>Area</th>
-	<th onclick='sort(\"rum\")'>Rum</th>
-	<th onclick='sort(\"pris\")'>Pris</th>
-	<th onclick='sort(\"avgift\")'>Avgift</th>
+	<th class='sort' title = 'lan'>Län</th>
+	<th class='sort' = title = 'objekttyp'>Typ</th>
+	<th class='sort' title = 'adress'>Adress</th>
+	<th class='sort' title = 'area'>Area</th>
+	<th class='sort' title = 'rum'>Rum</th>
+	<th class='sort' title = 'pris'>Pris</th>
+	<th class='sort' title = 'avgift'>Avgift</th>
       </tr>";
 
 while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

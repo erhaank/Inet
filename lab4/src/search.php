@@ -8,8 +8,12 @@
 <body>
 <?php
 $user="engeli_admin";
+// $user="agnesam_admin";
 $password="197n99Kk";
+// $password="FfXD1Ehl";
 $db = new PDO('mysql:host=mysql-vt2016.csc.kth.se;dbname=engeli;charset=utf8', $user, $password);
+// $db = new PDO('mysql:host=mysql-vt2016.csc.kth.se;dbname=agnesam;charset=utf8', $user, $password);
+
 
 // set the PDO error mode to exception
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
