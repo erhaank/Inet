@@ -1,0 +1,39 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="bostad.css">
+<script src="jquery-1.12.0.min.js"></script>
+<script src="bostad.js"></script>
+<script type="text/javascript">
+	function test() {
+		alert("HEJ");
+	}
+</script>
+</head>
+<body>
+	<h1>Bostadsköp!</h1>
+	<button onclick="test()">Klicka mig!</button>
+	<div id="search">
+		<form id="myForm" action="result.php" accept-charset="utf-8" method="post">
+		<!--Län: <input type="text" name="lan"><br>-->
+		Objekttyp: 
+		<div id="objekttyp">
+			<input type="checkbox" name="villa" value="Villa">Villa<br>
+			<input type="checkbox" name="bostadsratt" value="Bostadsrätt">Bostadsrätt<br> 
+		</div>
+		Adress: <input type="text" name="adress"><br>
+		Min area: <input type="number" name="min_area"><br>
+		Max area: <input type="number" name="max_area"><br>
+		Min rum: <input type="number" name="min_rum"><br>
+		Max rum: <input type="number" name="max_rum"><br>
+		Min pris: <input type="number" name="min_pris"><br>
+		Max pris: <input type="number" name="max_pris"><br>
+		Min avgift: <input type="number" name="min_avgift"><br>
+		Max avgift: <input type="number" name="max_avgift"><br>
+
+		<input type="submit" value="Search">
+
+		</form>
+	</div>
+	<div id="results"></div>
+</body>
+</html>

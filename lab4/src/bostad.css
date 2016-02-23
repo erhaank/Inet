@@ -1,5 +1,5 @@
 table, th, td {
-    border: 1px solid black;
+    border: 5px solid black;
     border-collapse: collapse;
 }
 th, td {
@@ -8,4 +8,13 @@ th, td {
 
 div {
 	padding-left :5em;
+}
+
+.hidden {
+	color: blue;
+	height: 0px;
+}
+
+p {
+	color: blue;	
 }
