@@ -29,13 +29,12 @@ echo "</select>";
 <form id="myForm" accept-charset="utf-8">
 
 <!--Län: <input type="text" name="lan"><br>-->
-Objekttyp: 
 <div id="objekttyp">
 	<label for="villa" class="villa">Villa</label>
-	<label for="bostadsratt" class="bostadsratt">Bostadsrätt</label>
+	<label for="bostadsratt" class="bostadsratt">Bostadsrätt</label><br>
 	<input type="checkbox" class="villa" name="villa" value="Villa">
 	<input type="checkbox" class="bostadsratt" name="bostadsratt" value="Bostadsrätt"> 
-</div>
+</div> <br>
 
 <label>Adress:</label>
 <input type="text" name="adress"><br>
