@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$("#result").hide();
 	var searchParams;
-    	var accending = false;
+    var accending = false;
 	$("#myForm").on("submit", function(e) {
 		searchParams = $("#myForm").serialize();
 		$.ajax(
@@ -22,6 +22,9 @@ $(document).ready(function() {
 	});
 
     $("body").on("click", ".sort", function(){
+        if(searchParams == null) {
+            searchParams = $("#searchparams").text();
+        }
         if(accending) {
             accending = false;
             acc = "DESC";

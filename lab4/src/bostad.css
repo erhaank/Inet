@@ -42,6 +42,10 @@ th {
 	background-color: #dbdbdb;
 }
 
+#searchparams {
+	font-size: 0%;
+}
+
 form {
 	width: 80%;
 	margin: auto;

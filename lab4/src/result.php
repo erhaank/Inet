@@ -1,7 +1,10 @@
 <?php 
-$user="engeli_admin";
-$password="197n99Kk";
-$db = new PDO('mysql:host=mysql-vt2016.csc.kth.se;dbname=engeli;charset=utf8', $user, $password);
+//$user="engeli_admin";
+$user="agnesam_admin";
+//$password="197n99Kk";
+$password="FfXD1Ehl";
+//$db = new PDO('mysql:host=mysql-vt2016.csc.kth.se;dbname=engeli;charset=utf8', $user, $password);
+$db = new PDO('mysql:host=mysql-vt2016.csc.kth.se;dbname=agnesam;charset=utf8', $user, $password);
 
 // set the PDO error mode to exception
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -22,6 +25,18 @@ $orders = "pris";
 $tmp = $_POST["order_variable"];
 if ($tmp != null)
 	$orders = $tmp;	
+
+$cookie_name = "lab4";
+$cookie_value = "lan=" . $lan . "&" . "villa=" . $typ1 . "&" . 
+"bostadsratt=" . $typ2 . "&" . "adress=" . $adress . "&" . 
+"min_area=" . $min_area . "&" . "max_area=" . $max_area . "&" 
+. "min_rum=" . $min_rum . "&" . "max_rum=" . $max_rum . "&" . "min_pris=" 
+. $min_pris . "&" . "max_pris=" . $max_pris . "&" . "min_avgift=" . $min_avgift 
+. "&" . "max_avgift=" . $max_avgift;
+
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+
+//lan=Stockholm&villa=Villa&bostadsratt=
 
 $query = "SELECT * FROM bostader WHERE
 	(adress LIKE CONCAT('%',:adr,'%') OR :adr = '') AND

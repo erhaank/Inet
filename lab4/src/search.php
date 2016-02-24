@@ -15,8 +15,28 @@ $password="FfXD1Ehl";
 //$db = new PDO('mysql:host=mysql-vt2016.csc.kth.se;dbname=engeli;charset=utf8', $user, $password);
 $db = new PDO('mysql:host=mysql-vt2016.csc.kth.se;dbname=agnesam;charset=utf8', $user, $password);
 
+$cookie_value = "";
+
 if(isset($_COOKIE["lab4"])) {
-    echo $_COOKIE["lab4"];
+    $cookie_value = $_COOKIE["lab4"];
+    echo "<script>
+	$(document).ready(function() {
+		$('#searchparams').text('" . $cookie_value . "');
+		$.ajax(
+			{
+			type: 'POST',
+			url: 'result.php',
+			data: '" . $cookie_value . "',
+			success: function(result) {
+				$('#result').html(result);
+			},
+			error: function(a, b, c) {
+				console.log(b);
+			}
+		});
+		$('#result').show();
+	});
+	</script>";
 } 
 
 // set the PDO error mode to exception
@@ -59,9 +79,11 @@ echo "</select>";
 <input type="number" name="max_avgift"><br>
 
 <input type="submit" value="Search">
-
 </form>
 </div>
 <div id='result'></div>
+<p id='searchparams'></p>
 </body>
 </html>
+
+
