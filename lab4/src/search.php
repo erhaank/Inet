@@ -6,6 +6,7 @@
 </head>
 
 <body>
+<div id="formDiv">
 <?php
 $user="engeli_admin";
 // $user="agnesam_admin";
@@ -30,23 +31,35 @@ echo "</select>";
 <!--Län: <input type="text" name="lan"><br>-->
 Objekttyp: 
 <div id="objekttyp">
-	<input type="checkbox" name="villa" value="Villa">Villa<br>
-	<input type="checkbox" name="bostadsratt" value="Bostadsrätt">Bostadsrätt<br> 
+	<label for="villa" class="villa">Villa</label>
+	<label for="bostadsratt" class="bostadsratt">Bostadsrätt</label>
+	<input type="checkbox" class="villa" name="villa" value="Villa">
+	<input type="checkbox" class="bostadsratt" name="bostadsratt" value="Bostadsrätt"> 
 </div>
-Adress: <input type="text" name="adress"><br>
-Min area: <input type="number" name="min_area"><br>
-Max area: <input type="number" name="max_area"><br>
-Min rum: <input type="number" name="min_rum"><br>
-Max rum: <input type="number" name="max_rum"><br>
-Min pris: <input type="number" name="min_pris"><br>
-Max pris: <input type="number" name="max_pris"><br>
-Min avgift: <input type="number" name="min_avgift"><br>
-Max avgift: <input type="number" name="max_avgift"><br>
+
+<label>Adress:</label>
+<input type="text" name="adress"><br>
+<label>Min area:</label>
+<input type="number" name="min_area"><br>
+<label>Max area:</label>
+<input type="number" name="max_area"><br>
+<label>Min rum:</label>
+<input type="number" name="min_rum"><br>
+<label>Max rum:</label>
+<input type="number" name="max_rum"><br>
+<label>Min pris:</label>
+<input type="number" name="min_pris"><br>
+<label>Max pris:</label>
+<input type="number" name="max_pris"><br>
+<label>Min avgift:</label>
+<input type="number" name="min_avgift"><br>
+<label>Max avgift:</label>
+<input type="number" name="max_avgift"><br>
 
 <input type="submit" value="Search">
 
 </form>
-
+</div>
 <div id='result'></div>
 </body>
 </html>
