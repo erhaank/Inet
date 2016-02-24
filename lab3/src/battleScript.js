@@ -10,8 +10,8 @@ var INTACT = 4;
 var DESTROYED = 5;
 
 
-var SIZE = 9; // TODO change to 9
-var AMOUNT_OF_SHIPS = 10;
+var SIZE = 9;
+var AMOUNT_OF_SHIPS = 3;
 
 var player1, player2;
 
@@ -71,6 +71,7 @@ function startup() {
 }
 
 function setupPlayer(player) {
+	player.scoreboard.head.text("Player "+player.id);
 	for (var i = 0; i < SIZE; i++) {
 		var div = $("<div/>");
 		for (var j = 0; j < SIZE; j++) {
@@ -128,6 +129,15 @@ function finishedPlacement(player) {
 			player.imgMatrix[i][j].attr("src", "ocean.png");
 		}
 	}
+
+	var other = player1;
+	if (player === player1)
+		other = player2;
+
+	if (other.play) {
+		player.scoreboard.head.text("Player "+other.id);
+		other.scoreboard.head.text("Player "+player.id);
+	}
 }
 
 // --------- Objects -----------
@@ -157,6 +167,7 @@ function scoreboard() {
 	this.placed = $("<p>Placed ships: "+0+"</p>");
 	this.sunk = $("<p>Sunk ships: 0</p>");
 	this.shots = $("<p>Total shots: 0</p>");
+	this.div.append(this.head);
 	this.div.append(this.placed);
 	this.div.append(this.sunk);
 	this.div.append(this.shots);
