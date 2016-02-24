@@ -8,8 +8,11 @@
 
 h1 
 {
-	color: orange;
+	color: #888888;
+	border: 1px solid black;
 	text-align: center;
+	width: 10%;
+	margin: auto;
 }
 
 #board
@@ -24,7 +27,6 @@ h1
 {
 	width: auto;
 	height: auto;
-	float: left;
 	border: 1px solid #888;
 
 	margin-bottom: 10px;
@@ -33,8 +35,27 @@ h1
 	margin-top: 10px;
 }
 
+#player2 {
+	float: right;
+	margin-right: 30%; 
+}
+
+
+
 #player1
 {
+	float: left;
 	clear: left;
-	margin-left: 35%;
+	margin-left: 30%;
+}
+
+#resetButton {
+	margin-left: 42%;
+	width: 15%;
+	height: 10%;
+	background-color: #abcdef;
+}
+
+body {
+	background-color: #edf4f7;
 }

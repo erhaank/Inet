@@ -1,6 +1,7 @@
 $(document).ready(function() {
+	$("#result").hide();
 	var searchParams;
-    var accending = false;
+    	var accending = false;
 	$("#myForm").on("submit", function(e) {
 		searchParams = $("#myForm").serialize();
 		$.ajax(
@@ -15,6 +16,8 @@ $(document).ready(function() {
 				console.log(b);
 			}
 		});
+
+	$("#result").show();
 	return false;
 	});
 

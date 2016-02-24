@@ -1,20 +1,88 @@
-table, th, td {
-    border: 5px solid black;
-    border-collapse: collapse;
+body {
+	background-color: #b1d0de;
+}
+
+td {
+	background-color: #dbeaf0;
 }
 th, td {
-    padding: 15px;
+	padding: 15px;
 }
 
-div {
-	padding-left :5em;
+th {
+	background-color: #82b5c9;	
 }
 
-.hidden {
-	color: blue;
-	height: 0px;
+.villa {
+	float:left;
+	width: 45%;
+}
+.bostadsratt{
+	float:right; 
+	width: 45%;
+	margin-right: 6%;
+}
+#formDiv {
+	float: left;
+	background-color: #dbdbdb;
+	border-radius: 25px;
+	border: 5px solid #bfbfbf;
+	margin: auto;
+	padding: 20px;
+	width: 35%; 
 }
 
-p {
-	color: blue;	
+#result {
+	float: right;
+	padding: 1%;
+	margin-top: 10%;
+	margin-right: 10%;
+	border-radius: 25px;
+	border: 5px solid #bfbfbf;
+	background-color: #dbdbdb;
 }
+
+form {
+	width: 80%;
+	margin: auto;
+}
+
+input {
+	width: 75%;
+	margin: 8px 0;
+	padding: 10px;
+	border: none;
+	box-sizing: border-box;
+	background-color: #edf4f7;
+	box-sizing: border-box;
+}
+
+input[type=submit] {
+	border: 1px solid black;
+	background-color: #82b5c9;
+	border-radius: 25px;
+}
+
+input[type=checkbox] {
+	-webkit-appearance: none;
+	height: 10%;
+	background-color: #edf4f7;
+	padding: 9px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+}
+
+input[type=checkbox]:checked {
+	background-color: #82b5c9;
+	color: #82b5c9;
+}
+
+label {
+	width: 18%;
+	padding: 9px;
+	background-color: #dbeaf0;
+	box-sizing: border-box;
+	display: inline-block;
+}
+

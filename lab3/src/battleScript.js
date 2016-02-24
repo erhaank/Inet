@@ -9,30 +9,53 @@ var HIT = 3;
 var INTACT = 4;
 var DESTROYED = 5;
 
-var SIZE = 9; // TODO change to 9
-var AMOUNT_OF_SHIPS = 5;
 
+var SIZE = 9; // TODO change to 9
+var AMOUNT_OF_SHIPS = 10;
 
 var player1, player2;
-
 
 var createBox = function(src, player, position) {
 	var img = $("<img/>");
 	img.attr("src", src);
 	img.attr("class", "box");
 	img.click(function() {
-		if (img.attr("src") === "ocean.png" && player.finished === 0) {
-			player.shots++;
-			player.scoreboard.shots.text("Total shots: "+player.shots);
-			if (shoot(player, position) === MISS) {
-				img.attr("src", "miss.png");
-			} else { // Hit
-				img.attr("src", "hit.png");
-				if (player.shipsLeft === 0) { // Finished
-					player.finished = 1;
-					player.div.append("<p>All ships have been hit! Good job! :)</p>");
+		if (player.play) {
+			if (img.attr("src") === "ocean.png" && player.finished === 0) {
+				player.shots++;
+				player.scoreboard.shots.text("Total shots: "+player.shots);
+				if (shoot(player, position) === MISS) {
+					img.attr("src", "miss.png");
+				} else { // Hit
+					img.attr("src", "hit.png");
+					if (player.shipsLeft === 0) { // Finished
+						player.finished = 1;
+						player.div.append("<p>All ships have been hit! Good job! :)</p>");
+					}
 				}
 			}
+		} else { // Place ships
+			if (img.attr("src") === "ocean.png") {
+				img.attr("src", "hit.png");
+				player.ships[player.shipAmount] = position;
+				player.shipAmount++;
+				if (player.shipAmount === AMOUNT_OF_SHIPS)
+					finishedPlacement(player);
+			} else {
+				img.attr("src", "ocean.png");
+				for (var i = 0; i < player.ships.length; i++) {
+					var ship = player.ships[i];
+					if (ship.x === position.x && ship.y === position.y) {
+						while (i < player.ships.length-1) {
+							player.ships[i] = player.ships[i+1];
+							i++;
+						}
+						i++;
+					}
+				};
+				player.shipAmount--;
+			}
+			player.scoreboard.placed.text("Placed ships: "+player.shipAmount);
 		}
 	});
 	return img;
@@ -48,9 +71,6 @@ function startup() {
 }
 
 function setupPlayer(player) {
-
-	setupShips(player);
-
 	for (var i = 0; i < SIZE; i++) {
 		var div = $("<div/>");
 		for (var j = 0; j < SIZE; j++) {
@@ -70,53 +90,13 @@ function newMatrix() {
 	return matrix;
 }
 
-function setupShips(player) {
-	var s1,s2,s3,s4,s5;
-	// Manual ship setup
-	if (player.id === 1) {
-		var s1 = new ship(2);
-		s1.positions = [{x:0,y:0}, {x:0,y:1}];
-		var s2 = new ship(3);
-		s2.positions = [{x:2, y:0}, {x:2, y:1}, {x:2, y:2}];
-		var s3 = new ship(3);
-		s3.positions = [{x:6, y:6}, {x:6, y:7}, {x:6, y:8}];
-		var s4 = new ship(4);
-		s4.positions = [{x:3, y:4}, {x:4, y:4}, {x:5, y:4}, {x:6, y:4}];
-		var s5 = new ship(5);
-		s5.positions = [{x:7, y:0}, {x:7, y:1}, {x:7, y:2}, {x:7, y:3}, {x:7, y:4}];
-	}
-	if (player.id === 2) {
-		var s1 = new ship(2);
-		s1.positions = [{x:5,y:5}, {x:6,y:5}];
-		var s2 = new ship(3);
-		s2.positions = [{x:1, y:8}, {x:2, y:8}, {x:3, y:8}];
-		var s3 = new ship(3);
-		s3.positions = [{x:8, y:4}, {x:8, y:5}, {x:8, y:6}];
-		var s4 = new ship(4);
-		s4.positions = [{x:1, y:1}, {x:1, y:2}, {x:1, y:3}, {x:1, y:4}];
-		var s5 = new ship(5);
-		s5.positions = [{x:3, y:3}, {x:3, y:4}, {x:3, y:5}, {x:3, y:6}, {x:3, y:7}];
-	}
-
-	player.ships = [s1,s2,s3,s4,s5];
-}
-
-
 function shoot(player, position) {
 	for (var i = 0; i < player.ships.length; i++) {
 		var ship = player.ships[i];
-		for (var j = 0; j < ship.positions.length; j++) {
-			if (position.x === ship.positions[j].x && position.y === ship.positions[j].y) {
-				if (ship.hits[j] === INTACT) {
-					ship.hits[j] = DESTROYED;
-					ship.partsLeft--;
-					if (ship.partsLeft === 0) {
-						player.shipsLeft--;
-						player.scoreboard.sunk.text("Sunk ships: "+(AMOUNT_OF_SHIPS-player.shipsLeft));
-					}
-				}
-				return HIT;
-			}
+		if (position.x === ship.x && position.y === ship.y) {
+			player.shipsLeft--;
+			player.scoreboard.sunk.text("Sunk ships: "+(AMOUNT_OF_SHIPS-player.shipsLeft));
+			return HIT;
 		}
 	}
 	return MISS;
@@ -136,7 +116,18 @@ function resetPlayer (player) {
 	player.div.append(player.scoreboard.div);
 	player.shots = 0;
 	player.finished = 0;
+	player.play = false;
+	player.shipAmount = 0;
 	setupPlayer(player);
+}
+
+function finishedPlacement(player) {
+	player.play = true;
+	for (var i = 0; i < SIZE;i++) {
+		for (var j = 0; j < SIZE; j++) {
+			player.imgMatrix[i][j].attr("src", "ocean.png");
+		}
+	}
 }
 
 // --------- Objects -----------
@@ -149,29 +140,21 @@ function player(id, div, scoreboard, ships, imgmatrix) {
 	this.div = div;
 	this.scoreboard = scoreboard;
 	this.ships = ships;
+	this.shipAmount = 0;
 	this.imgMatrix = imgmatrix;
 	this.shipsLeft = AMOUNT_OF_SHIPS;
 	this.shots = 0;
 	this.finished = 0;
+	this.play = false;
 
 	this.div.append(this.scoreboard.div);
-}
-
-// A ship has a length, an array of positions and an array of hits (where the ship has been bombed)
-function ship(length) {
-	this.length = length;
-	this.partsLeft = length;
-	this.positions = new Array(length);
-	this.hits = new Array(length);
-	for (var i = 0; i < length; i++) {
-		this.hits[i] = INTACT;
-	}
 }
 
 // The scoreboard of each player
 function scoreboard() {
 	this.div = $("<div/>");
-	this.placed = $("<p>Placed ships: "+AMOUNT_OF_SHIPS+"</p>");
+	this.head = $("<h1/>")
+	this.placed = $("<p>Placed ships: "+0+"</p>");
 	this.sunk = $("<p>Sunk ships: 0</p>");
 	this.shots = $("<p>Total shots: 0</p>");
 	this.div.append(this.placed);
