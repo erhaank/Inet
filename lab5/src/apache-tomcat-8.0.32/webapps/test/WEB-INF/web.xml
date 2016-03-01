@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+  <servlet>
+    <servlet-name>Quote</servlet-name>
+    <servlet-class>com.quote.web.QuoteController</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Quote</servlet-name>
+    <url-pattern>/QuoteController</url-pattern>
+  </servlet-mapping>
+</web-app>
