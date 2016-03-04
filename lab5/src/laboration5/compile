@@ -1,0 +1,3 @@
+ant deploy
+./../apache-tomcat-8.0.32/bin/catalina.sh stop
+./../apache-tomcat-8.0.32/bin/catalina.sh start

@@ -23,6 +23,13 @@ public class TradeController extends HttpServlet{
 	    // Kod för att lägga en köp eller säljorder
 	    message = "viewTrades";
 	}
+
+	if(request.getParameter("action").equals("DBTEST")){
+		DatabaseAccessor db = new DatabaseAccessor();
+		String s = db.getOrdersNames()[0];
+
+		message = "DB är igång: "+s;
+	}
 	
 	try{
 	    RequestDispatcher rd =
