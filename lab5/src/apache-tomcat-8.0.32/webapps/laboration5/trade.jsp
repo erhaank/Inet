@@ -43,7 +43,12 @@ Värdepapper: <select name="security">
 <input type="submit" value="Utför">
 </form>
 
-
+<h3>DATABASTEST</h3>
+<form action ="/TradeController">
+<input type="hidden" name="action" value="DBTEST">
+<input type="text" name="dbtest" value=""><br>
+<input type="submit" value="TESTA">
+</form>
 </body>
 
 </html>

@@ -1,0 +1,12 @@
+127.0.0.1 - - [07/Mar/2016:11:39:26 +0100] "GET /test/quote.html HTTP/1.1" 304 -
+127.0.0.1 - - [07/Mar/2016:11:39:27 +0100] "GET /favicon.ico HTTP/1.1" 200 21630
+127.0.0.1 - - [07/Mar/2016:11:39:28 +0100] "GET /laboration5/trade.jsp HTTP/1.1" 200 1530
+127.0.0.1 - - [07/Mar/2016:13:34:03 +0100] "GET /laboration5/trade.jsp HTTP/1.1" 200 1530
+127.0.0.1 - - [07/Mar/2016:13:34:09 +0100] "GET /TradeController?action=DBTEST&dbtest=Hej HTTP/1.1" 404 1024
+127.0.0.1 - - [07/Mar/2016:13:34:18 +0100] "GET /laboration5/TradeController?action=DBTEST&dbtest=Hej HTTP/1.1" 200 1550
+127.0.0.1 - - [07/Mar/2016:13:55:31 +0100] "GET /laboration5/TradeController?action=DBTEST&dbtest=Hej HTTP/1.1" 500 1753
+127.0.0.1 - - [07/Mar/2016:13:55:31 +0100] "GET /favicon.ico HTTP/1.1" 200 21630
+127.0.0.1 - - [07/Mar/2016:13:55:36 +0100] "GET /laboration5/trade.jsp HTTP/1.1" 200 -
+127.0.0.1 - - [07/Mar/2016:13:55:36 +0100] "GET /laboration5/trade.jsp HTTP/1.1" 200 1530
+127.0.0.1 - - [07/Mar/2016:13:55:38 +0100] "GET /TradeController?action=DBTEST&dbtest= HTTP/1.1" 404 1024
+127.0.0.1 - - [07/Mar/2016:13:55:46 +0100] "GET /laboration5/TradeController?action=DBTEST&dbtest=Hej HTTP/1.1" 500 1753

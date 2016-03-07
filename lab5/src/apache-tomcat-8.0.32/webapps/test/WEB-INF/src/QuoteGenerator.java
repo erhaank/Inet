@@ -20,8 +20,11 @@ public class QuoteGenerator {
 
     public String getQuote(String name) {
         int quoteAmount = db.quoteAmount();
+        System.out.println("quote amount: "+quoteAmount);
         int i = rand.nextInt(quoteAmount);
+        System.out.println("i: "+i);
         String[] quotes = db.getQuotes();
+        System.out.println("Quotes length: "+quotes.length);
         String s = "'"+quotes[i]+"'<br><b>-"+name+"</b>";
         return s;
     }

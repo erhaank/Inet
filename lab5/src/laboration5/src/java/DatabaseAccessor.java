@@ -40,7 +40,7 @@ public class DatabaseAccessor {
 			ResultSet set = statement.executeQuery("select * from trade.securities");
 			while(set.next()) {
 				Security s = new Security();
-				s.setName(set.getString("name"));
+				//s.setName(set.getString("name"));
 				//s.setId(set.getInt("id")); Visst behöver vi inte id?
 				securities.add(s);
 			}
@@ -50,34 +50,7 @@ public class DatabaseAccessor {
 		return securities;
 	}
 
-	public String[] getOrdersNames() {
-		int amount = orderAmount();
-		String[] res = new String[amount];
-		try {
-			statement  = connect.createStatement();
-			ResultSet set = statement.executeQuery("select * from trade.orders");
-			for (int i = 0; i < amount; i++) {
-				if (!set.next())
-					break;
-				res[i] = set.getString("name");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return res;
-	}
+	public void addOrder(String securityName, String type ) {
 
-	public int orderAmount() {
-		int amount = 0;
-		try {
-			statement = connect.createStatement();
-			ResultSet rs = statement.executeQuery("SELECT * from trade.orders");
-			ResultSetMetaData rsmd = rs.getMetaData();
-
-			amount = rsmd.getColumnCount();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return amount;
 	}
 }

@@ -24,11 +24,16 @@ public class DatabaseAccessor {
 	}
 
 	public String[] getQuotes() {
-		String[] res = {};
+		int amount = quoteAmount();
+		String[] res = new String[amount];
 		try {
 			Statement st  = connect.createStatement();
 			ResultSet set = st.executeQuery("select * from quote.quotes");
-			res = (String[]) set.getArray("quote").getArray();
+			for (int i = 0; i < amount; i++) {
+				if (!set.next())
+					break;
+				res[i] = set.getString("quote");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

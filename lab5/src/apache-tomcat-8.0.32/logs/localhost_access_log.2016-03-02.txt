@@ -1,0 +1,11 @@
+127.0.0.1 - - [02/Mar/2016:07:47:44 +0100] "GET /test/quote.html HTTP/1.1" 304 -
+127.0.0.1 - - [02/Mar/2016:07:47:50 +0100] "POST /test/QuoteController HTTP/1.1" 200 235
+127.0.0.1 - - [02/Mar/2016:07:47:54 +0100] "GET /test/quote.html? HTTP/1.1" 304 -
+127.0.0.1 - - [02/Mar/2016:07:47:58 +0100] "POST /test/QuoteController HTTP/1.1" 200 205
+127.0.0.1 - - [02/Mar/2016:09:57:33 +0100] "GET /test/quote.html? HTTP/1.1" 304 -
+127.0.0.1 - - [02/Mar/2016:09:57:36 +0100] "POST /test/QuoteController HTTP/1.1" 200 205
+127.0.0.1 - - [02/Mar/2016:09:57:43 +0100] "POST /test/QuoteController HTTP/1.1" 200 208
+127.0.0.1 - - [02/Mar/2016:09:57:48 +0100] "POST /test/QuoteController HTTP/1.1" 200 230
+127.0.0.1 - - [02/Mar/2016:10:44:17 +0100] "GET /test/quote.html HTTP/1.1" 304 -
+127.0.0.1 - - [02/Mar/2016:10:44:26 +0100] "GET /test/result.jsp HTTP/1.1" 200 169
+127.0.0.1 - - [02/Mar/2016:10:48:53 +0100] "POST /test/QuoteController HTTP/1.1" 200 280

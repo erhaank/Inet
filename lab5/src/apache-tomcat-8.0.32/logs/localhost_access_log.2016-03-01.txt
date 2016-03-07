@@ -64,3 +64,6 @@
 127.0.0.1 - - [01/Mar/2016:10:37:08 +0100] "GET /test/quote.html? HTTP/1.1" 304 -
 127.0.0.1 - - [01/Mar/2016:10:37:11 +0100] "POST /test/QuoteController HTTP/1.1" 200 230
 127.0.0.1 - - [01/Mar/2016:10:37:21 +0100] "POST /test/QuoteController HTTP/1.1" 200 230
+127.0.0.1 - - [01/Mar/2016:13:47:32 +0100] "GET / HTTP/1.1" 200 11452
+127.0.0.1 - - [01/Mar/2016:13:47:39 +0100] "GET /laboration5/TradeController HTTP/1.1" 500 1454
+127.0.0.1 - - [01/Mar/2016:13:47:51 +0100] "GET /laboration5/src/jsp/trade.jsp HTTP/1.1" 404 1052
