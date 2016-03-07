@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
@@ -6,17 +6,12 @@
   version="3.0"
   metadata-complete="true">
 
-  <display-name>Welcome to Tomcat</display-name>
-  <description>
-     Welcome to Tomcat
-  </description>
-
 <servlet>
-  <servlet-name>TradeController</servlet-name>
+  <servlet-name>Trade</servlet-name>
   <servlet-class>TradeController</servlet-class>
 </servlet>
 <servlet-mapping>
-  <servlet-name>TradeController</servlet-name>
+  <servlet-name>Trade</servlet-name>
   <url-pattern>/TradeController</url-pattern>
 </servlet-mapping>
 

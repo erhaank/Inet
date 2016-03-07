@@ -20,7 +20,7 @@
   <target name="comp" depends="">
     <mkdir dir="${build-directory}" />
     <delete file="${build-directory}/${war-file-name}" />
-    <javac srcdir="${source-directory}/java/" destdir="${build-directory}">
+    <javac includeantruntime="false" srcdir="${source-directory}/java/" destdir="${build-directory}">
       <classpath>
 	<pathelement location="lib/"/>
 	<pathelement path="${tomcat_dir}/lib/servlet-api.jar"/>

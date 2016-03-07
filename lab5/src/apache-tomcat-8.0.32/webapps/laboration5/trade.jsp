@@ -11,14 +11,14 @@
 <%=request.getParameter("message")%>
 
 <h3>Addera ett värdepapper</h3>
-<form action="/TradeController">
+<form action="TradeController">
 <input type="hidden" name="action" value="addSecurity">
 <input type="text" name="security" value=""><br>
 <input type="submit" value="Utför">
 </form>
 
 <h3>Lägg en köp/säljorder på ett värdepapper</h3>
-<form action="/TradeController">
+<form action="TradeController">
 <input type="hidden" name="action" value="addOrder">
 Värdepapper: <select name="security">
 <option value="Ericsson">Ericsson</option>
@@ -27,13 +27,13 @@ Värdepapper: <select name="security">
 </select><br>
 Köp: <input type="radio" name="buyOrSell" value="B" checked>
 Sälj: <input type="radio" name="buyOrSell" value="S"><br>
-Pris: <input type="text" name="price" value=""><br>
-Antal: <input type="text" name="amount" value=""><br>
+Pris: <input type="number" name="price" value=""><br>
+Antal: <input type="number" name="amount" value=""><br>
 <input type="submit" value="Utför">
 </form>
 
 <h3>Visa avslutade affärer i ett värdepapper</h3>
-<form action="/TradeController">
+<form action="TradeController">
 <input type="hidden" name="action" value="viewTrades">
 Värdepapper: <select name="security">
 <option value="Ericsson">Ericsson</option>
@@ -44,7 +44,7 @@ Värdepapper: <select name="security">
 </form>
 
 <h3>DATABASTEST</h3>
-<form action ="/TradeController">
+<form action ="TradeController">
 <input type="hidden" name="action" value="DBTEST">
 <input type="text" name="dbtest" value=""><br>
 <input type="submit" value="TESTA">

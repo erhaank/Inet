@@ -1,16 +1,20 @@
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import bean.*;
+
 
 public class TradeController extends HttpServlet{
+
+	DatabaseAccessor db = new DatabaseAccessor();
     
     public void doGet(HttpServletRequest request, HttpServletResponse response){
 	
 	String message = "";
 
 	if(request.getParameter("action").equals("addSecurity")){
-	    // Kod för att addera ett slags värdepapper;
-	    message = "addSecurity";
+	    message = db.addSecurity(request.getParameter("security"));
 	}
 	
 	if(request.getParameter("action").equals("addOrder")){
@@ -25,10 +29,9 @@ public class TradeController extends HttpServlet{
 	}
 
 	if(request.getParameter("action").equals("DBTEST")){
-		DatabaseAccessor db = new DatabaseAccessor();
-		String s = db.getOrdersNames()[0];
-
-		message = "DB är igång: "+s;
+		ArrayList<Security> securities = db.getSecurities();
+		for (Security s : securities)
+			message += "<br>"+s.getId()+": "+s.getName();
 	}
 	
 	try{
