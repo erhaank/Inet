@@ -53,12 +53,12 @@ public class DatabaseAccessor {
 		return securities;
 	}
 
-	public String addOrder(String securityName, String type, double price, int amount, String uid) {
+	public String addOrder(Order o) {
 		String ret = "Add order was successful!";
 		try {
 			statement = connect.createStatement();
 			statement.executeUpdate("insert into trade.orders(name, type, price, amount, uid) "
-				+"values('"+securityName+"','"+type+"', "+price+","+amount+",'"+uid+"')");
+				+"values('"+o.getName()+"','"+o.getType()+"', "+o.getPrice()+","+o.getAmount()+",'"+o.getUid()+"')");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			ret = "Add order: Failed :(";
@@ -73,7 +73,7 @@ public class DatabaseAccessor {
 			ResultSet set = statement.executeQuery("select * from trade.orders");
 			while(set.next()) {
 				Order o = new Order();
-				o.setName(set.getString("name"));
+				o.setSecurity(set.getString("name"));
 				o.setId(set.getInt("id")); // Behöver vi ens id?
 				o.setType(set.getString("type"));
 				o.setUid(set.getString("uid"));

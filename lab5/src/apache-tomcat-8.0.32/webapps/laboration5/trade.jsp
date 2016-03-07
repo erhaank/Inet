@@ -7,8 +7,19 @@
 </head>
 
 <body>
+<jsp:useBean class="bean.Security" id="security" scope="session"/>
+<jsp:useBean class="bean.Order" id="order" scope="session"/>
+<jsp:useBean class="bean.Trade" id="trade" scope="session"/>
 
-<%=request.getParameter("message")%>
+<jsp:setProperty name="security" property="*"/>
+<jsp:setProperty name="order" property="*"/>
+<jsp:setProperty name="trade" property="*"/>
+<%@page contentType="text/html;charset=UTF-8"%>
+<%
+//if (request.getParameter("message") != null)
+//out.println(request.getParameter("message"));
+%>
+<jsp:getProperty name="security" property="name"/>
 
 <h3>Addera ett värdepapper</h3>
 <form action="TradeController">
@@ -46,7 +57,7 @@ Värdepapper: <select name="security">
 <h3>DATABASTEST</h3>
 <form action ="TradeController">
 <input type="hidden" name="action" value="DBTEST">
-<input type="text" name="dbtest" value=""><br>
+<input type="text" name="testText" value="Volvo">
 <input type="submit" value="TESTA">
 </form>
 </body>

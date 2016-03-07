@@ -9,7 +9,7 @@ public class TradeController extends HttpServlet{
 
 	DatabaseAccessor db = new DatabaseAccessor();
     
-    public void doGet(HttpServletRequest request, HttpServletResponse response){
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 	
 	String message = "";
 
@@ -18,8 +18,15 @@ public class TradeController extends HttpServlet{
 	}
 	
 	if(request.getParameter("action").equals("addOrder")){
-	    // Kod för att lägga en köp eller säljorder
+		// Kod för att lägga en köp eller säljorder
 	    // samt eventuellt skapa en trade
+		Order order = new Order();
+		order.setSecurity(request.getParameter("security"));
+		order.setType(request.getParameter("buyOrSell"));
+		order.setPrice(request.getParameter("price"));
+		order.setAmount(request.getParameter("amount"));
+		order.setUid(request.getSession().getId());
+	    manageOrder(order);
 	    message = "addOrder";
 	}
 	    
@@ -30,8 +37,19 @@ public class TradeController extends HttpServlet{
 
 	if(request.getParameter("action").equals("DBTEST")){
 		ArrayList<Security> securities = db.getSecurities();
-		for (Security s : securities)
-			message += "<br>"+s.getId()+": "+s.getName();
+		//message = "<b>Securities:</b>";
+		for (Security s : securities) {
+			if (s.getName().equals(request.getParameter("testText"))) {
+				request.setAttribute("security", s);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("trade.jsp");
+        		dispatcher.forward(request, response);
+			}
+			//message += "<br>"+s.getId()+": "+s.getName();
+		}
+		/*message += "<br><br><b>Orders:</b>";
+		for (Order o : db.getOrders())
+			message += "<br>"+o.getId()+": "+o.getName() + "(" + o.getPrice() + "), "+o.getAmount();
+	*/
 	}
 	
 	try{
@@ -45,5 +63,23 @@ public class TradeController extends HttpServlet{
 	catch(IOException e){
 	    System.out.print(e.getMessage());
 	}
+    }
+
+    private void manageOrder(Order order) {
+    	ArrayList<Order> orders = db.getOrders();
+    	if (order.getType().equals("S")) { // Sell
+    		ArrayList<Order> matches = new ArrayList<Order>();
+    		for (Order other : orders) {
+    			if (!other.getType.equals(order.getType()) && other.getSecurity().equals(order.getSecurity()))
+    				matches.add(other);
+    		}
+    		//Now matches include all of the orders that want to buy from the same security
+    		int buy = order.getAmount();
+    		for (Order m : matches) {
+    			if ()
+    		}
+    	} else { // Buy
+    		ArrayList<Order>
+    	}
     }
 } 

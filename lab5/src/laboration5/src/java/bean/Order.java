@@ -1,14 +1,14 @@
 package bean;
 
 public class Order{
-	private String name, type, uid;
+	private String security, type, uid;
 	private double price;
 	private int id, amount;
 
 	public Order() {}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setSecurity(String security) {
+		this.security = security;
 	}
 
 	public void setId(int id) {
@@ -31,8 +31,8 @@ public class Order{
 		this.amount = amount;
 	}
 
-	public String getName() {
-		return name;
+	public String getSecurity() {
+		return security;
 	}
 
 	public int getId() {
