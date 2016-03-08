@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSetMetaData;
-import java.util.Date;
+import java.sql.Date;
 import java.util.ArrayList;
 import bean.*;
 
@@ -104,11 +104,10 @@ public class DatabaseAccessor {
 		Date dt = new Date(System.currentTimeMillis());
 		try {
 			statement = connect.createStatement();
-			statement.executeUpdate("insert into trade.trades(name, price, amount, dt, buyer, seller) "
-				+"values('"+securityName+"',"+price+","+amount+","+dt.toString()+",'"+buyer+"','"+seller+"')");
+			statement.executeUpdate("insert into trade.trades(name, price, amount, dt, buyer, seller) values('"+securityName+"',"+price+","+amount+",'"+dt.toString()+"','"+buyer+"','"+seller+"')");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			ret = "Add trade: Failed :(";
+			ret = "Add trade: Failed Emoji frown" + dt.toString();
 		}
 		return ret;
 	}
@@ -135,109 +134,71 @@ public class DatabaseAccessor {
 		return trades;
 	}
 
-	public String tryBuy(String uid) {
-   		ArrayList<Order> orders = getOrders();
-   		String message;
-   		StringBuilder sb = new StringBuilder();
-   		Order buyer = getCurrentOrder(uid, orders);
-   		int initialAmount = buyer.getAmount();
-   		Order seller = null;
-   		for(Order o : orders) {
-   			if(o.getName().equals(buyer.getName()) && o.getType().equals("S")
-   				&& o.getPrice() == buyer.getPrice()) {
-   				seller = o;
-   				if(seller.getAmount() >= buyer.getAmount()) {
-   					int amountLeft = seller.getAmount() - buyer.getAmount();
-   					removeOrder(seller.getId());
-   					if(amountLeft > 0) {
-   						//Add the leftover of the sell order
-   						addOrder(seller.getName(), seller.getType(), seller.getPrice(), amountLeft, 
-   							seller.getUid());
+	/**
+	* Assumes that decrease <= order.amount
+	* If decrease == order.amount, removes the order
+	*/
+	public String updateOrderAmount(Order order, int decrease) {
+		String message = "";
+		order.setAmount(order.getAmount()-decrease);
+		if (order.getAmount() == 0) {
+			removeOrder(order.getId());
+			return message;
+		}
+		String query = "update trade.orders set amount = "+order.getAmount()+" where id = "+order.getId();
+		try {
+			statement = connect.createStatement();
+			statement.executeUpdate(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			message = "fail";
+		}
+		return message;
+	}
 
-   					}
-   					removeOrder(buyer.getId());
-   					//Buyers order was completely bought
-   					addTrade(buyer.getName(), buyer.getUid(), seller.getUid(), 
-   						buyer.getPrice(), buyer.getAmount());
-   					message = getTradeMessage(buyer.getAmount(), buyer.getName(), buyer.getUid(),
-   						seller.getUid());
-   					return message;
+	public String tryTrade(String uid, String sellOrBuy) {
+   		ArrayList<Order> orders = getOrders();
+   		String message = "Attempted trade." + "<br>";
+   		StringBuilder sb = new StringBuilder(message);
+   		Order currentOrder = getCurrentOrder(uid, orders);
+   		String wantedType = "S";
+   		if(sellOrBuy.equals("S")) {
+   			wantedType = "B";
+   		}
+   		for(Order o : orders) {
+   			if(o.getName().equals(currentOrder.getName()) && o.getType().equals(wantedType)
+   				&& o.getPrice() == currentOrder.getPrice()) {
+   				if(o.getAmount() >= currentOrder.getAmount()) {
+   					removeOrder(currentOrder.getId());
+   					sb.append(updateOrderAmount(o, currentOrder.getAmount()));
+   					sb.append(makeTrade(currentOrder, o, sellOrBuy, currentOrder.getAmount()));
+   					break;
    				} else {
-   					//seller.getAmount < buyer.getAmount()
-   					int amountLeft = buyer.getAmount() - seller.getAmount();
-   					removeOrder(seller.getId());
-   					buyer.setAmount(amountLeft);
-   					//Sellers order was completely sold
-   					addTrade(buyer.getName(), buyer.getUid(), seller.getUid(), 
-   						buyer.getPrice(), seller.getAmount());
-   					sb.append(getTradeMessage(seller.getAmount(), buyer.getName(), buyer.getUid(),
-   						seller.getUid()));
-   					sb.append("<br>");
+   					removeOrder(o.getId());
+   					sb.append(updateOrderAmount(currentOrder, o.getAmount()));
+   					sb.append(makeTrade(currentOrder, o, sellOrBuy, o.getAmount()));
    				}
    			}
    		}
-   		if(initialAmount != buyer.getAmount()) {
-	   		removeOrder(buyer.getId());
-	   		//Add the leftover of the buy order
-	   		addOrder(buyer.getName(), buyer.getType(), buyer.getPrice(), 
-	   			buyer.getAmount(), buyer.getUid());
-	   		return sb.toString();
-   		}
-   		return "";
+   		return sb.toString();
    	}
 
-	public String trySell(String uid) {
-   		ArrayList<Order> orders = getOrders();
-   		if(orders.isEmpty()) {
-   			return "empty";
-   		}
-   		String message;
-   		StringBuilder sb = new StringBuilder();
-   		Order seller = getCurrentOrder(uid, orders);
-   		int initialAmount = seller.getAmount();
+   	public String makeTrade(Order currentOrder, Order previousOrder, String sellOrBuy, int tradeAmount) {
    		Order buyer = null;
-   		for(Order o : orders) {
-   			if(o.getName().equals(seller.getName()) && o.getType().equals("B")
-   				&& o.getPrice() == seller.getPrice()) {
-   				buyer = o;
-   				if(buyer.getAmount() >= seller.getAmount()) {
-   					int amountLeft = buyer.getAmount() - seller.getAmount();
-   					removeOrder(buyer.getId());
-   					if(amountLeft > 0) {
-   						//Add the leftover of the sell order
-   						addOrder(buyer.getName(), buyer.getType(), buyer.getPrice(), amountLeft, 
-   							buyer.getUid());
-
-   					}
-   					removeOrder(seller.getId());
-   					//Sellers order was completely sold
-   					message = addTrade(seller.getName(), buyer.getUid(), seller.getUid(), 
-   						seller.getPrice(), seller.getAmount()) + 
-   						getTradeMessage(seller.getAmount(), seller.getName(), buyer.getUid(),
-   						seller.getUid());
-   					return message;
-   				} else {
-   					//buyer.getAmount < seller.getAmount()
-   					int amountLeft = seller.getAmount() - buyer.getAmount();
-   					removeOrder(buyer.getId());
-   					seller.setAmount(amountLeft);
-   					//Buyers order was completely bought
-   					addTrade(seller.getName(), buyer.getUid(), seller.getUid(), 
-   						seller.getPrice(), buyer.getAmount());
-   					sb.append(getTradeMessage(buyer.getAmount(), seller.getName(), buyer.getUid(),
-   						seller.getUid()));
-   					sb.append("<br>");
-   				}
-   			}
+   		Order seller = null;
+   		if(sellOrBuy.equals("B")) {
+   			buyer = currentOrder;
+   			seller = previousOrder;
    		}
-   		if(initialAmount != buyer.getAmount()) {
-	   		removeOrder(buyer.getId());
-	   		//Add the leftover of the buy order
-	   		addOrder(buyer.getName(), buyer.getType(), buyer.getPrice(), 
-	   			buyer.getAmount(), buyer.getUid());
-	   		return sb.toString();
-	   	}
-	   	return "";
+   		if(sellOrBuy.equals("S")) {
+   			buyer = previousOrder;
+   			seller = currentOrder;
+   		}
+   		addTrade(buyer.getName(), buyer.getUid(), seller.getUid(), buyer.getPrice(),
+   			tradeAmount);
+		String message = getTradeMessage(tradeAmount, buyer.getName(), buyer.getUid(),
+   			seller.getUid());
+   		return message;
    	}
 
    	public String getTradeMessage(int amount, String security, String buyer, String seller) {

@@ -33,10 +33,8 @@ public class TradeController extends HttpServlet{
 		    	uid));
 		    //TODO: check if there is already a user with r.nextInt(1000)
 
-		    if (request.getParameter("buyOrSell").equals("B"))
-		    	sb.append(db.tryBuy(uid));
-		    if(request.getParameter("buyOrSell").equals("S"))
-		    	sb.append(db.trySell(uid));
+
+		    sb.append(db.tryTrade(uid, request.getParameter("buyOrSell")));
 		    message = sb.toString();
 		}
 
