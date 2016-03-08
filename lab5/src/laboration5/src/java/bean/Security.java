@@ -2,7 +2,7 @@ package bean;
 
 public class Security{
 	private String name;
-	private int id;
+	private String id;
 
 	public Security() {}
 
@@ -10,7 +10,7 @@ public class Security{
 		this.name = name;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -18,7 +18,7 @@ public class Security{
 		return name;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 }

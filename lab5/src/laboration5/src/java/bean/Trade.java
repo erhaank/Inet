@@ -10,7 +10,7 @@ public class Trade{
 
 	public Trade() {}
 
-	public void setName(String name) {
+	public void setSecurity(String name) {
 		this.name = name;
 	}
 

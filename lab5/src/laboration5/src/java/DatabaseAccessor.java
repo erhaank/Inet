@@ -43,8 +43,8 @@ public class DatabaseAccessor {
 			ResultSet set = statement.executeQuery("select * from trade.securities");
 			while(set.next()) {
 				Security s = new Security();
-				s.setSecurity(set.getString("name"));
-				s.setId(set.getInt("id")); // Behöver vi ens id?
+				s.setName(set.getString("name"));
+				s.setId(set.getString("id")); // Behöver vi ens id?
 				securities.add(s);
 			}
 		} catch (SQLException e) {
@@ -74,7 +74,7 @@ public class DatabaseAccessor {
 			while(set.next()) {
 				Order o = new Order();
 				o.setSecurity(set.getString("name"));
-				o.setId(set.getInt("id")); // Behöver vi ens id?
+				o.setId(set.getString("id")); // Behöver vi ens id?
 				o.setType(set.getString("type"));
 				o.setUid(set.getString("uid"));
 				o.setPrice(set.getDouble("price"));

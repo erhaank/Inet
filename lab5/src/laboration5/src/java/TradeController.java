@@ -28,11 +28,13 @@ public class TradeController extends HttpServlet{
 			StringBuilder sb = new StringBuilder();
 			//TODO: gör om till namn istället
 			String uid = "" + r.nextInt(1000);
-		    sb.append(db.addOrder(request.getParameter("security"), request.getParameter("buyOrSell"), 
-		    	Integer.parseInt(request.getParameter("price")), Integer.parseInt(request.getParameter("amount")),
-		    	uid));
-		    //TODO: check if there is already a user with r.nextInt(1000)
-
+			Order o = new Order();
+			o.setSecurity(request.getParameter("security"));
+			o.setType(request.getParameter("buyOrSell"));
+			o.setPrice(Integer.parseInt(request.getParameter("price")));
+			o.setAmount(Integer.parseInt(request.getParameter("amount")));
+			o.setUid(uid);
+		    sb.append(db.addOrder(o));
 
 		    sb.append(db.tryTrade(uid, request.getParameter("buyOrSell")));
 		    message = sb.toString();
@@ -68,21 +70,4 @@ public class TradeController extends HttpServlet{
 		}
     }
 
-    private void manageOrder(Order order) {
-    	ArrayList<Order> orders = db.getOrders();
-    	if (order.getType().equals("S")) { // Sell
-    		ArrayList<Order> matches = new ArrayList<Order>();
-    		for (Order other : orders) {
-    			if (!other.getType.equals(order.getType()) && other.getSecurity().equals(order.getSecurity()))
-    				matches.add(other);
-    		}
-    		//Now matches include all of the orders that want to buy from the same security
-    		int buy = order.getAmount();
-    		for (Order m : matches) {
-    			if ()
-    		}
-    	} else { // Buy
-    		ArrayList<Order>
-    	}
-    }
 } 
