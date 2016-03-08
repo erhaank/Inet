@@ -7,7 +7,7 @@
 </head>
 
 <body>
-
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%=request.getParameter("message")%>
 
 <h3>Addera ett värdepapper</h3>
@@ -42,13 +42,5 @@ Värdepapper: <select name="security">
 </select><br>
 <input type="submit" value="Utför">
 </form>
-
-<h3>DATABASTEST</h3>
-<form action ="TradeController">
-<input type="hidden" name="action" value="DBTEST">
-<input type="text" name="dbtest" value=""><br>
-<input type="submit" value="TESTA">
-</form>
-</body>
 
 </html>

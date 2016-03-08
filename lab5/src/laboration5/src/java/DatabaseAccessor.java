@@ -74,7 +74,7 @@ public class DatabaseAccessor {
 			while(set.next()) {
 				Order o = new Order();
 				o.setName(set.getString("name"));
-				o.setId(set.getInt("id")); // Behöver vi ens id?
+				o.setId(set.getString("id")); // Behöver vi ens id?
 				o.setType(set.getString("type"));
 				o.setUid(set.getString("uid"));
 				o.setPrice(set.getDouble("price"));
@@ -85,6 +85,18 @@ public class DatabaseAccessor {
 			e.printStackTrace();
 		}
 		return orders;
+	}
+
+	public String removeOrder(String id) {
+		String ret = "Order removed.";
+		try {
+			statement = connect.createStatement();
+			statement.executeUpdate("delete from trade.orders where id = '" + id + "'");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			ret = "Remove order: Failed :(";
+		}
+		return ret;
 	}
 
 	public String addTrade(String securityName, String buyer, String seller, double price, int amount) {
@@ -122,4 +134,122 @@ public class DatabaseAccessor {
 		}
 		return trades;
 	}
+
+	public String tryBuy(String uid) {
+   		ArrayList<Order> orders = getOrders();
+   		String message;
+   		StringBuilder sb = new StringBuilder();
+   		Order buyer = getCurrentOrder(uid, orders);
+   		int initialAmount = buyer.getAmount();
+   		Order seller = null;
+   		for(Order o : orders) {
+   			if(o.getName().equals(buyer.getName()) && o.getType().equals("S")
+   				&& o.getPrice() == buyer.getPrice()) {
+   				seller = o;
+   				if(seller.getAmount() >= buyer.getAmount()) {
+   					int amountLeft = seller.getAmount() - buyer.getAmount();
+   					removeOrder(seller.getId());
+   					if(amountLeft > 0) {
+   						//Add the leftover of the sell order
+   						addOrder(seller.getName(), seller.getType(), seller.getPrice(), amountLeft, 
+   							seller.getUid());
+
+   					}
+   					removeOrder(buyer.getId());
+   					//Buyers order was completely bought
+   					addTrade(buyer.getName(), buyer.getUid(), seller.getUid(), 
+   						buyer.getPrice(), buyer.getAmount());
+   					message = getTradeMessage(buyer.getAmount(), buyer.getName(), buyer.getUid(),
+   						seller.getUid());
+   					return message;
+   				} else {
+   					//seller.getAmount < buyer.getAmount()
+   					int amountLeft = buyer.getAmount() - seller.getAmount();
+   					removeOrder(seller.getId());
+   					buyer.setAmount(amountLeft);
+   					//Sellers order was completely sold
+   					addTrade(buyer.getName(), buyer.getUid(), seller.getUid(), 
+   						buyer.getPrice(), seller.getAmount());
+   					sb.append(getTradeMessage(seller.getAmount(), buyer.getName(), buyer.getUid(),
+   						seller.getUid()));
+   					sb.append("<br>");
+   				}
+   			}
+   		}
+   		if(initialAmount != buyer.getAmount()) {
+	   		removeOrder(buyer.getId());
+	   		//Add the leftover of the buy order
+	   		addOrder(buyer.getName(), buyer.getType(), buyer.getPrice(), 
+	   			buyer.getAmount(), buyer.getUid());
+	   		return sb.toString();
+   		}
+   		return "";
+   	}
+
+	public String trySell(String uid) {
+   		ArrayList<Order> orders = getOrders();
+   		if(orders.isEmpty()) {
+   			return "empty";
+   		}
+   		String message;
+   		StringBuilder sb = new StringBuilder();
+   		Order seller = getCurrentOrder(uid, orders);
+   		int initialAmount = seller.getAmount();
+   		Order buyer = null;
+   		for(Order o : orders) {
+   			if(o.getName().equals(seller.getName()) && o.getType().equals("B")
+   				&& o.getPrice() == seller.getPrice()) {
+   				buyer = o;
+   				if(buyer.getAmount() >= seller.getAmount()) {
+   					int amountLeft = buyer.getAmount() - seller.getAmount();
+   					removeOrder(buyer.getId());
+   					if(amountLeft > 0) {
+   						//Add the leftover of the sell order
+   						addOrder(buyer.getName(), buyer.getType(), buyer.getPrice(), amountLeft, 
+   							buyer.getUid());
+
+   					}
+   					removeOrder(seller.getId());
+   					//Sellers order was completely sold
+   					message = addTrade(seller.getName(), buyer.getUid(), seller.getUid(), 
+   						seller.getPrice(), seller.getAmount()) + 
+   						getTradeMessage(seller.getAmount(), seller.getName(), buyer.getUid(),
+   						seller.getUid());
+   					return message;
+   				} else {
+   					//buyer.getAmount < seller.getAmount()
+   					int amountLeft = seller.getAmount() - buyer.getAmount();
+   					removeOrder(buyer.getId());
+   					seller.setAmount(amountLeft);
+   					//Buyers order was completely bought
+   					addTrade(seller.getName(), buyer.getUid(), seller.getUid(), 
+   						seller.getPrice(), buyer.getAmount());
+   					sb.append(getTradeMessage(buyer.getAmount(), seller.getName(), buyer.getUid(),
+   						seller.getUid()));
+   					sb.append("<br>");
+   				}
+   			}
+   		}
+   		if(initialAmount != buyer.getAmount()) {
+	   		removeOrder(buyer.getId());
+	   		//Add the leftover of the buy order
+	   		addOrder(buyer.getName(), buyer.getType(), buyer.getPrice(), 
+	   			buyer.getAmount(), buyer.getUid());
+	   		return sb.toString();
+	   	}
+	   	return "";
+   	}
+
+   	public String getTradeMessage(int amount, String security, String buyer, String seller) {
+   		return "<br>A trade of " + amount + " " + security
+   			+ " stocks from " + buyer + " to " + seller +" was made.<br>";
+   	}
+
+   	public Order getCurrentOrder(String uid, ArrayList<Order> orders) {
+   		for(Order o : orders) {
+   			if(o.getUid().equals(uid))
+   				return o;
+   		}
+   		return null;
+   	}
 }

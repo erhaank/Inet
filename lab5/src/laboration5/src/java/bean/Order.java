@@ -1,9 +1,9 @@
 package bean;
 
 public class Order{
-	private String name, type, uid;
+	private String name, type, uid, id;
 	private double price;
-	private int id, amount;
+	private int amount;
 
 	public Order() {}
 
@@ -11,7 +11,7 @@ public class Order{
 		this.name = name;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -35,7 +35,7 @@ public class Order{
 		return name;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -49,6 +49,14 @@ public class Order{
 
 	public double getPrice() {
 		return price;
+	}
+
+	public String getPriceString() {
+		return "" + price; 
+	}
+
+	public String getAmountString() {
+		return "" + amount;
 	}
 
 	public int getAmount() {
