@@ -43,7 +43,7 @@ public class DatabaseAccessor {
 			ResultSet set = statement.executeQuery("select * from trade.securities");
 			while(set.next()) {
 				Security s = new Security();
-				s.setName(set.getString("name"));
+				s.setSecurity(set.getString("name"));
 				s.setId(set.getInt("id")); // Behöver vi ens id?
 				securities.add(s);
 			}
@@ -53,12 +53,12 @@ public class DatabaseAccessor {
 		return securities;
 	}
 
-	public String addOrder(String securityName, String type, double price, int amount, String uid) {
+	public String addOrder(Order o) {
 		String ret = "Add order was successful!";
 		try {
 			statement = connect.createStatement();
 			statement.executeUpdate("insert into trade.orders(name, type, price, amount, uid) "
-				+"values('"+securityName+"','"+type+"', "+price+","+amount+",'"+uid+"')");
+				+"values('"+o.getSecurity()+"','"+o.getType()+"', "+o.getPrice()+","+o.getAmount()+",'"+o.getUid()+"')");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			ret = "Add order: Failed :(";
@@ -73,8 +73,8 @@ public class DatabaseAccessor {
 			ResultSet set = statement.executeQuery("select * from trade.orders");
 			while(set.next()) {
 				Order o = new Order();
-				o.setName(set.getString("name"));
-				o.setId(set.getString("id")); // Behöver vi ens id?
+				o.setSecurity(set.getString("name"));
+				o.setId(set.getInt("id")); // Behöver vi ens id?
 				o.setType(set.getString("type"));
 				o.setUid(set.getString("uid"));
 				o.setPrice(set.getDouble("price"));
@@ -119,7 +119,7 @@ public class DatabaseAccessor {
 			ResultSet set = statement.executeQuery("select * from trade.trades");
 			while(set.next()) {
 				Trade t = new Trade();
-				t.setName(set.getString("name"));
+				t.setSecurity(set.getString("name"));
 				t.setId(set.getInt("id")); // Behöver vi ens id?
 				t.setBuyer(set.getString("buyer"));
 				t.setSeller(set.getString("seller"));
@@ -166,7 +166,7 @@ public class DatabaseAccessor {
    			wantedType = "B";
    		}
    		for(Order o : orders) {
-   			if(o.getName().equals(currentOrder.getName()) && o.getType().equals(wantedType)
+   			if(o.getSecurity().equals(currentOrder.getSecurity()) && o.getType().equals(wantedType)
    				&& o.getPrice() == currentOrder.getPrice()) {
    				if(o.getAmount() >= currentOrder.getAmount()) {
    					removeOrder(currentOrder.getId());
@@ -194,9 +194,9 @@ public class DatabaseAccessor {
    			buyer = previousOrder;
    			seller = currentOrder;
    		}
-   		addTrade(buyer.getName(), buyer.getUid(), seller.getUid(), buyer.getPrice(),
+   		addTrade(buyer.getSecurity(), buyer.getUid(), seller.getUid(), buyer.getPrice(),
    			tradeAmount);
-		String message = getTradeMessage(tradeAmount, buyer.getName(), buyer.getUid(),
+		String message = getTradeMessage(tradeAmount, buyer.getSecurity(), buyer.getUid(),
    			seller.getUid());
    		return message;
    	}

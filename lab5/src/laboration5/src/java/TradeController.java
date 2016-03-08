@@ -47,8 +47,8 @@ public class TradeController extends HttpServlet{
 		    ArrayList<Order> orders = db.getOrders();
 		    StringBuilder sb = new StringBuilder();
 		    for(Order o : orders) {
-		    	if(o.getName().equals(request.getParameter("security"))) {
-		    		sb.append("<br>" + "Id: " + o.getId() + " Name: " + o.getName() + " UId: " + o.getUid()
+		    	if(o.getSecurity().equals(request.getParameter("security"))) {
+		    		sb.append("<br>" + "Id: " + o.getId() + " Name: " + o.getSecurity() + " UId: " + o.getUid()
 		    			+ " Type: " + o.getType() + " Price: " + o.getPrice() + " Amount: " + o.getAmount());
 		    	}
 		    }
@@ -66,5 +66,23 @@ public class TradeController extends HttpServlet{
 		catch(IOException e){
 		    System.out.print(e.getMessage());
 		}
+    }
+
+    private void manageOrder(Order order) {
+    	ArrayList<Order> orders = db.getOrders();
+    	if (order.getType().equals("S")) { // Sell
+    		ArrayList<Order> matches = new ArrayList<Order>();
+    		for (Order other : orders) {
+    			if (!other.getType.equals(order.getType()) && other.getSecurity().equals(order.getSecurity()))
+    				matches.add(other);
+    		}
+    		//Now matches include all of the orders that want to buy from the same security
+    		int buy = order.getAmount();
+    		for (Order m : matches) {
+    			if ()
+    		}
+    	} else { // Buy
+    		ArrayList<Order>
+    	}
     }
 } 
