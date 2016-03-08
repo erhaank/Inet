@@ -1,6 +1,6 @@
 package bean;
 
-public class Security{
+public class Security {
 	private String name;
 	private String id;
 

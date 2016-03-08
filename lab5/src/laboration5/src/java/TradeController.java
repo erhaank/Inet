@@ -7,67 +7,66 @@ import java.util.Random;
 import java.lang.StringBuilder;
 
 
-public class TradeController extends HttpServlet{
+public class TradeController extends HttpServlet {
 
 	DatabaseAccessor db = new DatabaseAccessor();
 	Random r = new Random();
+	Securities securities = new Securities();
+	Trades trades;
     
-    public void doGet(HttpServletRequest request, HttpServletResponse response){
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		
-		String message = "";
+		if (request.getParameter("action") != null) {
 
-		if(request.getParameter("action").equals("addSecurity")){
-		    message = db.addSecurity(request.getParameter("security"));
-		    //TODO: securities ska bestå av de som läggs till här fixa i jsp!!
-		    //Databaseaccessor ska skickas till trade.jsp
-		}
-		
-		if(request.getParameter("action").equals("addOrder")){
-		    // Kod för att lägga en köp eller säljorder
-		    // samt eventuellt skapa en trade
-			StringBuilder sb = new StringBuilder();
-			//TODO: gör om till namn istället
-			String uid = "" + r.nextInt(1000);
-			Order o = new Order();
-			o.setSecurity(request.getParameter("security"));
-			o.setType(request.getParameter("buyOrSell"));
-			o.setPrice(Integer.parseInt(request.getParameter("price")));
-			o.setAmount(Integer.parseInt(request.getParameter("amount")));
-			o.setUid(uid);
-		    sb.append(db.addOrder(o));
+			if(request.getParameter("action").equals("addSecurity")){
+			    db.addSecurity(request.getParameter("security"));
+			}
+			
+			if(request.getParameter("action").equals("addOrder")){
+			    // Kod för att lägga en köp eller säljorder
+			    // samt eventuellt skapa en trade
+				String uid = request.getSession().getId();
+				Order o = new Order();
+				o.setSecurity(request.getParameter("security"));
+				o.setType(request.getParameter("buyOrSell"));
+				o.setPrice(Integer.parseInt(request.getParameter("price")));
+				o.setAmount(Integer.parseInt(request.getParameter("amount")));
+				o.setUid(uid);
+			    db.addOrder(o);
 
-		    sb.append(db.tryTrade(uid, request.getParameter("buyOrSell")));
-		    message = sb.toString();
-		}
+			    db.tryTrade(uid, request.getParameter("buyOrSell"));
+			}
 
 
-		    
-		if(request.getParameter("action").equals("viewTrades")){
-		    // Kod för att visa genomförda orders
-		    //TODO: ändra till trades och inte orders!!
-		    //TODO: göra till tabell istället
-		    ArrayList<Order> orders = db.getOrders();
-		    StringBuilder sb = new StringBuilder();
-		    for(Order o : orders) {
-		    	if(o.getSecurity().equals(request.getParameter("security"))) {
-		    		sb.append("<br>" + "Id: " + o.getId() + " Name: " + o.getSecurity() + " UId: " + o.getUid()
-		    			+ " Type: " + o.getType() + " Price: " + o.getPrice() + " Amount: " + o.getAmount());
-		    	}
-		    }
-		    message = sb.toString();
+			    
+			if(request.getParameter("action").equals("viewTrades")){
+			    // Kod för att visa genomförda orders
+			    updateTrades(request, request.getParameter("security"));
+			}
 		}
-		
-		try{
-		    RequestDispatcher rd =
-			request.getRequestDispatcher("trade.jsp?message=" + message);
-		    rd.forward(request, response);
-		}
-		catch(ServletException e){
-		    System.out.print(e.getMessage());
-		}
-		catch(IOException e){
-		    System.out.print(e.getMessage());
-		}
+
+		updateSecurities(request);
+
+	    RequestDispatcher rd =
+		request.getRequestDispatcher("trade.jsp");
+	    rd.forward(request, response);
+    }
+
+    private void updateSecurities(HttpServletRequest request) {
+    	securities = new Securities();
+    	for (Security s : db.getSecurities()) {
+    		securities.addSecurity(s);
+    	}
+    	request.setAttribute("securities", securities);
+    }
+
+    private void updateTrades(HttpServletRequest request, String security) {
+    	trades = new Trades();
+    	for (Trade t : db.getTrades()) {
+    		if (t.getName().equals(security))
+    			trades.addTrade(t);
+    	}
+    	request.setAttribute("trades", trades);
     }
 
 } 

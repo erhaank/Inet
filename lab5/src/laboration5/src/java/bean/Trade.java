@@ -2,7 +2,7 @@ package bean;
 
 import java.sql.Date;
 
-public class Trade{
+public class Trade {
 	private String name, seller, buyer;
 	private double price;
 	private int id, amount;

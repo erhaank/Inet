@@ -1,6 +1,6 @@
 package bean;
 
-public class Order{
+public class Order {
 	private String security, type, uid, id;
 	private double price;
 	private int amount;
