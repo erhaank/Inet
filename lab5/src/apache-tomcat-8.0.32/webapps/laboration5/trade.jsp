@@ -11,11 +11,26 @@
 <body>
 <jsp:useBean class="bean.Securities" id="securities" scope="session"/>
 <jsp:useBean class="bean.Trades" id="trades" scope="session"/>
+<jsp:useBean class="bean.User" id="user" scope="application"/>
 
 <jsp:setProperty name="securities" property="*"/>
 <jsp:setProperty name="trades" property="*"/>
+<jsp:setProperty name="user" property="*"/>
+
+<c:choose>
+  <c:when test="${empty user.name}">
+<h1>Ny session!</h1>
+<form action="TradeController">
+<input type="hidden" name="action" value="addNewUser">
+Enter full name:<input type="text" name="fullname"><br>
+<input type="submit"></form>
+
+</c:when>
+<c:otherwise>
 
 <%@page contentType="text/html;charset=UTF-8"%>
+
+<h1>Welcome <c:out value="${user.name}"></c:out></h1>
 
 <h3>Addera ett värdepapper</h3>
 <form action="TradeController">
@@ -73,5 +88,9 @@ Värdepapper: <select name="security">
 </c:forEach>
 </table>
 </c:if>
+
+</c:otherwise>
+</c:choose>
+
 
 </html>

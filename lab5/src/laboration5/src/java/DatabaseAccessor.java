@@ -24,6 +24,42 @@ public class DatabaseAccessor {
 		}
 	}
 
+	public boolean addUser(String name, String session) {
+		try {
+			statement = connect.createStatement();
+			statement.executeUpdate("insert into trade.users(name, session) values('"+name+"','"+session+"')");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	public ArrayList<User> getUsers() {
+		ArrayList<User> users = new ArrayList<User>();
+		try {
+			statement  = connect.createStatement();
+			ResultSet set = statement.executeQuery("select * from trade.users");
+			while(set.next()) {
+				User u = new User();
+				u.setName(set.getString("name"));
+				u.setSession(set.getString("session"));
+				users.add(u);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+
+	public String getUserName(String session) {
+		for (User u : getUsers()) {
+			if (u.getSession().equals(session))
+				return u.getName();
+		}
+		return "NO SUCH USER";
+	}
+
 	public String addSecurity(String name) {
 		String ret = "Add security: Success!";
 		try {
@@ -74,7 +110,7 @@ public class DatabaseAccessor {
 			while(set.next()) {
 				Order o = new Order();
 				o.setSecurity(set.getString("name"));
-				o.setId(set.getString("id")); // Behöver vi ens id?
+				o.setId(set.getInt("id")); // Behöver vi ens id?
 				o.setType(set.getString("type"));
 				o.setUid(set.getString("uid"));
 				o.setPrice(set.getDouble("price"));
@@ -87,11 +123,25 @@ public class DatabaseAccessor {
 		return orders;
 	}
 
-	public String removeOrder(String id) {
+	public int getOrderId(Order o) {
+		int id = -1;
+		try {
+			statement  = connect.createStatement();
+			ResultSet set = statement.executeQuery("select * from trade.orders where name='"+o.getSecurity()+"' and type='"+o.getType()+"' and price="+o.getPrice()+" and amount="+o.getAmount()+" and uid='"+o.getUid()+"'");
+			if(set.next()) {
+				id = set.getInt("id");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
+
+	public String removeOrder(int id) {
 		String ret = "Order removed.";
 		try {
 			statement = connect.createStatement();
-			statement.executeUpdate("delete from trade.orders where id = '" + id + "'");
+			statement.executeUpdate("delete from trade.orders where id = " + id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			ret = "Remove order: Failed :(";
@@ -156,11 +206,11 @@ public class DatabaseAccessor {
 		return message;
 	}
 
-	public String tryTrade(String uid, String sellOrBuy) {
+	public String tryTrade(int id, String sellOrBuy) {
    		ArrayList<Order> orders = getOrders();
    		String message = "Attempted trade." + "<br>";
    		StringBuilder sb = new StringBuilder(message);
-   		Order currentOrder = getCurrentOrder(uid, orders);
+   		Order currentOrder = getCurrentOrder(id, orders);
    		String wantedType = "S";
    		if(sellOrBuy.equals("S")) {
    			wantedType = "B";
@@ -206,9 +256,9 @@ public class DatabaseAccessor {
    			+ " stocks from " + buyer + " to " + seller +" was made.<br>";
    	}
 
-   	public Order getCurrentOrder(String uid, ArrayList<Order> orders) {
+   	public Order getCurrentOrder(int id, ArrayList<Order> orders) {
    		for(Order o : orders) {
-   			if(o.getUid().equals(uid))
+   			if(o.getId() == id)
    				return o;
    		}
    		return null;

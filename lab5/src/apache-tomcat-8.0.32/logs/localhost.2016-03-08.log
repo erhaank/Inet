@@ -746,3 +746,998 @@ Stacktrace:] with root cause
 08-Mar-2016 17:53:52.566 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
 08-Mar-2016 17:53:55.401 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
 08-Mar-2016 17:53:55.401 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 18:07:33.261 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 18:07:33.261 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 18:07:35.957 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 18:07:35.958 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 18:08:20.533 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 18:08:20.533 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 18:08:23.198 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 18:08:23.198 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 18:09:13.819 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 18:09:13.819 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 18:09:16.627 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 18:09:16.628 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 18:10:06.580 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 18:10:06.580 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 18:10:09.025 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 18:10:09.025 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 18:10:31.681 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 18:10:31.681 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 18:10:34.321 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 18:10:34.321 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 18:12:05.271 SEVERE [http-nio-8181-exec-6] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [Trade] in context with path [/laboration5] threw exception
+ java.lang.NullPointerException
+	at DatabaseAccessor.tryTrade(Unknown Source)
+	at TradeController.doGet(Unknown Source)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+08-Mar-2016 18:13:34.936 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 18:13:34.936 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 18:13:37.463 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 18:13:37.463 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 18:13:54.223 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 18:13:54.223 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 18:13:56.985 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 18:13:56.986 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 19:50:56.019 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 19:50:56.019 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 19:50:59.001 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 19:50:59.001 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:05:16.358 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:05:16.358 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:05:19.087 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:05:19.087 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:05:40.002 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:05:40.002 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:05:42.733 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:05:42.733 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:06:25.138 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:06:25.139 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:06:28.080 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:06:28.080 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:08:03.358 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:08:03.358 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:08:06.471 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:08:06.471 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:10:09.809 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:10:09.809 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:10:12.775 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:10:12.775 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:11:45.514 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:11:45.514 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:11:48.598 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:11:48.598 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:15:25.971 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:15:25.971 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:15:28.997 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:15:28.998 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:19:40.388 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:19:40.388 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:19:43.334 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:19:43.335 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:21:42.102 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:21:42.102 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:21:44.975 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:21:44.975 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:22:10.275 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:22:10.275 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:22:13.170 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:22:13.170 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:36:40.814 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:36:40.814 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:36:43.736 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:36:43.736 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:39:00.801 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:39:00.801 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:39:03.720 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:39:03.720 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:39:09.391 SEVERE [http-nio-8181-exec-1] org.apache.catalina.core.ApplicationDispatcher.invoke Servlet.service() for servlet jsp threw exception
+ org.apache.jasper.JasperException: /trade.jsp (line: 35, column: 49) The end tag "&lt;/c:out" is unbalanced
+	at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:41)
+	at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:275)
+	at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:91)
+	at org.apache.jasper.compiler.Parser.checkUnbalancedEndTag(Parser.java:1596)
+	at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1461)
+	at org.apache.jasper.compiler.Parser.parseBody(Parser.java:1673)
+	at org.apache.jasper.compiler.Parser.parseOptionalBody(Parser.java:1006)
+	at org.apache.jasper.compiler.Parser.parseCustomTag(Parser.java:1281)
+	at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1460)
+	at org.apache.jasper.compiler.Parser.parse(Parser.java:139)
+	at org.apache.jasper.compiler.ParserController.doParse(ParserController.java:227)
+	at org.apache.jasper.compiler.ParserController.parse(ParserController.java:100)
+	at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:199)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:336)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:323)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:585)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:363)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:340)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:720)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:466)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:391)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:318)
+	at TradeController.doGet(Unknown Source)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+08-Mar-2016 20:39:09.392 SEVERE [http-nio-8181-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [Trade] in context with path [/laboration5] threw exception [/trade.jsp (line: 35, column: 49) The end tag "&lt;/c:out" is unbalanced] with root cause
+ org.apache.jasper.JasperException: /trade.jsp (line: 35, column: 49) The end tag "&lt;/c:out" is unbalanced
+	at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:41)
+	at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:275)
+	at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:91)
+	at org.apache.jasper.compiler.Parser.checkUnbalancedEndTag(Parser.java:1596)
+	at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1461)
+	at org.apache.jasper.compiler.Parser.parseBody(Parser.java:1673)
+	at org.apache.jasper.compiler.Parser.parseOptionalBody(Parser.java:1006)
+	at org.apache.jasper.compiler.Parser.parseCustomTag(Parser.java:1281)
+	at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1460)
+	at org.apache.jasper.compiler.Parser.parse(Parser.java:139)
+	at org.apache.jasper.compiler.ParserController.doParse(ParserController.java:227)
+	at org.apache.jasper.compiler.ParserController.parse(ParserController.java:100)
+	at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:199)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:336)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:323)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:585)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:363)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:340)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:720)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:466)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:391)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:318)
+	at TradeController.doGet(Unknown Source)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+08-Mar-2016 20:39:44.850 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:39:44.850 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:39:47.874 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:39:47.874 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:39:49.050 SEVERE [http-nio-8181-exec-1] org.apache.catalina.core.ApplicationDispatcher.invoke Servlet.service() for servlet jsp threw exception
+ org.apache.jasper.JasperException: /trade.jsp (line: 94, column: 0) Unterminated &lt;c:if tag
+	at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:41)
+	at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:275)
+	at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:91)
+	at org.apache.jasper.compiler.Parser.parseBody(Parser.java:1686)
+	at org.apache.jasper.compiler.Parser.parseOptionalBody(Parser.java:1006)
+	at org.apache.jasper.compiler.Parser.parseCustomTag(Parser.java:1281)
+	at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1460)
+	at org.apache.jasper.compiler.Parser.parse(Parser.java:139)
+	at org.apache.jasper.compiler.ParserController.doParse(ParserController.java:227)
+	at org.apache.jasper.compiler.ParserController.parse(ParserController.java:100)
+	at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:199)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:336)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:323)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:585)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:363)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:340)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:720)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:466)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:391)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:318)
+	at TradeController.doGet(Unknown Source)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+08-Mar-2016 20:39:49.050 SEVERE [http-nio-8181-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [Trade] in context with path [/laboration5] threw exception [/trade.jsp (line: 94, column: 0) Unterminated &lt;c:if tag] with root cause
+ org.apache.jasper.JasperException: /trade.jsp (line: 94, column: 0) Unterminated &lt;c:if tag
+	at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:41)
+	at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:275)
+	at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:91)
+	at org.apache.jasper.compiler.Parser.parseBody(Parser.java:1686)
+	at org.apache.jasper.compiler.Parser.parseOptionalBody(Parser.java:1006)
+	at org.apache.jasper.compiler.Parser.parseCustomTag(Parser.java:1281)
+	at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1460)
+	at org.apache.jasper.compiler.Parser.parse(Parser.java:139)
+	at org.apache.jasper.compiler.ParserController.doParse(ParserController.java:227)
+	at org.apache.jasper.compiler.ParserController.parse(ParserController.java:100)
+	at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:199)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:336)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:323)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:585)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:363)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:340)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:720)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:466)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:391)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:318)
+	at TradeController.doGet(Unknown Source)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+08-Mar-2016 20:40:07.229 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:40:07.229 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:40:10.071 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:40:10.072 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:40:11.230 SEVERE [http-nio-8181-exec-1] org.apache.catalina.core.ApplicationDispatcher.invoke Servlet.service() for servlet jsp threw exception
+ org.apache.jasper.JasperException: /trade.jsp (line: 35, column: 49) The end tag "&lt;/c:out" is unbalanced
+	at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:41)
+	at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:275)
+	at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:91)
+	at org.apache.jasper.compiler.Parser.checkUnbalancedEndTag(Parser.java:1596)
+	at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1461)
+	at org.apache.jasper.compiler.Parser.parseBody(Parser.java:1673)
+	at org.apache.jasper.compiler.Parser.parseOptionalBody(Parser.java:1006)
+	at org.apache.jasper.compiler.Parser.parseCustomTag(Parser.java:1281)
+	at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1460)
+	at org.apache.jasper.compiler.Parser.parse(Parser.java:139)
+	at org.apache.jasper.compiler.ParserController.doParse(ParserController.java:227)
+	at org.apache.jasper.compiler.ParserController.parse(ParserController.java:100)
+	at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:199)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:336)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:323)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:585)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:363)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:340)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:720)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:466)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:391)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:318)
+	at TradeController.doGet(Unknown Source)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+08-Mar-2016 20:40:11.231 SEVERE [http-nio-8181-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [Trade] in context with path [/laboration5] threw exception [/trade.jsp (line: 35, column: 49) The end tag "&lt;/c:out" is unbalanced] with root cause
+ org.apache.jasper.JasperException: /trade.jsp (line: 35, column: 49) The end tag "&lt;/c:out" is unbalanced
+	at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:41)
+	at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:275)
+	at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:91)
+	at org.apache.jasper.compiler.Parser.checkUnbalancedEndTag(Parser.java:1596)
+	at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1461)
+	at org.apache.jasper.compiler.Parser.parseBody(Parser.java:1673)
+	at org.apache.jasper.compiler.Parser.parseOptionalBody(Parser.java:1006)
+	at org.apache.jasper.compiler.Parser.parseCustomTag(Parser.java:1281)
+	at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1460)
+	at org.apache.jasper.compiler.Parser.parse(Parser.java:139)
+	at org.apache.jasper.compiler.ParserController.doParse(ParserController.java:227)
+	at org.apache.jasper.compiler.ParserController.parse(ParserController.java:100)
+	at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:199)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:336)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:323)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:585)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:363)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:340)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:720)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:466)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:391)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:318)
+	at TradeController.doGet(Unknown Source)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+08-Mar-2016 20:42:09.914 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:42:09.914 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:42:12.960 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:42:12.960 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:42:14.497 SEVERE [http-nio-8181-exec-1] org.apache.catalina.core.ApplicationDispatcher.invoke Servlet.service() for servlet jsp threw exception
+ org.apache.jasper.JasperException: /trade.jsp (line: 94, column: 0) Unterminated &lt;c:if tag
+	at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:41)
+	at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:275)
+	at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:91)
+	at org.apache.jasper.compiler.Parser.parseBody(Parser.java:1686)
+	at org.apache.jasper.compiler.Parser.parseOptionalBody(Parser.java:1006)
+	at org.apache.jasper.compiler.Parser.parseCustomTag(Parser.java:1281)
+	at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1460)
+	at org.apache.jasper.compiler.Parser.parse(Parser.java:139)
+	at org.apache.jasper.compiler.ParserController.doParse(ParserController.java:227)
+	at org.apache.jasper.compiler.ParserController.parse(ParserController.java:100)
+	at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:199)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:336)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:323)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:585)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:363)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:340)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:720)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:466)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:391)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:318)
+	at TradeController.doGet(Unknown Source)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+08-Mar-2016 20:42:14.498 SEVERE [http-nio-8181-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [Trade] in context with path [/laboration5] threw exception [/trade.jsp (line: 94, column: 0) Unterminated &lt;c:if tag] with root cause
+ org.apache.jasper.JasperException: /trade.jsp (line: 94, column: 0) Unterminated &lt;c:if tag
+	at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:41)
+	at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:275)
+	at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:91)
+	at org.apache.jasper.compiler.Parser.parseBody(Parser.java:1686)
+	at org.apache.jasper.compiler.Parser.parseOptionalBody(Parser.java:1006)
+	at org.apache.jasper.compiler.Parser.parseCustomTag(Parser.java:1281)
+	at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1460)
+	at org.apache.jasper.compiler.Parser.parse(Parser.java:139)
+	at org.apache.jasper.compiler.ParserController.doParse(ParserController.java:227)
+	at org.apache.jasper.compiler.ParserController.parse(ParserController.java:100)
+	at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:199)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:336)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:323)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:585)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:363)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:340)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:720)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:466)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:391)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:318)
+	at TradeController.doGet(Unknown Source)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+08-Mar-2016 20:43:20.354 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:43:20.354 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:43:23.197 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:43:23.198 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:43:25.327 SEVERE [http-nio-8181-exec-1] org.apache.catalina.core.ApplicationDispatcher.invoke Servlet.service() for servlet jsp threw exception
+ org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: 22 in the jsp file: /trade.jsp
+Syntax error, insert "while ( Expression ) ;" to complete DoStatement
+19: <input type="submit"></form>
+20: 
+21: <%
+22: } else {
+23: %>
+24: 
+25: <jsp:useBean class="bean.Securities" id="securities" scope="session"/>
+
+
+An error occurred at line: 22 in the jsp file: /trade.jsp
+Syntax error, insert "}" to complete Statement
+19: <input type="submit"></form>
+20: 
+21: <%
+22: } else {
+23: %>
+24: 
+25: <jsp:useBean class="bean.Securities" id="securities" scope="session"/>
+
+
+An error occurred at line: [253] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error, insert "Finally" to complete TryStatement
+
+An error occurred at line: [254] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+_jspx_th_c_005fif_005f0 cannot be resolved
+
+An error occurred at line: [255] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+_jspx_th_c_005fif_005f0 cannot be resolved to a variable
+
+An error occurred at line: [258] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+_jspx_th_c_005fif_005f0 cannot be resolved to a variable
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error on tokens, delete these tokens
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error on token(s), misplaced construct(s)
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+t cannot be resolved to a variable
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error, insert "AssignmentOperator Expression" to complete Assignment
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error, insert ";" to complete Statement
+
+An error occurred at line: [262] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+t cannot be resolved to a variable
+
+An error occurred at line: [272] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+t cannot be resolved to a variable
+
+An error occurred at line: [273] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+t cannot be resolved to a variable
+
+An error occurred at line: [275] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error on token "finally", delete this token
+
+Stacktrace:
+	at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+	at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:198)
+	at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:449)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:361)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:336)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:323)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:585)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:363)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:340)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:720)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:466)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:391)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:318)
+	at TradeController.doGet(Unknown Source)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+08-Mar-2016 20:43:25.327 SEVERE [http-nio-8181-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [Trade] in context with path [/laboration5] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: 22 in the jsp file: /trade.jsp
+Syntax error, insert "while ( Expression ) ;" to complete DoStatement
+19: <input type="submit"></form>
+20: 
+21: <%
+22: } else {
+23: %>
+24: 
+25: <jsp:useBean class="bean.Securities" id="securities" scope="session"/>
+
+
+An error occurred at line: 22 in the jsp file: /trade.jsp
+Syntax error, insert "}" to complete Statement
+19: <input type="submit"></form>
+20: 
+21: <%
+22: } else {
+23: %>
+24: 
+25: <jsp:useBean class="bean.Securities" id="securities" scope="session"/>
+
+
+An error occurred at line: [253] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error, insert "Finally" to complete TryStatement
+
+An error occurred at line: [254] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+_jspx_th_c_005fif_005f0 cannot be resolved
+
+An error occurred at line: [255] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+_jspx_th_c_005fif_005f0 cannot be resolved to a variable
+
+An error occurred at line: [258] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+_jspx_th_c_005fif_005f0 cannot be resolved to a variable
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error on tokens, delete these tokens
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error on token(s), misplaced construct(s)
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+t cannot be resolved to a variable
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error, insert "AssignmentOperator Expression" to complete Assignment
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error, insert ";" to complete Statement
+
+An error occurred at line: [262] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+t cannot be resolved to a variable
+
+An error occurred at line: [272] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+t cannot be resolved to a variable
+
+An error occurred at line: [273] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+t cannot be resolved to a variable
+
+An error occurred at line: [275] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error on token "finally", delete this token
+
+Stacktrace:] with root cause
+ org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: 22 in the jsp file: /trade.jsp
+Syntax error, insert "while ( Expression ) ;" to complete DoStatement
+19: <input type="submit"></form>
+20: 
+21: <%
+22: } else {
+23: %>
+24: 
+25: <jsp:useBean class="bean.Securities" id="securities" scope="session"/>
+
+
+An error occurred at line: 22 in the jsp file: /trade.jsp
+Syntax error, insert "}" to complete Statement
+19: <input type="submit"></form>
+20: 
+21: <%
+22: } else {
+23: %>
+24: 
+25: <jsp:useBean class="bean.Securities" id="securities" scope="session"/>
+
+
+An error occurred at line: [253] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error, insert "Finally" to complete TryStatement
+
+An error occurred at line: [254] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+_jspx_th_c_005fif_005f0 cannot be resolved
+
+An error occurred at line: [255] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+_jspx_th_c_005fif_005f0 cannot be resolved to a variable
+
+An error occurred at line: [258] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+_jspx_th_c_005fif_005f0 cannot be resolved to a variable
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error on tokens, delete these tokens
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error on token(s), misplaced construct(s)
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+t cannot be resolved to a variable
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error, insert "AssignmentOperator Expression" to complete Assignment
+
+An error occurred at line: [261] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error, insert ";" to complete Statement
+
+An error occurred at line: [262] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+t cannot be resolved to a variable
+
+An error occurred at line: [272] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+t cannot be resolved to a variable
+
+An error occurred at line: [273] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+t cannot be resolved to a variable
+
+An error occurred at line: [275] in the generated java file: [/home/martin/development/school/Inet/lab5/src/apache-tomcat-8.0.32/work/Catalina/localhost/laboration5/org/apache/jsp/trade_jsp.java]
+Syntax error on token "finally", delete this token
+
+Stacktrace:
+	at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+	at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:198)
+	at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:449)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:361)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:336)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:323)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:585)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:363)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:340)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:720)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:466)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:391)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:318)
+	at TradeController.doGet(Unknown Source)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+08-Mar-2016 20:47:06.939 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:47:06.939 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:47:10.097 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:47:10.097 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:52:07.967 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:52:07.967 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:52:10.736 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:52:10.736 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 20:52:36.315 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 20:52:36.315 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 20:52:39.255 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 20:52:39.255 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 21:09:01.088 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 21:09:01.088 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 21:09:03.941 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 21:09:03.941 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 21:09:07.115 SEVERE [http-nio-8181-exec-1] org.apache.catalina.core.ApplicationDispatcher.invoke Servlet.service() for servlet jsp threw exception
+ java.lang.NullPointerException
+	at org.apache.jsp.trade_jsp._jspService(trade_jsp.java:148)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:340)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:720)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:466)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:391)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:318)
+	at TradeController.doGet(Unknown Source)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+08-Mar-2016 21:09:07.116 SEVERE [http-nio-8181-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [Trade] in context with path [/laboration5] threw exception [An exception occurred processing JSP page /trade.jsp at line 13
+
+10: 
+11: <body>
+12: 
+13: <% if(session.getAttribute("loggedin").equals("false")){ %>
+14: 
+15: <h1>Ny session!</h1>
+16: <form action="TradeController">
+
+
+Stacktrace:] with root cause
+ java.lang.NullPointerException
+	at org.apache.jsp.trade_jsp._jspService(trade_jsp.java:148)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:438)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:340)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:720)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:466)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:391)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:318)
+	at TradeController.doGet(Unknown Source)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+08-Mar-2016 21:09:31.554 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 21:09:31.555 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 21:09:34.551 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 21:09:34.552 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 21:10:20.637 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 21:10:20.637 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 21:10:23.578 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 21:10:23.578 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 21:11:12.552 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 21:11:12.552 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 21:11:15.571 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 21:11:15.571 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 21:21:19.071 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 21:21:19.071 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 21:21:21.869 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 21:21:21.869 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 21:22:30.569 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 21:22:30.569 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 21:22:33.227 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 21:22:33.228 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 21:23:15.474 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 21:23:15.475 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 21:23:18.305 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 21:23:18.305 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 21:23:38.207 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 21:23:38.207 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 21:23:40.927 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 21:23:40.927 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 21:23:59.033 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 21:23:59.034 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 21:24:01.931 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 21:24:01.931 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 21:25:57.406 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 21:25:57.406 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 21:26:00.391 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 21:26:00.391 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+08-Mar-2016 21:26:39.625 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+08-Mar-2016 21:26:39.625 INFO [localhost-startStop-2] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+08-Mar-2016 21:26:42.453 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+08-Mar-2016 21:26:42.453 INFO [localhost-startStop-1] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()

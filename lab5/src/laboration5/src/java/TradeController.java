@@ -9,13 +9,11 @@ import java.lang.StringBuilder;
 
 public class TradeController extends HttpServlet {
 
-	DatabaseAccessor db = new DatabaseAccessor();
-	Random r = new Random();
-	Securities securities = new Securities();
-	Trades trades;
+	private DatabaseAccessor db = new DatabaseAccessor();
+	private Securities securities = new Securities();
+	private Trades trades;
     
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-		
 		if (request.getParameter("action") != null) {
 
 			if(request.getParameter("action").equals("addSecurity")){
@@ -34,7 +32,9 @@ public class TradeController extends HttpServlet {
 				o.setUid(uid);
 			    db.addOrder(o);
 
-			    db.tryTrade(uid, request.getParameter("buyOrSell"));
+			    int id = db.getOrderId(o);
+
+			    db.tryTrade(id, request.getParameter("buyOrSell"));
 			}
 
 
@@ -43,9 +43,16 @@ public class TradeController extends HttpServlet {
 			    // Kod för att visa genomförda orders
 			    updateTrades(request, request.getParameter("security"));
 			}
+
+			if(request.getParameter("action").equals("addNewUser")) {
+				String name = request.getParameter("fullname");
+				String session = request.getSession().getId();
+				db.addUser(name, session);
+			}
 		}
 
 		updateSecurities(request);
+		updateUser(request);
 
 	    RequestDispatcher rd =
 		request.getRequestDispatcher("trade.jsp");
@@ -63,10 +70,23 @@ public class TradeController extends HttpServlet {
     private void updateTrades(HttpServletRequest request, String security) {
     	trades = new Trades();
     	for (Trade t : db.getTrades()) {
-    		if (t.getName().equals(security))
+    		if (t.getName().equals(security)) {
+    			t.setBuyer(db.getUserName(t.getBuyer()));
+    			t.setSeller(db.getUserName(t.getSeller()));
     			trades.addTrade(t);
+    		}
     	}
     	request.setAttribute("trades", trades);
+    }
+
+    private void updateUser(HttpServletRequest request) {
+    	User user = new User();
+    	user.setSession(request.getSession().getId());
+    	for (User u : db.getUsers()) {
+    		if (u.getSession().equals(user.getSession()))
+    			user.setName(u.getName());
+    	}
+    	request.setAttribute("user", user);
     }
 
 } 
