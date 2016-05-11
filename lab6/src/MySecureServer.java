@@ -17,7 +17,7 @@ public class MySecureServer {
 	public MySecureServer() {
 		MySecureSocketFactory sf = new MySecureSocketFactory();
 		try {
-			serverSocket = sf.getServerSocket(8888);
+			serverSocket = sf.setupListening(8888);
 			client = (SSLSocket) serverSocket.accept();
 			setupStreams();
 		} catch (Exception e) {

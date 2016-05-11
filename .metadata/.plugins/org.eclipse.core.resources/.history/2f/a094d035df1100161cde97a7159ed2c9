@@ -1,0 +1,62 @@
+
+
+import java.io.FileInputStream;
+import java.security.KeyStore;
+import java.security.SecureRandom;
+
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLServerSocket;
+import javax.net.ssl.SSLServerSocketFactory;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManagerFactory;
+
+public class MySecureSocketFactory {
+	private SSLContext sslContext;
+	
+	public MySecureSocketFactory() {
+		try {
+			setup();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void setup() throws Exception {
+		// Create SecureRandom
+		SecureRandom random = new SecureRandom();
+
+		// Setup Keystores
+		KeyStore serverKeyStore, clientKeyStore;
+		serverKeyStore = KeyStore.getInstance("JKS");
+		serverKeyStore.load(new FileInputStream("/tmp/server.public"), "clientpw".toCharArray());
+		clientKeyStore = KeyStore.getInstance("JKS");
+		clientKeyStore.load(new FileInputStream("/tmp/client.private"), "public".toCharArray());
+
+		// Setup factories
+		TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
+		tmf.init(serverKeyStore);
+		KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
+		kmf.init(clientKeyStore, "public".toCharArray());
+
+		// Setup SSLContext
+		sslContext = SSLContext.getInstance("TLS");
+		sslContext.init( kmf.getKeyManagers(),
+				tmf.getTrustManagers(),
+				random );
+	}
+	
+	public SSLSocket getClientSocket(String host, int port) throws Exception {
+		SSLSocketFactory sf = sslContext.getSocketFactory();
+		SSLSocket clientSocket = (SSLSocket)sf.createSocket(host, port);
+		return clientSocket;
+	}
+	
+	public SSLServerSocket getServerSocket(int port) throws Exception {
+		SSLServerSocketFactory ssf = sslContext.getServerSocketFactory();
+        SSLServerSocket serverSocket = (SSLServerSocket)ssf.createServerSocket(8080);
+        serverSocket.setNeedClientAuth(true);
+        return serverSocket;
+	}
+}

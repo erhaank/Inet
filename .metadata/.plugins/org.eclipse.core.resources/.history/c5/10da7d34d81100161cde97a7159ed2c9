@@ -1,0 +1,35 @@
+package lab6;
+
+import java.io.FileInputStream;
+import java.security.KeyStore;
+import java.security.SecureRandom;
+
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
+
+public class Test {
+	public void doStuff() throws Exception {
+		// Create SecureRandom
+		SecureRandom random = new SecureRandom();
+
+		// Setup Keystores
+		KeyStore serverKeyStore, clientKeyStore;
+		serverKeyStore = KeyStore.getInstance("JKS");
+		serverKeyStore.load(new FileInputStream("server.public"), "serverpw".toCharArray());
+		clientKeyStore = KeyStore.getInstance("JKS");
+		clientKeyStore.load(new FileInputStream("client.private"), "public".toCharArray());
+
+		// Setup factories
+		TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
+		tmf.init(serverKeyStore);
+		KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
+		kmf.init(clientKeyStore, "public".toCharArray());
+
+		// Setup SSLContext
+		SSLContext sslContext = SSLContext.getInstance( "TLS" );
+		sslContext.init( kmf.getKeyManagers(),
+				tmf.getTrustManagers(),
+				random );
+	}
+}

@@ -1,0 +1,51 @@
+
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
+import javax.net.ssl.SSLServerSocket;
+import javax.net.ssl.SSLSocket;
+
+public class MySecureServer {
+	
+	private SSLServerSocket serverSocket;
+	private SSLSocket client;
+	private DataInputStream in;
+	private DataOutputStream out;
+	
+	public MySecureServer() {
+		MySecureSocketFactory sf = new MySecureSocketFactory();
+		try {
+			serverSocket = sf.getServerSocket(8181);
+			client = (SSLSocket) serverSocket.accept();
+			setupStreams();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+		runServer();
+	}
+	
+	private void setupStreams() throws IOException {
+		in = new DataInputStream(client.getInputStream());
+		out = new DataOutputStream(client.getOutputStream());
+	}
+	
+	private void runServer() {
+		while (true) {
+			try {
+				out.writeUTF("Server: Marco");
+				System.out.println(in.readUTF());
+				Thread.sleep(2000);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		new MySecureServer();
+	}
+
+}

@@ -15,7 +15,7 @@ public class MySecureClient {
 	public MySecureClient() {
 		MySecureSocketFactory sf = new MySecureSocketFactory();
 		try {
-			socket = sf.getClientSocket("localhost", 8888);
+			socket = sf.setupConnection("localhost", 8888);
 			setupStreams();
 		} catch (Exception e) {
 			e.printStackTrace();

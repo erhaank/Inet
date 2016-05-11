@@ -1,0 +1,22 @@
+package lab6;
+
+import javax.net.ssl.SSLSocket;
+
+public class MySecureClient {
+
+	private SSLSocket socket;
+	
+	public MySecureClient() {
+		MySecureSocketFactory sf = new MySecureSocketFactory();
+		try {
+			socket = sf.getClientSocket("localhost", 8080);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		new MySecureClient();
+	}
+
+}

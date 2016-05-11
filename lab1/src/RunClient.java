@@ -10,8 +10,8 @@ public class RunClient {
 			Client client = new Client();
 			Socket socket = null;
 			try {
-				socket = new Socket("localhost", 8888);
-				// socket = new Socket("130.237.223.175", 8888);
+				//socket = new Socket("localhost", 8888);
+				socket = new Socket("130.237.223.175", 8888);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

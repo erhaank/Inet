@@ -1,0 +1,19 @@
+package lab6;
+
+public class MySecureServer {
+	
+	private SSLServerSocket socket;
+	
+	public MySecureServer() {
+		socket = setupServerSocket();
+	}
+	
+	private setupServerSocket() {
+		
+	}
+
+	public static void main(String[] args) {
+		new MySecureServer();
+	}
+
+}

@@ -1,0 +1,24 @@
+import java.util.HashMap;
+
+
+public class OutputGenerator {
+
+	//private HTMLParser parser;
+	private HashMap<String, GuessStatus> users;
+	
+	public OutputGenerator() {
+		users = new HashMap<String, GuessStatus>();
+	}
+	
+	public String generateHTML(String cookie, String guess) {
+		String ret = null;
+		if (!users.containsKey(cookie)) {
+			GuessStatus newGuess = new GuessStatus();
+			newGuess.reset();
+			users.put(cookie, newGuess);
+		}
+		//Guess g = users.
+		//Do stuff
+		return ret;
+	}
+}

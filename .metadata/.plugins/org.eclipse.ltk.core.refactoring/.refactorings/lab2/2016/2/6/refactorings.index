@@ -1,0 +1,12 @@
+1454335438236	Delete elements
+1454500639675	Move file
+1454500665686	Move file
+1454500753489	Move file
+1454577184370	Move compilation unit
+1454598027209	Rename type 'Guess'
+1454598676604	Rename method 'printRequest'
+1454598933733	Rename method 'runServer'
+1454750782881	Move file
+1454755103548	Rename field 'request'
+1454755115004	Rename local variable 'httpRequest'
+1454755218349	Rename field 'requestedDocument'

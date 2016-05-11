@@ -1,0 +1,37 @@
+package lab6;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+
+import javax.net.ssl.SSLServerSocket;
+
+public class MySecureServer {
+	
+	private SSLServerSocket socket;
+	private DataInputStream in;
+	private DataOutputStream out;
+	
+	public MySecureServer() {
+		MySecureSocketFactory sf = new MySecureSocketFactory();
+		try {
+			socket = sf.getServerSocket(8080);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		setupStreams();
+		runServer();
+	}
+	
+	private void setupStreams() {
+		
+	}
+	
+	private void runServer() {
+		
+	}
+
+	public static void main(String[] args) {
+		new MySecureServer();
+	}
+
+}

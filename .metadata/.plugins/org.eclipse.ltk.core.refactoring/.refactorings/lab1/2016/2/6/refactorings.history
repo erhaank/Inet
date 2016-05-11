@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;Message.changeReceiver(...)&apos; to &apos;changeSender&apos;&#x0A;- Original project: &apos;lab1&apos;&#x0A;- Original element: &apos;Message.changeReceiver(...)&apos;&#x0A;- Renamed element: &apos;Message.changeSender(...)&apos;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;changeReceiver&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;{Message.java[Message~changeReceiver~QString;" name="changeSender" references="true" stamp="1454323343315" version="1.0"/>
+</session>

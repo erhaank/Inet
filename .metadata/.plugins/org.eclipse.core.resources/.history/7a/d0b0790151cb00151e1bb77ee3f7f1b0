@@ -1,0 +1,91 @@
+
+
+import java.io.*;
+import java.net.*;
+import java.util.StringTokenizer;
+
+public class HttpServer {
+	
+	private ServerSocket ss;
+	private Socket s;
+	private BufferedReader request;
+	
+	public HttpServer() {
+		try {
+			ss = new ServerSocket(4711);
+			runServer();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void runServer() throws IOException {
+		while (true) {
+			setupSocket();
+			
+			tearDownSocket();
+		}
+	}
+	
+	private void setupSocket() throws IOException {
+		Socket s = ss.accept();
+		BufferedReader request =
+				new BufferedReader(new InputStreamReader(s.getInputStream()));
+	}
+	
+	private void tearDownSocket() throws IOException {
+		s.close();
+		s = null;
+		request = null;
+	}
+	
+	private void printRequest() {
+		
+	}
+	
+	
+
+	public static void main(String[] args) throws IOException{
+		while(true){
+			
+			String str = request.readLine();
+			System.out.println(str);
+			StringTokenizer tokens =
+					new StringTokenizer(str," ?");
+			tokens.nextToken();
+			String requestedDocument = tokens.nextToken();
+			while( (str = request.readLine()) != null && str.length() > 0){
+				System.out.println(str);
+			}
+			s.shutdownInput();
+
+			PrintStream response =
+					new PrintStream(s.getOutputStream());
+			response.println("HTTP/1.0 200 OK");
+			response.println("Server : Slask 0.1 Beta");
+			String contentType = null;
+			if(requestedDocument.indexOf(".html") != -1) // Varför inte reqDoc.endsWith(".html") ?
+				contentType = "Content-Type: text/html";
+			else if(requestedDocument.indexOf(".gif") != -1) // Samma här
+				contentType = "Content-Type: image/gif";
+
+			if (contentType != null) {
+				response.println(contentType);
+				response.println("Set-Cookie: clientId=1; expires=Wednesday,31-Dec-2017 21:00:00 GMT");
+
+				response.println();
+				File f = new File("."+requestedDocument);
+				FileInputStream infil = new FileInputStream(f);
+				byte[] b = new byte[1024];
+				while( infil.available() > 0){
+					response.write(b,0,infil.read(b));
+				}
+			}
+			s.shutdownOutput();
+			s.close();
+		}
+	}
+
+}
+

@@ -1,0 +1,13 @@
+package lab6;
+
+public class MySecureServer {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
