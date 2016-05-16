@@ -1,0 +1,4 @@
+Vi tänkte göra en hemsida som tillåter användaren att använda sig av “The Pomodoro Technique” online. The pomodoro technique är en teknik för att bli mer produktiv, som går ut på att arbeta i korta intensiva intervall. På hemsidan ska användare kunna logga in och specifiera egna kategorier, uppgifter och pass, där varje uppgift är ett intervall som kan läggas upp på dagens workschedule. 
+Exempelvis:
+Användaren “Martin” har specificerat en kategori “KTH” och i den skapat en uppgift “Plugga Inet” som är 45 minuter lång. Denna uppgift kan sedan läggas upp på workschedule för att sedan köras igång. Under 45 minuter förväntas Martin jobba med uppgiften innan det hörs ett pling som meddelar att uppgiften är avklarad. 
+Om man har en mängd uppgifter på sitt workschedule kan man spara dessa som ett pass, så att man nästa gång lätt kan sätta upp dessa utan att för hand lägga in alla uppgifter var för sig.
