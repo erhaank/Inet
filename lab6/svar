@@ -46,9 +46,12 @@ Private key:
 Public key: 
 	The public key (Hur förklarar man det bättre?)
 cipher suite:
-	
+	A combination of authentication, encryption, and exchange algorithms used in the SSL/TLS handshake
+	when negotiating.
 HTTPS:
 	HTTP for encrypted data. Uses SSL or TLS 
 MD5/SHA:
-	
+	Hashfunctions that can be used in PKI. For example when validating that a message hasn't been altered
+	from when it was sent to when it is received.
 AES:
+	Advanced Encryption Standard is a standard for symmetric encryption.
