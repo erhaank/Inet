@@ -39,7 +39,8 @@ public class MySecureServer {
 				System.out.println(in.readUTF());
 				Thread.sleep(2000);
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.out.println("Closing down");
+				break;
 			}
 		}
 	}

@@ -2,7 +2,6 @@
 
 import java.io.FileInputStream;
 import java.security.KeyStore;
-import java.security.KeyStoreException;
 import java.security.SecureRandom;
 
 import javax.net.ssl.KeyManagerFactory;
@@ -23,23 +22,23 @@ public class MySecureSocketFactory {
 		SecureRandom random = new SecureRandom();
 
 		// Setup Keystores
-		KeyStore clientKS, serverKS;
-		clientKS = KeyStore.getInstance("JKS");
-		clientKS.load(new FileInputStream("/tmp/keys/client.public"), "public".toCharArray());
-		serverKS = KeyStore.getInstance("JKS");
-		serverKS.load(new FileInputStream("/tmp/keys/server.private"), "serverpw".toCharArray());
+		KeyStore clientKeyStore, serverKeyStore;
+		clientKeyStore = KeyStore.getInstance("JKS");
+		clientKeyStore.load(new FileInputStream("/tmp/keys/client.public"), "public".toCharArray());
+		serverKeyStore = KeyStore.getInstance("JKS");
+		serverKeyStore.load(new FileInputStream("/tmp/keys/server.private"), "serverpw".toCharArray());
 
 		// Setup factories
 		TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-		tmf.init(clientKS);
+		tmf.init(clientKeyStore);
 		KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-		kmf.init(serverKS, "serverpw".toCharArray());
+		kmf.init(serverKeyStore, "serverpw".toCharArray());
 
 		// Setup SSLContext
 		SSLContext sslContext = SSLContext.getInstance("TLS");
-		sslContext.init( kmf.getKeyManagers(),
+		sslContext.init(kmf.getKeyManagers(),
 				tmf.getTrustManagers(),
-				random );
+				random);
 		
 		SSLServerSocketFactory ssf = sslContext.getServerSocketFactory();
 		SSLServerSocket serverSocket = (SSLServerSocket)ssf.createServerSocket(port);
@@ -66,9 +65,9 @@ public class MySecureSocketFactory {
 
 		// Setup SSLContext
 		SSLContext sslContext = SSLContext.getInstance("TLS");
-		sslContext.init( kmf.getKeyManagers(),
+		sslContext.init(kmf.getKeyManagers(),
 				tmf.getTrustManagers(),
-				random );
+				random);
 		
 		SSLSocketFactory sf = sslContext.getSocketFactory();
 		SSLSocket clientSocket = (SSLSocket)sf.createSocket(host, port);

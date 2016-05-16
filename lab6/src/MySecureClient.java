@@ -32,11 +32,12 @@ public class MySecureClient {
 	private void runClient() {
 		while (true) {
 			try {
-				Thread.sleep(500);
 				System.out.println(in.readUTF());
+				Thread.sleep(500);
 				out.writeUTF("Client: Polo");
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.out.println("Closing down.");
+				break;
 			}
 		}
 	}
