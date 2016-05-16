@@ -1,17 +1,54 @@
 Explain how the PKI work.
+TODO
 ● Describe the contents of a certificate
-A certificate is like a digital passport, and contains information like name of the certificate 
-holder, a serial number, expiration dates, the public key and a signature from a CA.
+	A certificate is like a digital passport, and contains information like name of the certificate 
+	holder, a serial number, expiration dates, the public key and a signature from a CA.
 
 ● Explain how a certificate is validated from a technical standpoint, what type of algorithms
 are used?
-
+	The certificate is signed by a CA with the CA:s private key. This signature is made with a certain
+	algorithm, for example RSA. The same algorithm can be used, with the CA:s public key to validate that
+	the signature is in fact signed by the CA.
 
 ● How are root certificates delivered to your computer?
+	Some are preinstalled on the computer, but some can be downloaded through an internet browser.
+
 ● What is a trust chain?
+	The root CA is the "anchor" of the trust chain, validating other subordinate CA:s that can validate
+	other subordinate CA:s or normal certificates and so on.
+
 Is it safe to store the certificate password in the code? Why/Why not?
+	No. The code uses the keystorefile, which means that if someone gets access to the code, they probably
+	get access to the keystore. If the certificate password isn't stored in the code however, the intruder
+	won't be able to use the code (and the keystore).
+
 Explain the handshake.
+	The handshake is used before any data is transmitted, and is used to setup a session between the server
+	and client. During the handshake the server and client authenticates each other and agrees on algorithms
+	to use.
+	Picture: https://www.cs.bham.ac.uk/~mdr/teaching/modules06/netsec/lectures/tls/figs/f14-6_big.gif 
 ● When is symmetric encryption used?
+	In smaller networks and/or where efficiency of data transfer is important. 
+	
 ● When is asymmetric encryption used?
-Keywords:
-X.509, TLS/SSL, RSA, Private key, Public key, cipher suite, HTTPS, MD5/SHA, AES
+	In bigger networks since less keys has to be generated, and since there is less exchange of keys.
+	
+Keywords
+X.509: 			
+	A standard for PKI, that specifies formats for certificates etc
+TLS/SSL: 		
+	Transport Layer Security & Secure Sockets Layer are cryptographic protocols that provide 
+	communications security over a computer network. SSL is the predecessor of TLS
+RSA: 
+	One of the most widely known cryptosystems.
+Private key: 
+	Used in assymetric encryption, this is the "secret" key.
+Public key: 
+	The public key (Hur förklarar man det bättre?)
+cipher suite:
+	
+HTTPS:
+	HTTP for encrypted data. Uses SSL or TLS 
+MD5/SHA:
+	
+AES:
