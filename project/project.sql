@@ -43,6 +43,7 @@ create table sessionTasks (
 );
 
 create table workflow (
+	id integer auto_increment primary key,
 	userId varchar(10),
 	taskId integer,
 	amount integer

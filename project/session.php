@@ -11,6 +11,10 @@ $user_id = $_POST["user_id"];
 $name = $_POST["session_name"];
 $description = $_POST["session_description"];
 
+if ($name == "") {
+	return;
+}
+
 $query = "insert into session (userid, name, description)
 	values (:user_id, :name, :description)";
 
@@ -20,6 +24,11 @@ $stmt->bindParam(':user_id', $user_id);
 $stmt->bindParam(':name', $name);
 $stmt->bindParam(':description', $description);
 
-$stmt->execute(); 
-
+try {
+    $stmt->execute();
+    echo "<p style='color:green'>Successfully added session '{$name}'</p>";
+}
+catch(PDOException $Exception ) {
+    echo "<p style='color:red'>Couldn't add session '{$name}'</p>";
+}
 ?>
