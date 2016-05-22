@@ -4,7 +4,6 @@
 <fullyQualifiedTypeName name="Test.T"/>
 <fullyQualifiedTypeName name="java.io.IOError"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="lab1.Synchronizer"/>
 <fullyQualifiedTypeName name="lab1.Server"/>
 <fullyQualifiedTypeName name="lab1.State"/>
@@ -16,7 +15,6 @@
 <fullyQualifiedTypeName name="lab1.ConnectionCommand"/>
 <fullyQualifiedTypeName name="lab1.ConnectionCommand.Command"/>
 <fullyQualifiedTypeName name="lab1.Command"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.awt.List"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="lab1.Client"/>
@@ -25,7 +23,6 @@
 <fullyQualifiedTypeName name="java.io.BufferedInputStream"/>
 <fullyQualifiedTypeName name="java.io.BufferedOutputStream"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
-<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
 <fullyQualifiedTypeName name="java.lang.InterruptedException"/>
 <fullyQualifiedTypeName name="Client.ClientReadThread"/>
 <fullyQualifiedTypeName name="Client.ClientWriteThread"/>
@@ -41,10 +38,20 @@
 <fullyQualifiedTypeName name="java.security.KeyStore"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="lab6.MySecureServer"/>
-<fullyQualifiedTypeName name="javax.net.ssl.SSLServerSocket"/>
 <fullyQualifiedTypeName name="lab6.MySecureSocketFactory"/>
-<fullyQualifiedTypeName name="javax.net.ssl.SSLSocket"/>
 <fullyQualifiedTypeName name="lab6.MySecureClient"/>
 <fullyQualifiedTypeName name="java.io.DataInputStream"/>
+<fullyQualifiedTypeName name="javax.net.ssl.SSLServerSocket"/>
+<fullyQualifiedTypeName name="javax.net.ssl.SSLSocket"/>
+<fullyQualifiedTypeName name="javax.net.ssl.SSLContext"/>
+<fullyQualifiedTypeName name="javax.net.ssl.TrustManagerFactory"/>
+<fullyQualifiedTypeName name="javax.net.ssl.KeyManagerFactory"/>
 <fullyQualifiedTypeName name="java.io.DataOutputStream"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="JSONObject"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="org.json.JSONArray"/>
+<fullyQualifiedTypeName name="org.json.JSONObject"/>
 </qualifiedTypeNameHistroy>

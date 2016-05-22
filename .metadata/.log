@@ -463,3 +463,285 @@ Caused by: java.io.FileNotFoundException: /home/martin/development/school/Inet/l
 	at java.io.FileInputStream.<init>(FileInputStream.java:138)
 	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:362)
 	... 8 more
+!SESSION 2016-05-16 10:21:49.927 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_77
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2016-05-16 10:26:10.372
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: Unable to read repository at http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=1139.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:128)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.io.IOException: http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=1139 is not a valid repository location.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:102)
+	... 10 more
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1002 2016-05-16 10:26:10.374
+!MESSAGE Unable to read repository at http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=1139.
+!STACK 0
+java.io.IOException: http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=1139 is not a valid repository location.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:102)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2016-05-16 10:26:21.779
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at http://marketplace.eclipse.org/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1000 2016-05-16 10:26:21.779
+!MESSAGE No repository found at http://marketplace.eclipse.org/.
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2016-05-16 10:26:28.528
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at https://eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/keplersr2.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1000 2016-05-16 10:26:28.528
+!MESSAGE No repository found at https://eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/keplersr2.
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2016-05-16 10:26:33.838
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: Unable to read repository at http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=1139%0A.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:128)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.io.IOException: http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=1139%0A is not a valid repository location.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:102)
+	... 10 more
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1002 2016-05-16 10:26:33.838
+!MESSAGE Unable to read repository at http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=1139%0A.
+!STACK 0
+java.io.IOException: http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=1139%0A is not a valid repository location.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:102)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2016-05-16 10:26:37.510
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: Unable to read repository at http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=473457.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:128)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.io.IOException: http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=473457 is not a valid repository location.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:102)
+	... 10 more
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1002 2016-05-16 10:26:37.510
+!MESSAGE Unable to read repository at http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=473457.
+!STACK 0
+java.io.IOException: http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=473457 is not a valid repository location.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:102)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2016-05-16 10:26:48.985
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at http://eclipse.org.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1000 2016-05-16 10:26:48.985
+!MESSAGE No repository found at http://eclipse.org.
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-05-16 10:27:39.788
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:27:39.788
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:39.788
+!MESSAGE Software being installed: Command Line Interface for Java implementation of Git 4.3.1.201605051710-r (org.eclipse.jgit.pgm.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:39.788
+!MESSAGE Missing requirement: JGit Large File Storage Server 4.3.1.201605051710-r (org.eclipse.jgit.lfs.server 4.3.1.201605051710-r) requires 'package javax.servlet [3.1.0,4.0.0)' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:27:39.788
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:39.788
+!MESSAGE From: Java implementation of Git - optional LFS support 4.3.1.201605051710-r (org.eclipse.jgit.lfs.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:39.788
+!MESSAGE To: org.eclipse.jgit.lfs.server [4.3.1.201605051710-r]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:27:39.788
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:39.788
+!MESSAGE From: Command Line Interface for Java implementation of Git 4.3.1.201605051710-r (org.eclipse.jgit.pgm.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:39.788
+!MESSAGE To: org.eclipse.jgit.lfs.feature.group [4.3.1.201605051710-r]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-05-16 10:27:39.937
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:27:39.937
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:39.937
+!MESSAGE Software being installed: Command Line Interface for Java implementation of Git 4.3.1.201605051710-r (org.eclipse.jgit.pgm.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:39.937
+!MESSAGE Missing requirement: JGit Large File Storage Server 4.3.1.201605051710-r (org.eclipse.jgit.lfs.server 4.3.1.201605051710-r) requires 'package javax.servlet [3.1.0,4.0.0)' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:27:39.937
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:39.937
+!MESSAGE From: Java implementation of Git - optional LFS support 4.3.1.201605051710-r (org.eclipse.jgit.lfs.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:39.937
+!MESSAGE To: org.eclipse.jgit.lfs.server [4.3.1.201605051710-r]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:27:39.937
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:39.937
+!MESSAGE From: Command Line Interface for Java implementation of Git 4.3.1.201605051710-r (org.eclipse.jgit.pgm.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:39.937
+!MESSAGE To: org.eclipse.jgit.lfs.feature.group [4.3.1.201605051710-r]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-05-16 10:27:42.575
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:27:42.575
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:42.575
+!MESSAGE Software being installed: Command Line Interface for Java implementation of Git 4.3.1.201605051710-r (org.eclipse.jgit.pgm.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:42.575
+!MESSAGE Missing requirement: JGit Large File Storage Server 4.3.1.201605051710-r (org.eclipse.jgit.lfs.server 4.3.1.201605051710-r) requires 'package javax.servlet [3.1.0,4.0.0)' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:27:42.575
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:42.575
+!MESSAGE From: Java implementation of Git - optional LFS support 4.3.1.201605051710-r (org.eclipse.jgit.lfs.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:42.575
+!MESSAGE To: org.eclipse.jgit.lfs.server [4.3.1.201605051710-r]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:27:42.575
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:42.575
+!MESSAGE From: Command Line Interface for Java implementation of Git 4.3.1.201605051710-r (org.eclipse.jgit.pgm.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:42.575
+!MESSAGE To: org.eclipse.jgit.lfs.feature.group [4.3.1.201605051710-r]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-05-16 10:27:42.578
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:27:42.578
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:42.578
+!MESSAGE Software being installed: Command Line Interface for Java implementation of Git 4.3.1.201605051710-r (org.eclipse.jgit.pgm.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:42.578
+!MESSAGE Missing requirement: JGit Large File Storage Server 4.3.1.201605051710-r (org.eclipse.jgit.lfs.server 4.3.1.201605051710-r) requires 'package javax.servlet [3.1.0,4.0.0)' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:27:42.578
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:42.578
+!MESSAGE From: Java implementation of Git - optional LFS support 4.3.1.201605051710-r (org.eclipse.jgit.lfs.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:42.578
+!MESSAGE To: org.eclipse.jgit.lfs.server [4.3.1.201605051710-r]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:27:42.578
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:42.578
+!MESSAGE From: Command Line Interface for Java implementation of Git 4.3.1.201605051710-r (org.eclipse.jgit.pgm.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:27:42.578
+!MESSAGE To: org.eclipse.jgit.lfs.feature.group [4.3.1.201605051710-r]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-05-16 10:28:01.973
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:28:01.973
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:28:01.973
+!MESSAGE Software being installed: Command Line Interface for Java implementation of Git 4.3.1.201605051710-r (org.eclipse.jgit.pgm.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:28:01.973
+!MESSAGE Missing requirement: JGit Large File Storage Server 4.3.1.201605051710-r (org.eclipse.jgit.lfs.server 4.3.1.201605051710-r) requires 'package javax.servlet [3.1.0,4.0.0)' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:28:01.973
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:28:01.973
+!MESSAGE From: Java implementation of Git - optional LFS support 4.3.1.201605051710-r (org.eclipse.jgit.lfs.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:28:01.973
+!MESSAGE To: org.eclipse.jgit.lfs.server [4.3.1.201605051710-r]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:28:01.973
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:28:01.973
+!MESSAGE From: Command Line Interface for Java implementation of Git 4.3.1.201605051710-r (org.eclipse.jgit.pgm.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:28:01.973
+!MESSAGE To: org.eclipse.jgit.lfs.feature.group [4.3.1.201605051710-r]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-05-16 10:28:01.974
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:28:01.974
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:28:01.974
+!MESSAGE Software being installed: Command Line Interface for Java implementation of Git 4.3.1.201605051710-r (org.eclipse.jgit.pgm.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:28:01.974
+!MESSAGE Missing requirement: JGit Large File Storage Server 4.3.1.201605051710-r (org.eclipse.jgit.lfs.server 4.3.1.201605051710-r) requires 'package javax.servlet [3.1.0,4.0.0)' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:28:01.974
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:28:01.974
+!MESSAGE From: Java implementation of Git - optional LFS support 4.3.1.201605051710-r (org.eclipse.jgit.lfs.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:28:01.974
+!MESSAGE To: org.eclipse.jgit.lfs.server [4.3.1.201605051710-r]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-05-16 10:28:01.974
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:28:01.974
+!MESSAGE From: Command Line Interface for Java implementation of Git 4.3.1.201605051710-r (org.eclipse.jgit.pgm.feature.group 4.3.1.201605051710-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-05-16 10:28:01.974
+!MESSAGE To: org.eclipse.jgit.lfs.feature.group [4.3.1.201605051710-r]

@@ -14,7 +14,7 @@ $query = "select amount from workflow where id = {$flow_id}";
 $stmt = $db->prepare($query);
 $stmt->execute();
 $results = $stmt->fetchAll();
-print_r($results);
+//print_r($results);
 $res = $results[0];
 
 $amount = $res['amount'];

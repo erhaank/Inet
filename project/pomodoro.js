@@ -53,6 +53,22 @@ $(document).ready(function() {
 		}
 	});
 
+	$.ajax(
+		{
+		type: "POST",
+		url: "generate_clock.php",
+		data: "user_id="+username,
+		success: function(result) {
+			var endTime = parseInt(result.split(",")[0]);
+			var description = result.split(",")[1];
+			startTimer(endTime, $("#timer"), description);
+		},
+		error: function(a, b, c) {
+			console.log(b);
+		}
+	});
+
+
 	// Function invoked when pressing 'Add category'
 	$("#catForm").on("submit", function(e) {
 		var form_params = $("#catForm").serialize();
@@ -175,7 +191,29 @@ $(document).ready(function() {
 
 	$("body").on("click", ".workflow_task", function(element){
         var flow_id = element.target.parentElement.id;
-        //Start the specified task. 
+        var id = flow_id.split("_")[1];
+        var duration = element.currentTarget.attributes.getNamedItem("value").value;
+        var endTime = getEndTime(duration);
+        $.ajax(
+			{
+			type: "POST",
+			url: "start_working.php",
+			data: "flow_id="+id+"&user_id="+username+"&end_time="+endTime,
+			success: function(result) {
+				if (result == "ERROR") {
+					return;
+				}
+				element.currentTarget.className = "in_progress";
+			},
+			error: function(a, b, c) {
+				console.log(b);
+			}
+		});
+		//window.location.reload();	//Reload the page so that the newly added component appears.
+		return false;
+        //Start the specified task.
+        
+        //startTimer(70, $("#timer"), "[DisplayText]");
     });
 
     $("body").on("click", ".remove_task", function(element){
@@ -187,7 +225,6 @@ $(document).ready(function() {
 			url: "remove_from_workflow.php",
 			data: "flow_id="+id,
 			success: function(result) {
-				//$("#debug").html(result);
 				console.log(result);
 			},
 			error: function(a, b, c) {
@@ -200,3 +237,37 @@ $(document).ready(function() {
 
 
 });
+
+function getEndTime(duration) {
+	duration = duration*60;	// from minutes to seconds
+    var endTime = Date.now()+(duration*1000);
+    return endTime;
+}
+
+function startTimer(endTime, display, displayText) {
+    var hours, minutes, seconds;
+
+    var intervalId = setInterval(function () {
+    	var milliLeft = endTime - Date.now();
+    	var secondsLeft = parseInt(milliLeft/1000,10);
+    	hours = parseInt(secondsLeft / 3600, 10);
+        minutes = parseInt((secondsLeft % 3600) / 60, 10);
+        seconds = parseInt(secondsLeft % 60, 10);
+
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.html("<p class='timer'>" + hours + ":" + minutes + ":" + seconds+"</p>" + "<p class='timer_text'>" + displayText + "</p>");
+
+        if (secondsLeft <= 0) {
+            taskFinished(intervalId);
+        }
+    }, 1000);
+}
+
+function taskFinished(interval) {
+	clearInterval(interval);
+	// TODO: Fixa pling och kanske popup? Och ta bort tasken från workspace. Och ta bort från databasen
+	
+}

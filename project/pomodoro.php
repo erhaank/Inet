@@ -85,10 +85,11 @@ echo "<p id='username' class='hidden'>{$username}</p>";
 </form>
 </div>
 
+<div id='timer'></div>
+
 <div id='workflow' class='workflow'>
 	<p id='workflow_result'></p>
 </div>
 
-<p style='color:red' id='debug'></p>
 </body>
 </html>

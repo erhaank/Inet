@@ -100,8 +100,35 @@ label {
 	margin-bottom: 1%;
 }
 
+.in_progress {
+	background-color: #4080bf;
+	padding: 1%;
+	margin-bottom: 1%;
+	margin-bottom: 1%;
+}
+
 .remove_task {
 	background-color: #b30000;
 	padding: 1%;
 	float: right;
+}
+
+#timer {
+	width: 60%;
+	margin-right: 5%;
+	margin-left: 5%;
+	float: right;
+	border-radius: 1px;
+	border: 5px solid #dbdbdb;
+}
+
+.timer {
+	padding: 1%;
+	margin-left: 40%;
+	font-size: 300%;
+}
+
+.timer_text {
+	margin-left: 40%;
+	color: #808080;
 }
