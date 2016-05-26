@@ -12,7 +12,17 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $newusername=$_POST['newusername'];
 $newpassword=$_POST['newpassword'];
 
-$sql="insert into {$tbl_name} values('{$newusername}', {$newpassword})";
+if ($newusername === "" || $newpassword === "") {
+	header("location:index.php");
+} else {
+
+$options = [
+    'cost' => 11,
+];
+
+$hash = password_hash($newpassword, PASSWORD_BCRYPT, $options);
+
+$sql="insert into {$tbl_name} values('{$newusername}', '{$hash}')";
 
 $stmt = $db->prepare($sql);
 try {
@@ -27,5 +37,6 @@ catch(PDOException $Exception ) {
 	$cookie_value = "USER_EXISTS";
 	setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 	header("location:index.php");
+}
 }
 ?>

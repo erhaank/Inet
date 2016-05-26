@@ -259,38 +259,66 @@ $(document).ready(function() {
 		return false;
     });
 
+    $("body").on("click", "#log_out", function(element){
+        $.ajax(
+			{
+			type: "POST",
+			url: "log_out.php",
+			data: "",
+			success: function(result) {
+				console.log(result);
+			},
+			error: function(a, b, c) {
+				console.log(b);
+			}
+		});
+		window.location.reload();	//Reload the page so that the newly added component appears.
+		return false;
+    });
+
+    function getEndTime(duration) {
+		duration = duration*60;	// from minutes to seconds
+	    var endTime = Date.now()+(duration*1000);
+	    return endTime;
+	}
+
+	function startTimer(endTime, display, displayText) {
+	    var hours, minutes, seconds;
+
+	    var intervalId = setInterval(function () {
+	    	var milliLeft = endTime - Date.now();
+	    	var secondsLeft = parseInt(milliLeft/1000,10);
+	    	hours = parseInt(secondsLeft / 3600, 10);
+	        minutes = parseInt((secondsLeft % 3600) / 60, 10);
+	        seconds = parseInt(secondsLeft % 60, 10);
+
+	        hours = hours < 10 ? "0" + hours : hours;
+	        minutes = minutes < 10 ? "0" + minutes : minutes;
+	        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+	        display.html("<button id='remove_in_progress' type='button'></button><p class='timer'>" + hours + ":" + minutes + ":" + seconds+"</p>" + "<p class='timer_text'>" + displayText + "</p>");
+
+	        if (secondsLeft <= 0) {
+	            taskFinished(intervalId);
+	        }
+	    }, 1000);
+	}
+
+	function taskFinished(interval) {
+		clearInterval(interval);
+		// TODO: Fixa pling och kanske popup? Och ta bort tasken från workspace. Och ta bort från databasen
+		$.ajax(
+			{
+			type: "POST",
+			url: "task_finished.php",
+			data: "user_id="+username,
+			success: function(result) {
+				console.log(result);
+			},
+			error: function(a, b, c) {
+				console.log(b);
+			}
+		});
+		//window.location.reload();
+	}
 });
-
-function getEndTime(duration) {
-	duration = duration*60;	// from minutes to seconds
-    var endTime = Date.now()+(duration*1000);
-    return endTime;
-}
-
-function startTimer(endTime, display, displayText) {
-    var hours, minutes, seconds;
-
-    var intervalId = setInterval(function () {
-    	var milliLeft = endTime - Date.now();
-    	var secondsLeft = parseInt(milliLeft/1000,10);
-    	hours = parseInt(secondsLeft / 3600, 10);
-        minutes = parseInt((secondsLeft % 3600) / 60, 10);
-        seconds = parseInt(secondsLeft % 60, 10);
-
-        hours = hours < 10 ? "0" + hours : hours;
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.html("<button id='remove_in_progress' type='button'></button><p class='timer'>" + hours + ":" + minutes + ":" + seconds+"</p>" + "<p class='timer_text'>" + displayText + "</p>");
-
-        if (secondsLeft <= 0) {
-            taskFinished(intervalId);
-        }
-    }, 1000);
-}
-
-function taskFinished(interval) {
-	clearInterval(interval);
-	// TODO: Fixa pling och kanske popup? Och ta bort tasken från workspace. Och ta bort från databasen
-	
-}

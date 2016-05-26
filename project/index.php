@@ -1,10 +1,9 @@
 <?php
 if(isset($_COOKIE["projekt"])) {
-	// *** Commenting it out for debug reasons ***
-	// Goto main page if it you are already logged in. TODO: Fix logout button in pomodoro.php
-	/*if ($_COOKIE["projekt"] != "WRONG_PASSWORD" && $_COOKIE["projekt"] != "USER_EXISTS") {
+	// Goto main page if it you are already logged in.
+	if (strcmp(substr($_COOKIE["projekt"], 0, 9), "username=") == 0) {
 		header("location:pomodoro.php");
-	}*/
+	}
 }
 ?>
 
@@ -19,7 +18,9 @@ if(isset($_COOKIE["projekt"])) {
 }
 ?>
 <form name="loginform" method="post" action="checklogin.php" accept-charset="utf-8">
+<label>Username</label>
 <input name="myusername" type="text">
+<label>Password</label>
 <input name="mypassword" type="password">
 <input type="submit" value="Login">
 </form>
@@ -34,7 +35,9 @@ if(isset($_COOKIE["projekt"])) {
 }
 ?>
 <form name="registerform" method="post" action="registerlogin.php">
+<label>Username</label>
 <input name="newusername" type="text" id="newusername">
+<label>Password</label>
 <input name="newpassword" type="password" id="newpassword">
 <input type="submit" value="Register">
 </form> 

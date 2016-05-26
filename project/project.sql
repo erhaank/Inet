@@ -12,7 +12,7 @@ set names utf8;
 
 create table user (
 	id varchar(16) primary key,
-	password integer
+	password varchar(60)
 );
 
 create table category (
@@ -51,6 +51,7 @@ create table workflow (
 	id integer auto_increment primary key,
 	userId varchar(16),
 	taskId integer,
+	amount integer,
 	foreign key (userId) references user(id),
 	foreign key (taskId) references task(id)
 );

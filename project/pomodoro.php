@@ -11,12 +11,16 @@
 
 <?php
 if(!isset($_COOKIE["projekt"])) {
-	header("location:index.html");
+	header("location:index.php");
+} else {
+	echo "<p>{$_COOKIE['projekt']}</p>";
 }
 $username = explode("=", $_COOKIE["projekt"])[1]; // Gets the username from the cookie_values (assumes certain things)
 echo "<p>Logged in as {$username}</p>";
 echo "<p id='username' class='hidden'>{$username}</p>";
 ?>
+<button id="log_out">Log out</button>
+<br>
 <div class='menu'>
 <p class='label_head'>Add a new category</p>
 
