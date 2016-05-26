@@ -21,7 +21,7 @@ $stmt->execute();
 $task_id = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
 
 // Insert into workflow
-$query = "insert into workflow(userId, taskId, amount) values ('{$user_id}', {$task_id}, 1)";
+$query = "insert into workflow(userId, taskId) values ('{$user_id}', {$task_id})";
 
 $stmt = $db->prepare($query);
 
