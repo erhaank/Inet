@@ -51,7 +51,6 @@ create table workflow (
 	id integer auto_increment primary key,
 	userId varchar(16),
 	taskId integer,
-	amount integer,
 	foreign key (userId) references user(id),
 	foreign key (taskId) references task(id)
 );

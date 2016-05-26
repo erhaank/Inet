@@ -20,7 +20,7 @@ $stmt->bindParam(':user_id', $user_id);
 $stmt->execute(); 
 $session_id = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
 // Get the tasks of the session
-$query = "select taskId, amount from session, sessionTasks where session.id = {$session_id}";
+$query = "select taskId, amount from sessionTasks where sessionId = {$session_id}";
 $stmt = $db->prepare($query);
 $stmt->execute();
 $rows = $stmt->fetchAll();
@@ -28,18 +28,19 @@ $rows = $stmt->fetchAll();
 foreach($rows as $row) {
 	$task_id = $row['taskId'];
 	$amount = $row['amount'];
-	$query = "insert into workflow(userId, taskId, amount) values ('{$user_id}', {$task_id}, {$amount})";
-	$stmt = $db->prepare($query);
+	for($x = 0; $x < $amount; $x++) {
+		$query = "insert into workflow(userId, taskId) values ('{$user_id}', {$task_id})";
+		$stmt = $db->prepare($query);
+		try {
+		    $stmt->execute();
+		    echo "<p style='color:green'>Successfully added session to workflow'{$session_name}'</p>";
+		}
+		catch(PDOException $Exception ) {
+		    echo "<p style='color:red'>Couldn't add session '{$session_name} to workflow'</p>";
+		}
+	}
 	/*$stmt->bindParam(':user_id', $user_id);
 	$stmt->bindParam(':task_name', $row['taskId']);
 	$stmt->bindParam(':amount', $row['amount']);*/
-
-	try {
-	    $stmt->execute();
-	    echo "<p style='color:green'>Successfully added session to workflow'{$session_name}'</p>";
-	}
-	catch(PDOException $Exception ) {
-	    echo "<p style='color:red'>Couldn't add session '{$session_name} to workflow'</p>";
-	}
 }
 ?>
