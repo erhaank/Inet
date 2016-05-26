@@ -113,6 +113,13 @@ label {
 	float: right;
 }
 
+#remove_in_progress {
+	background-color: #b30000;
+	padding: 1%;
+	float: right;
+	margin: 1%;
+}
+
 #timer {
 	width: 60%;
 	margin-right: 5%;

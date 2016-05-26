@@ -1,6 +1,7 @@
 <?php
 $tbl_name="user"; // Table name
 
+
 $user="agnesam_admin";
 $password="FfXD1Ehl";
 $db = new PDO('mysql:host=mysql-vt2016.csc.kth.se;dbname=agnesam;charset=utf8', $user, $password);

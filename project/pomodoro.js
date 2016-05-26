@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	var username = $("#username").text();
+	var taskInProgress = false;
 	// Generate all of the dropdown choises in the forms
 	$.ajax(
 		{
@@ -61,7 +62,11 @@ $(document).ready(function() {
 		success: function(result) {
 			var endTime = parseInt(result.split(",")[0]);
 			var description = result.split(",")[1];
-			startTimer(endTime, $("#timer"), description);
+			//alert("End time: "+endTime+", Description: "+description);
+			if (endTime != 0) {
+				taskInProgress = true;
+				startTimer(endTime, $("#timer"), description);
+			}
 		},
 		error: function(a, b, c) {
 			console.log(b);
@@ -190,6 +195,11 @@ $(document).ready(function() {
 	});
 
 	$("body").on("click", ".workflow_task", function(element){
+		if (taskInProgress) {
+			//Cannot add a task if another is already in progress.
+			alert("Another task is already in progress...");
+			return;
+		}
         var flow_id = element.target.parentElement.id;
         var id = flow_id.split("_")[1];
         var duration = element.currentTarget.attributes.getNamedItem("value").value;
@@ -209,11 +219,8 @@ $(document).ready(function() {
 				console.log(b);
 			}
 		});
-		//window.location.reload();	//Reload the page so that the newly added component appears.
+		window.location.reload();	//Reload the page so that the newly added component appears.
 		return false;
-        //Start the specified task.
-        
-        //startTimer(70, $("#timer"), "[DisplayText]");
     });
 
     $("body").on("click", ".remove_task", function(element){
@@ -235,6 +242,22 @@ $(document).ready(function() {
 		return false;
     });
 
+    $("body").on("click", "#remove_in_progress", function(element){
+        $.ajax(
+			{
+			type: "POST",
+			url: "remove_from_inprogress.php",
+			data: "user_id="+username,
+			success: function(result) {
+				console.log(result);
+			},
+			error: function(a, b, c) {
+				console.log(b);
+			}
+		});
+		window.location.reload();	//Reload the page so that the newly added component appears.
+		return false;
+    });
 
 });
 
@@ -258,7 +281,7 @@ function startTimer(endTime, display, displayText) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.html("<p class='timer'>" + hours + ":" + minutes + ":" + seconds+"</p>" + "<p class='timer_text'>" + displayText + "</p>");
+        display.html("<button id='remove_in_progress' type='button'></button><p class='timer'>" + hours + ":" + minutes + ":" + seconds+"</p>" + "<p class='timer_text'>" + displayText + "</p>");
 
         if (secondsLeft <= 0) {
             taskFinished(intervalId);
