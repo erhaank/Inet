@@ -94,5 +94,10 @@ if(!isset($_COOKIE["projekt"])) {
 	<p id='workflow_result'></p>
 </div>
 
+<audio id="timer-beep">
+<source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.mp3"/>
+<source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.ogg" />
+</audio>
+
 </body>
 </html>

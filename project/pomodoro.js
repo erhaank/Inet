@@ -201,6 +201,9 @@ $(document).ready(function() {
 			return;
 		}
         var flow_id = element.target.parentElement.id;
+        if (flow_id == "workflow") {
+        	flow_id = element.target.id;
+        }
         var id = flow_id.split("_")[1];
         var duration = element.currentTarget.attributes.getNamedItem("value").value;
         var endTime = getEndTime(duration);
@@ -306,6 +309,8 @@ $(document).ready(function() {
 
 	function taskFinished(interval) {
 		clearInterval(interval);
+		document.getElementById('timer-beep').play();
+		alert("Task finished!");
 		// TODO: Fixa pling och kanske popup? Och ta bort tasken från workspace. Och ta bort från databasen
 		$.ajax(
 			{
@@ -319,6 +324,7 @@ $(document).ready(function() {
 				console.log(b);
 			}
 		});
+		window.location.reload();
 		//window.location.reload();
 	}
 });
