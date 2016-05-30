@@ -25,10 +25,11 @@ $stmt->execute();
 $task_id = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
 
 //Get session id
-$query = "select id from session where name = :session_name";
+$query = "select id from session where name = :session_name and userId = :user_id";
 
 $stmt = $db->prepare($query);
 $stmt->bindParam(':session_name', $session_name);
+$stmt->bindParam(':user_id', $user_id);
 $stmt->execute(); 
 $session_id = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
 

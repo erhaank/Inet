@@ -29,18 +29,26 @@ $in_progress = $stmt->fetchAll()[0][0];
 foreach ($results as $res) {
 	$task_id = $res['taskId'];
 	$id = $res['id'];
-	$query = "select category, minutes, name, description from task where id = :task_id";
+	$query = "select categoryId, minutes, name, description from task where id = :task_id";
 
 	$stmt = $db->prepare($query);
 	$stmt->bindParam(':task_id', $task_id);
 	$stmt->execute(); 
 	$params = $stmt->fetchAll();
 	foreach ($params as $param) {
+			$category_id = $param['categoryId'];
+
+			$query = "select name from category where id = :category_id";
+			$stmt = $db->prepare($query);
+			$stmt->bindParam(':category_id', $category_id);
+			$stmt->execute();
+			$category_name = $stmt->fetch(PDO::FETCH_ASSOC)['name'];
 		if ($id == $in_progress) {
-			echo "<div class='in_progress' id='workflow_{$id}' value='{$param['minutes']}'><p>{$param['name']}</p><p>{$param['category']}</p><p>{$param['description']}</p><p>Time: {$param['minutes']} minutes</p></div>";
+
+			echo "<div class='in_progress' id='workflow_{$id}' value='{$param['minutes']}'><p>{$param['name']}</p><p>{$category_name}</p><p>{$param['description']}</p><p>Time: {$param['minutes']} minutes</p></div>";
 
 		} else { 
-			echo "<div class='workflow_task' id='workflow_{$id}' value='{$param['minutes']}'><button class='remove_task' type='button'></button><p>{$param['name']}</p><p>{$param['category']}</p><p>{$param['description']}</p><p>Time: {$param['minutes']} minutes</p></div>";
+			echo "<div class='workflow_task' id='workflow_{$id}' value='{$param['minutes']}'><button class='remove_task' type='button'></button><p>{$param['name']}</p><p>{$category_name}</p><p>{$param['description']}</p><p>Time: {$param['minutes']} minutes</p></div>";
 		}
 	}
 }

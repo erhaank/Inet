@@ -1,14 +1,3 @@
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="pomodoro.css">
-<script src="jquery-1.12.0.min.js"></script>
-<script src="pomodoro.js"></script>
-</head>
-
-<body>
-
-<div id='test'></div>
-
 <?php
 ob_start();
 if(!isset($_COOKIE["projekt"])) {
@@ -19,6 +8,16 @@ if(!isset($_COOKIE["projekt"])) {
 	echo "<p id='username' class='hidden'>{$username}</p>";
 }
 ?>
+
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="pomodoro.css">
+<script src="jquery-1.12.0.min.js"></script>
+<script src="pomodoro.js"></script>
+</head>
+<body>
+<div id='test'></div>
+
 <button id="log_out">Log out</button>
 <br>
 <div class='menu'>

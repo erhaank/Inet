@@ -16,19 +16,20 @@ create table user (
 );
 
 create table category (
-	name varchar(20) primary key,
+	id integer auto_increment primary key,
+	name varchar(20),
 	userId varchar(16)
 );
 
 create table task (
 	id integer auto_increment primary key,
 	userId varchar(16),
-	category varchar(20),
+	categoryId integer,
 	minutes integer,
 	name varchar(20),
 	description varchar(50),
 	foreign key (userId) references user(id),
-	foreign key (category) references category(name)
+	foreign key (categoryId) references category(id)
 );
 
 create table session (

@@ -18,13 +18,25 @@ if ($name == "") {
 	return;
 }
 
-$query = "insert into task (userid, category, minutes, name, description)
-	values (:user_id, :category, :minutes, :name, :description)";
+$query = "select id from category where name = :category and userId = :user_id";
+
+$stmt = $db->prepare($query);
+
+$stmt->bindParam(':category', $category);
+$stmt->bindParam(':user_id', $user_id);
+
+$stmt->execute();
+
+$category_id = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
+
+
+$query = "insert into task (userid, categoryId, minutes, name, description)
+	values (:user_id, :category_id, :minutes, :name, :description)";
 
 $stmt = $db->prepare($query);
 
 $stmt->bindParam(':user_id', $user_id);
-$stmt->bindParam(':category', $category);
+$stmt->bindParam(':category_id', $category_id);
 $stmt->bindParam(':minutes', $minutes);
 $stmt->bindParam(':name', $name);
 $stmt->bindParam(':description', $description);
